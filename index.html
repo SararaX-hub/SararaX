@@ -407,33 +407,49 @@ footer strong{color:var(--blue);font-family:'Syne',sans-serif;}
     </div>
   </div>
 
-  <!-- IDEAS GENERATOR -->
+  <!-- IDEAS -->
 
   <div class="panel" id="panel-ideas">
     <div class="section-header">
-      <span class="section-tag">Ideas Generator</span>
+      <span class="section-tag">Content Ideas</span>
       <h2>Never Run Out of Ideas</h2>
-      <p>Pick your niche and platform — AI generates fresh, specific content ideas instantly just for you.</p>
+      <p>Browse ready-made ideas by niche, or tap the AI button to get custom ideas generated just for you on Claude.</p>
     </div>
-    <div class="generator-box">
-      <div class="gen-label">Choose your niche & platform</div>
-      <div class="gen-row">
-        <select class="gen-select" id="niche-select">
-          <option value="">Select Niche…</option>
-          <option>Lifestyle</option><option>Fashion & Beauty</option><option>Food & Cooking</option>
-          <option>Fitness & Wellness</option><option>Travel</option><option>Personal Finance</option>
-          <option>Tech & Gadgets</option><option>Business & Entrepreneurship</option>
-          <option>Gaming</option><option>Parenting & Family</option><option>Education</option><option>Comedy & Entertainment</option>
-        </select>
-        <select class="gen-select" id="platform-select">
-          <option value="">Select Platform…</option>
-          <option>Instagram Reels</option><option>TikTok</option><option>YouTube Shorts</option>
-          <option>YouTube Long-form</option><option>Podcast</option><option>LinkedIn</option>
-        </select>
-        <button class="gen-btn" onclick="generateIdeas()" id="gen-btn">✦ Generate</button>
-      </div>
-    </div>
-    <div id="ideas-output"></div>
+
+```
+<!-- TWO OPTIONS -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px;">
+  <div style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);border:1.5px solid #7dd3fc;border-radius:18px;padding:24px;text-align:center;">
+    <div style="font-size:1.8rem;margin-bottom:8px;">📚</div>
+    <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.95rem;color:#0c1a2e;margin-bottom:5px;">Ready-Made Ideas</div>
+    <div style="font-size:.78rem;color:#334155;margin-bottom:14px;line-height:1.5;">Browse ideas by niche — always works, no internet needed</div>
+    <button onclick="document.getElementById('browse-section').scrollIntoView({behavior:'smooth'})" style="background:#0ea5e9;color:#fff;border:none;border-radius:50px;padding:9px 20px;font-size:.8rem;font-weight:700;font-family:Syne,sans-serif;cursor:pointer;">Browse Ideas ↓</button>
+  </div>
+  <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #a7f3d0;border-radius:18px;padding:24px;text-align:center;">
+    <div style="font-size:1.8rem;margin-bottom:8px;">🤖</div>
+    <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.95rem;color:#0c1a2e;margin-bottom:5px;">AI-Generated Ideas</div>
+    <div style="font-size:.78rem;color:#334155;margin-bottom:14px;line-height:1.5;">Get custom ideas made for your exact niche using Claude AI</div>
+    <a href="https://claude.ai/new?q=Give+me+10+creative+content+ideas+for+a+creator+in+my+niche.+Make+them+specific,+engaging,+and+ready+to+film+for+Instagram+Reels+or+TikTok." target="_blank" style="background:#10b981;color:#fff;border:none;border-radius:50px;padding:9px 20px;font-size:.8rem;font-weight:700;font-family:Syne,sans-serif;cursor:pointer;text-decoration:none;display:inline-block;">Open Claude AI →</a>
+  </div>
+</div>
+
+<!-- BROWSE SECTION -->
+<div id="browse-section">
+  <div style="font-family:Syne,sans-serif;font-size:1rem;font-weight:700;color:#0c1a2e;margin-bottom:14px;">📂 Browse by Niche</div>
+  <div class="creator-tabs" style="margin-bottom:20px;">
+    <button class="ctab active" onclick="showIdeas(event,'lifestyle')">Lifestyle</button>
+    <button class="ctab" onclick="showIdeas(event,'fashion')">Fashion</button>
+    <button class="ctab" onclick="showIdeas(event,'food')">Food</button>
+    <button class="ctab" onclick="showIdeas(event,'fitness')">Fitness</button>
+    <button class="ctab" onclick="showIdeas(event,'travel')">Travel</button>
+    <button class="ctab" onclick="showIdeas(event,'business')">Business</button>
+    <button class="ctab" onclick="showIdeas(event,'finance')">Finance</button>
+    <button class="ctab" onclick="showIdeas(event,'comedy')">Comedy</button>
+  </div>
+  <div id="ideas-browse" class="ideas-out"></div>
+</div>
+```
+
   </div>
 
   <!-- MONETIZE -->
@@ -523,6 +539,91 @@ footer strong{color:var(--blue);font-family:'Syne',sans-serif;}
 </footer>
 
 <script>
+const ideasData={
+  lifestyle:[
+    {idea:"Morning routine that actually changed my life",hook:"Show before vs after your day when you follow this routine."},
+    {idea:"5 habits I dropped that were secretly draining me",hook:"The honest things nobody wants to admit they do."},
+    {idea:"What my Sunday reset looks like step by step",hook:"From messy week to fresh start — show every step."},
+    {idea:"Things I stopped buying that saved me money and stress",hook:"Minimalism isn't boring — it's freeing."},
+    {idea:"A day in my life but I only say yes to things I love",hook:"What does a truly intentional day look like?"},
+    {idea:"Honest things I wish I knew at 20",hook:"The advice nobody gives you until it's almost too late."},
+  ],
+  fashion:[
+    {idea:"One dress 5 completely different ways to style it",hook:"You don't need more clothes — you need more creativity."},
+    {idea:"Thrift haul and how I styled every single piece",hook:"Sustainable fashion that actually looks amazing."},
+    {idea:"Outfits I get the most compliments on and why",hook:"The psychology of why certain outfits just work."},
+    {idea:"Wardrobe detox — everything I got rid of and why",hook:"Less in your closet means more in your confidence."},
+    {idea:"Affordable dupes for expensive fashion pieces",hook:"Look expensive without spending a fortune."},
+    {idea:"Get ready with me for a big event",hook:"The full transformation from nothing to everything."},
+  ],
+  food:[
+    {idea:"5 meals I make every week that take under 20 minutes",hook:"Quick, healthy, and actually delicious — recipe included."},
+    {idea:"What I eat in a day on a tight budget",hook:"Eating well doesn't have to cost a fortune."},
+    {idea:"I tried cooking viral TikTok recipes — honest review",hook:"Which ones are actually worth making?"},
+    {idea:"Meal prep Sunday with me for the whole week",hook:"One afternoon of work means stress-free eating all week."},
+    {idea:"The one recipe everyone asks me for at parties",hook:"Simple ingredients, ridiculous results."},
+    {idea:"Foods I thought I hated until I cooked them right",hook:"The technique matters more than the ingredient."},
+  ],
+  fitness:[
+    {idea:"30 day body transformation — honest and unfiltered",hook:"No filters, no shortcuts — just real results and real struggles."},
+    {idea:"Workout I do when I have zero motivation",hook:"The 10 minute routine that always gets me going."},
+    {idea:"Gym mistakes I made for years without knowing",hook:"If you're not seeing results, this might be why."},
+    {idea:"How I stay consistent when life gets chaotic",hook:"The system that works even when you don't feel like it."},
+    {idea:"Full body workout with no equipment at home",hook:"Your living room is your gym — no excuses."},
+    {idea:"What I eat before and after every workout",hook:"Fuel your body right and watch your results change."},
+  ],
+  travel:[
+    {idea:"Hidden gems in [your city] tourists never find",hook:"Locals only — the places that don't make the tourist guides."},
+    {idea:"How I travel on a budget without sacrificing fun",hook:"I spent less than $500 and had the best week of my life."},
+    {idea:"Things I always pack that save me every single trip",hook:"The packing list I spent 10 years perfecting."},
+    {idea:"Solo travel for the first time — honest experience",hook:"Scary, freeing, and life-changing all at once."},
+    {idea:"Best street food I found in [destination]",hook:"Skip the restaurants — this is where the real food is."},
+    {idea:"My travel routine that keeps me energized and stress-free",hook:"How to actually enjoy travel instead of surviving it."},
+  ],
+  business:[
+    {idea:"How I got my first paying client with zero following",hook:"No audience, no ads — just one simple strategy."},
+    {idea:"Tools I use every day to run my business from my phone",hook:"The app stack that replaced my entire office."},
+    {idea:"Mistakes I made in my first year of business",hook:"So you don't have to learn them the hard way."},
+    {idea:"How I set my prices and stopped undercharging",hook:"The mindset shift that doubled my income."},
+    {idea:"A day in my life running a business solo",hook:"The real unglamorous truth behind entrepreneurship."},
+    {idea:"How I get clients without spending money on ads",hook:"Organic growth strategies that actually convert."},
+  ],
+  finance:[
+    {idea:"How I saved my first 1 million shillings step by step",hook:"The exact plan — income, expenses, and mindset."},
+    {idea:"Money habits that changed my financial life",hook:"Small daily decisions that compound into big results."},
+    {idea:"Things I stopped spending money on this year",hook:"The cuts that hurt at first but freed me completely."},
+    {idea:"How to build an emergency fund from scratch",hook:"Start with whatever you have — even 5,000 shillings counts."},
+    {idea:"Multiple income streams I built while working full time",hook:"How I stopped relying on one source of income."},
+    {idea:"The honest conversation about money nobody has",hook:"What financial freedom actually looks like in real life."},
+  ],
+  comedy:[
+    {idea:"Things Tanzanians do that make no sense to the rest of the world",hook:"We all do it — nobody talks about it."},
+    {idea:"Honest voiceover of what people are actually thinking",hook:"The internal monologue we never say out loud."},
+    {idea:"Expectations vs reality of [relatable everyday situation]",hook:"Why does everything look easier in our heads?"},
+    {idea:"Types of people you always find at [local place]",hook:"You know exactly who I'm talking about."},
+    {idea:"POV: you're trying to do something simple but life disagrees",hook:"Relatable chaos that everyone has experienced."},
+    {idea:"Reacting to the most common advice that actually doesn't work",hook:"We've all heard it — and it's always wrong."},
+  ],
+};
+
+function showIdeas(evt, niche){
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  evt.target.classList.add('active');
+  const list=document.getElementById('ideas-browse');
+  const ideas=ideasData[niche]||[];
+  list.innerHTML=ideas.map((item,i)=>`
+    <div class="idea-card">
+      <div class="idea-num">IDEA ${String(i+1).padStart(2,'0')}</div>
+      <p><strong>${item.idea}</strong><br/><span style="color:#0284c7;font-size:.8rem;">${item.hook}</span></p>
+      <button class="copy-btn" onclick="copyTxt(this,'${item.idea.replace(/'/g,"\'")}')">💾</button>
+    </div>`).join('');
+}
+// Init ideas on load
+setTimeout(()=>{
+  const firstCtab=document.querySelector('#panel-ideas .ctab');
+  if(firstCtab) showIdeas({target:firstCtab},'lifestyle');
+},100);
+
 const creators=[
   {name:'Gary Vaynerchuk',handle:'@garyvee',cat:'growth',focus:'Growth Strategy',bg:'#e0f2fe',e:'📈'},
   {name:'Ali Abdaal',handle:'@aliabdaal',cat:'editing',focus:'YouTube & Editing',bg:'#f0fdf4',e:'🎬'},
