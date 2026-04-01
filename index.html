@@ -93,7 +93,11 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-links{display:flex;gap:5px;flex-wrap:wrap;}
 .nav-btn{font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;border:none;background:transparent;cursor:pointer;padding:7px 13px;border-radius:50px;color:var(--ink-soft);transition:all .22s;white-space:nowrap;}
 .nav-btn:hover,.nav-btn.active{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(14,165,233,.3);}
-.hero{position:relative;z-index:1;text-align:center;padding:72px 24px 20px;animation:fadeUp .8s ease both;}
+.hero{position:relative;z-index:1;text-align:center;padding:72px 24px 20px;animation:fadeUp .8s ease both;overflow:hidden;}
+.hero-video-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.hero-video-bg video{width:100%;height:100%;object-fit:cover;opacity:0.12;filter:saturate(0.5);}
+.hero-video-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(240,249,255,0.6) 0%,rgba(224,242,254,0.85) 100%);}
+.hero>*:not(.hero-video-bg){position:relative;z-index:1;}
 .hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--sky-mid);border:1px solid var(--sky-deep);border-radius:50px;padding:6px 18px;margin-bottom:20px;font-size:0.8rem;font-weight:500;color:var(--blue-dark);}
 .hero-badge .dot{width:7px;height:7px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
@@ -313,6 +317,12 @@ footer strong{color:var(--blue);font-family:'Syne',sans-serif;}
 </div>
 
 <section class="hero">
+  <!-- BACKGROUND VIDEO -->
+  <div class="hero-video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="https://www.pexels.com/download/video/3195394/" type="video/mp4"/>
+    </video>
+  </div>
   <div class="hero-badge"><span class="dot"></span> Built for Creators</div>
   <h1>Your Creative<br/>Empire Starts <em>Here</em></h1>
   <p class="hero-sub">We make it easy for you to create content.</p>
@@ -567,6 +577,27 @@ footer strong{color:var(--blue);font-family:'Syne',sans-serif;}
       <span style="background:#fff;border:1px solid #7dd3fc;color:#0284c7;font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:50px;">Phone only</span>
       <span style="background:#fff;border:1px solid #7dd3fc;color:#0284c7;font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:50px;">Go at your own pace</span>
     </div>
+  </div>
+</div>
+
+<!-- PERSONAL VIDEO SECTION — BEFORE TABS -->
+
+<div style="position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 24px 28px;">
+  <div style="background:linear-gradient(135deg,#0c1a2e,#0ea5e9);border-radius:24px;padding:32px 28px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(14,165,233,0.15) 0%,transparent 60%);pointer-events:none;"></div>
+    <div style="font-size:1.3rem;margin-bottom:10px;position:relative;">🎬</div>
+    <div style="font-family:Syne,sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px;position:relative;">A Message From Sarara X</div>
+    <p style="font-size:.85rem;color:rgba(255,255,255,.8);max-width:400px;margin:0 auto 20px;line-height:1.6;position:relative;">Watch this before you start — it will change how you see everything inside this dashboard.</p>
+    <!-- TIKTOK EMBED -->
+    <div style="display:flex;justify-content:center;margin:0 auto;">
+      <blockquote class="tiktok-embed"
+        cite="https://www.tiktok.com/@anwarfreedom/video/7623724060002012436"
+        data-video-id="7623724060002012436"
+        style="max-width:325px;min-width:280px;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+        <section></section>
+      </blockquote>
+    </div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.55);margin-top:14px;position:relative;">📱 Tap to play · Works on all devices</p>
   </div>
 </div>
 <main id="main-content">
@@ -1474,6 +1505,8 @@ function submitNL(){
   document.getElementById('nl-success').style.display='block';
 }
 </script>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
 
 </body>
 </html>
