@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="theme-color" content="#0ea5e9"/>
+<meta name="description" content="Sarara X — The Creator Ecosystem for African content creators. Learn, Grow, Earn."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sarara X — Creator Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="icon" href="https://www.instagram.com/favicon.ico" type="image/x-icon"/>
+<style>.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}.hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;z-index:999;background:rgba(255,255,255,0.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);padding:16px 20px;flex-direction:column;gap:8px;box-shadow:0 8px 32px rgba(14,165,233,0.12)}.mobile-menu.open{display:flex}.mobile-nav-btn{font-family:"DM Sans",sans-serif;font-size:0.9rem;font-weight:500;border:none;background:transparent;cursor:pointer;padding:10px 16px;border-radius:12px;color:var(--ink-soft);transition:all .22s;text-align:left;width:100%}.mobile-nav-btn:hover{background:var(--sky);color:var(--blue)}@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none!important}}.countdown-bar{background:linear-gradient(135deg,#0c1a2e,#0ea5e9);color:#fff;text-align:center;padding:12px 20px;position:relative;z-index:99}.countdown-bar p{font-size:.82rem;font-family:"DM Sans",sans-serif;margin-bottom:6px;opacity:.9}.countdown-timer{display:flex;justify-content:center;gap:16px}.c-unit{text-align:center}.c-num{font-family:"Syne",sans-serif;font-size:1.6rem;font-weight:800;line-height:1}.c-label{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75}.social-proof{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 60px;animation:fadeUp .9s .25s ease both}.sp-header{text-align:center;margin-bottom:36px}.sp-header h2{font-family:"Syne",sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:-.5px;color:var(--ink);margin-bottom:8px}.sp-header p{font-size:.95rem;color:var(--ink-soft);max-width:500px;margin:0 auto;line-height:1.6}.urgency-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:16px;padding:20px 24px;text-align:center;margin-bottom:32px}.urgency-banner h3{font-family:"Syne",sans-serif;font-size:1rem;font-weight:800;color:#92400e;margin-bottom:5px}.urgency-banner p{font-size:.84rem;color:#78350f;line-height:1.55}.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-bottom:32px}.testi-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;backdrop-filter:blur(12px);box-shadow:var(--shadow);transition:all .28s;position:relative;overflow:hidden}.testi-card:hover{transform:translateY(-4px);border-color:var(--sky-deep)}.testi-card::before{content:"C";font-family:"Syne",sans-serif;font-size:5rem;color:var(--sky-mid);position:absolute;top:-10px;left:14px;line-height:1;pointer-events:none}.testi-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--sky-mid),var(--sky-deep));display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px;border:2px solid var(--sky-deep)}.testi-quote{font-size:.88rem;color:var(--ink);line-height:1.65;font-style:italic;margin-bottom:16px;position:relative;z-index:1}.testi-name{font-family:"Syne",sans-serif;font-size:.88rem;font-weight:700;color:var(--ink)}.testi-handle{font-size:.76rem;color:var(--blue);font-weight:500}.testi-reel{width:100%;height:160px;border-radius:12px;overflow:hidden;margin-bottom:14px;border:1px solid var(--border)}.testi-reel iframe{width:100%;height:100%;border:none}.marquee-wrap{overflow:hidden;width:100%;margin-bottom:32px;padding:12px 0}.marquee-track{display:flex;gap:20px;animation:marquee 22s linear infinite;width:max-content}.marquee-track:hover{animation-play-state:paused}.marquee-item{background:linear-gradient(135deg,var(--sky),var(--sky-mid));border:1px solid var(--sky-deep);border-radius:50px;padding:10px 22px;white-space:nowrap;font-size:.84rem;font-weight:500;color:var(--ink);flex-shrink:0}@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}.no-action-box{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1.5px solid #fca5a5;border-radius:20px;padding:28px;margin-bottom:32px}.no-action-box h3{font-family:"Syne",sans-serif;font-size:1.1rem;font-weight:800;color:#991b1b;margin-bottom:14px}.no-action-list{display:flex;flex-direction:column;gap:9px}.no-action-item{display:flex;gap:12px;align-items:flex-start;font-size:.86rem;color:#7f1d1d;line-height:1.55}.no-action-icon{font-size:1rem;flex-shrink:0;margin-top:1px}.sp-cta{text-align:center;margin-top:8px}.about-section{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 24px 60px}.about-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:40px 36px;backdrop-filter:blur(12px);box-shadow:var(--shadow)}.about-card h2{font-family:"Syne",sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:-.5px;color:var(--ink);margin-bottom:16px}.about-card p{font-size:.95rem;color:var(--ink-soft);line-height:1.75;margin-bottom:14px}.about-values{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:22px}.about-value{background:var(--sky);border-radius:14px;padding:16px;text-align:center}.about-value .av-icon{font-size:1.5rem;margin-bottom:6px}.about-value h4{font-family:"Syne",sans-serif;font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:3px}.about-value p{font-size:.75rem;color:var(--ink-soft);margin:0}.faq-section{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 24px 60px}</style>
+<style>:root{--sky:#e0f2fe;--sky-mid:#bae6fd;--sky-deep:#7dd3fc;--blue:#0ea5e9;--blue-dark:#0284c7;--ink:#0c1a2e;--ink-soft:#334155;--white:#fff;--card:rgba(255,255,255,0.88);--border:rgba(14,165,233,0.18);--shadow:0 4px 32px rgba(14,165,233,0.10);--radius:20px}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:linear-gradient(160deg,#f0f9ff 0%,#e0f2fe 40%,#f8fcff 100%);min-height:100vh;color:var(--ink);overflow-x:hidden}.bg-blobs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.32;animation:blobFloat 12s ease-in-out infinite alternate}.blob-1{width:500px;height:500px;background:#bae6fd;top:-120px;left:-100px}.blob-2{width:400px;height:400px;background:#7dd3fc;top:40%;right:-80px;animation-delay:3s}.blob-3{width:300px;height:300px;background:#e0f2fe;bottom:0;left:30%;animation-delay:6s}@keyframes blobFloat{from{transform:translateY(0) scale(1)}to{transform:translateY(-40px) scale(1.06)}}nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 36px;background:rgba(255,255,255,0.75);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);box-shadow:0 2px 24px rgba(14,165,233,0.07)}.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-0.5px;color:var(--ink)}.logo span{color:var(--blue)}.nav-links{display:flex;gap:5px;flex-wrap:wrap}.nav-btn{font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;border:none;background:transparent;cursor:pointer;padding:7px 13px;border-radius:50px;color:var(--ink-soft);transition:all .22s;white-space:nowrap}.nav-btn:hover,.nav-btn.active{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(14,165,233,.3)}.hero{position:relative;z-index:1;text-align:center;padding:48px 24px 20px;animation:fadeUp .8s ease both;overflow:hidden}.hero-video-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:linear-gradient(135deg,#bae6fd,#e0f2fe,#7dd3fc,#bae6fd);background-size:400% 400%;animation:heroGradient 8s ease infinite}.hero-video-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(240,249,255,0.7) 0%,rgba(224,242,254,0.9) 100%)}@keyframes heroGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}.hero>*:not(.hero-video-bg){position:relative;z-index:1}.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--sky-mid);border:1px solid var(--sky-deep);border-radius:50px;padding:6px 18px;margin-bottom:20px;font-size:0.8rem;font-weight:500;color:var(--blue-dark)}.hero-badge .dot{width:7px;height:7px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:var(--ink);margin-bottom:12px}h1 em{color:var(--blue);font-style:normal}.hero-sub{font-size:1rem;color:var(--blue-dark);font-weight:600;margin-bottom:10px}.hero-desc{font-size:0.95rem;color:var(--ink-soft);max-width:520px;margin:0 auto 30px;line-height:1.65;font-weight:300}.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}.btn-primary{background:var(--blue);color:#fff;border:none;border-radius:50px;padding:14px 32px;font-size:0.95rem;font-weight:600;cursor:pointer;transition:all .22s;box-shadow:0 6px 24px rgba(14,165,233,.35);font-family:'DM Sans',sans-serif}.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}.btn-outline{background:transparent;color:var(--blue);border:2px solid var(--sky-deep);border-radius:50px;padding:13px 28px;font-size:0.95rem;font-weight:600;cursor:pointer;transition:all .22s;font-family:'DM Sans',sans-serif}.btn-outline:hover{border-color:var(--blue);background:var(--sky)}.swot-section{position:relative;z-index:1;max-width:1000px;margin:40px auto 0;padding:0 24px 50px;animation:fadeUp .9s .15s ease both}.swot-label{text-align:center;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}.swot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(min-width:600px){.swot-grid{grid-template-columns:repeat(4,1fr)}}.swot-card{border-radius:16px;padding:20px 16px;text-align:center;border:1px solid var(--border);background:var(--card);backdrop-filter:blur(10px)}.swot-letter{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:5px}.swot-card h4{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;margin-bottom:5px}.swot-card p{font-size:0.76rem;color:var(--ink-soft);line-height:1.5}.s-card .swot-letter{color:#0ea5e9}.s-card{border-color:#bae6fd}.w-card .swot-letter{color:#f59e0b}.w-card{border-color:#fde68a}.o-card .swot-letter{color:#10b981}.o-card{border-color:#a7f3d0}.t-card .swot-letter{color:#ef4444}.t-card{border-color:#fca5a5}.stats-bar{position:relative;z-index:1;display:flex;justify-content:center;flex-wrap:wrap;padding:0 24px 48px;animation:fadeUp .9s .2s ease both}.stat-item{text-align:center;padding:16px 32px;border-right:1px solid var(--border)}.stat-item:last-child{border-right:none}.stat-num{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--blue)}.stat-label{font-size:0.76rem;color:var(--ink-soft);margin-top:2px}main{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px 80px}.section-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:34px;animation:fadeUp .7s .3s ease both}.tab{font-family:'Syne',sans-serif;font-weight:600;font-size:0.78rem;border:1.5px solid var(--border);background:var(--card);border-radius:50px;padding:8px 18px;cursor:pointer;color:var(--ink-soft);transition:all .22s;backdrop-filter:blur(8px);white-space:nowrap}.tab:hover{border-color:var(--blue);color:var(--blue)}.tab.active{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 4px 16px rgba(14,165,233,.3)}.panel{display:none}.panel.active{display:block;animation:fadeUp .45s ease both}@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.section-header{margin-bottom:26px}.section-tag{display:inline-block;background:var(--sky-mid);color:var(--blue-dark);font-size:0.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 13px;border-radius:50px;margin-bottom:9px}.section-header h2{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:800;letter-spacing:-.5px;color:var(--ink);margin-bottom:7px}.section-header p{color:var(--ink-soft);font-size:0.92rem;line-height:1.6}.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}.grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;backdrop-filter:blur(12px);box-shadow:var(--shadow);transition:all .28s}.card:hover{transform:translateY(-4px);border-color:var(--sky-deep);box-shadow:0 12px 40px rgba(14,165,233,.15)}.card-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--sky-mid),var(--sky-deep));display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:12px}.card h3{font-family:'Syne',sans-serif;font-size:0.97rem;font-weight:700;margin-bottom:7px;color:var(--ink)}.card p{font-size:0.84rem;color:var(--ink-soft);line-height:1.6}.card-link{display:inline-flex;align-items:center;gap:5px;color:var(--blue);font-size:0.8rem;font-weight:600;margin-top:12px;text-decoration:none;transition:gap .2s}.card-link:hover{gap:9px}.card-tag{display:inline-block;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:50px;margin-bottom:9px;background:var(--sky);color:var(--blue-dark)}.hook-section{margin-bottom:30px}.hook-section-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px}.hook-cards{display:flex;flex-direction:column;gap:9px}.hook-item{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:14px 18px;backdrop-filter:blur(10px);transition:all .22s;position:relative}.hook-item:hover{border-color:var(--blue);transform:translateX(4px)}.hook-type{font-size:0.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}.hook-item p{font-size:0.86rem;color:var(--ink);line-height:1.5;font-style:italic;padding-right:64px}.hook-copy{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:var(--sky);border:1px solid var(--sky-deep);border-radius:8px;padding:4px 10px;font-size:0.7rem;font-weight:600;color:var(--blue);cursor:pointer;opacity:0;transition:opacity .2s}.hook-item:hover .hook-copy{opacity:1}.hook-copy:hover{background:var(--blue);color:#fff}.story-card{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:1px solid var(--sky-deep);border-radius:15px;padding:20px;transition:all .22s}.story-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(14,165,233,.12)}.story-num{font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-bottom:5px}.story-card h4{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--ink);margin-bottom:5px}.story-card p{font-size:0.82rem;color:var(--ink-soft);line-height:1.55;font-style:italic}.accordion-item{background:var(--card);border:1px solid var(--border);border-radius:13px;margin-bottom:9px;backdrop-filter:blur(10px);overflow:hidden}.accordion-item:hover{border-color:var(--sky-deep)}.accordion-head{padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:'Syne',sans-serif;font-size:0.92rem;font-weight:700;color:var(--ink)}.accordion-head .arr{font-size:.8rem;color:var(--blue);transition:transform .3s}.accordion-head.open .arr{transform:rotate(180deg)}.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease}.accordion-body.open{max-height:600px}.accordion-inner{padding:0 20px 18px;font-size:0.85rem;color:var(--ink-soft);line-height:1.7}.accordion-inner ul{padding-left:16px}.accordion-inner li{margin-bottom:6px}.accordion-inner strong{color:var(--ink)}.ig-step{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:18px 22px;backdrop-filter:blur(10px);display:flex;gap:14px;align-items:flex-start;transition:all .22s;margin-bottom:10px}.ig-step:hover{border-color:var(--sky-deep);transform:translateX(4px)}.ig-step-num{width:30px;height:30px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:800;flex-shrink:0}.ig-step-body h4{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:3px}.ig-step-body p{font-size:.82rem;color:var(--ink-soft);line-height:1.55}.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:26px}.plan-card{background:var(--card);border:1.5px solid var(--border);border-radius:15px;padding:20px 16px;text-align:center;backdrop-filter:blur(10px);transition:all .25s}.plan-card:hover{border-color:var(--blue);transform:translateY(-3px)}.plan-days{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--blue);line-height:1}.plan-label{font-size:0.75rem;font-weight:600;color:var(--ink-soft);margin:3px 0 8px}.plan-level{display:inline-block;font-size:0.68rem;font-weight:700;padding:3px 11px;border-radius:50px;background:var(--sky-mid);color:var(--blue-dark)}.plan-card p{font-size:0.77rem;color:var(--ink-soft);margin-top:9px;line-height:1.5}.creator-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}.ctab{font-size:0.78rem;font-weight:600;border:1.5px solid var(--border);background:var(--card);border-radius:50px;padding:6px 15px;cursor:pointer;color:var(--ink-soft);transition:all .2s}.ctab.active,.ctab:hover{background:var(--blue);color:#fff;border-color:var(--blue)}.creator-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}.creator-item{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(10px);transition:all .22s}.creator-item:hover{border-color:var(--sky-deep);transform:translateY(-2px)}.creator-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}.creator-info h4{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:1px}.creator-info p{font-size:.74rem;color:var(--blue);font-weight:500}.creator-info span{font-size:.71rem;color:var(--ink-soft)}.equip-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;backdrop-filter:blur(12px);box-shadow:var(--shadow);transition:all .28s}.equip-card:hover{transform:translateY(-4px);border-color:var(--sky-deep)}.equip-icon{font-size:1.8rem;margin-bottom:10px}.equip-card h3{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;color:var(--ink);margin-bottom:5px}.equip-card p{font-size:.82rem;color:var(--ink-soft);line-height:1.6}.equip-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:50px;margin-top:9px;background:#dcfce7;color:#166534}.generator-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;backdrop-filter:blur(12px);box-shadow:var(--shadow);margin-bottom:22px}.gen-label{font-size:.83rem;font-weight:600;color:var(--ink-soft);margin-bottom:9px}.gen-row{display:flex;gap:11px;flex-wrap:wrap}.gen-select{flex:1;min-width:140px;padding:10px 15px;border:1.5px solid var(--sky-deep);border-radius:11px;background:var(--white);font-family:'DM Sans',sans-serif;font-size:.86rem;color:var(--ink);outline:none;cursor:pointer;transition:border-color .2s}.gen-select:focus{border-color:var(--blue)}.gen-btn{background:var(--blue);color:#fff;border:none;border-radius:11px;padding:10px 24px;font-size:.86rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .22s;box-shadow:0 4px 14px rgba(14,165,233,.3);white-space:nowrap}.gen-btn:hover{background:var(--blue-dark);transform:translateY(-1px)}.gen-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}.ideas-out{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.idea-card{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:1px solid var(--sky-deep);border-radius:13px;padding:18px;transition:all .22s;position:relative}.idea-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(14,165,233,.14)}.idea-num{font-family:'Syne',sans-serif;font-size:.68rem;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-bottom:6px}.idea-card p{font-size:.86rem;color:var(--ink);line-height:1.5;padding-right:32px}.copy-btn{position:absolute;top:11px;right:11px;width:26px;height:26px;border-radius:7px;background:var(--white);border:1px solid var(--sky-deep);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.72rem;color:var(--blue);transition:all .2s;opacity:0}.idea-card:hover .copy-btn{opacity:1}.copy-btn:hover{background:var(--blue);color:#fff}.loading-ideas{text-align:center;padding:36px;color:var(--ink-soft);font-size:.92rem}.spinner{width:34px;height:34px;border:3px solid var(--sky-mid);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}@keyframes spin{to{transform:rotate(360deg)}}.tip-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;backdrop-filter:blur(12px);box-shadow:var(--shadow);display:flex;gap:16px;align-items:flex-start;transition:all .28s;margin-bottom:12px}.tip-card:hover{transform:translateY(-3px);border-color:var(--sky-deep)}.tip-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--sky-deep);line-height:1;min-width:34px}.tip-body h3{font-family:'Syne',sans-serif;font-size:.93rem;font-weight:700;margin-bottom:4px}.tip-body p{font-size:.82rem;color:var(--ink-soft);line-height:1.6}.tip-badge{display:inline-block;font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px;margin-top:7px}.badge-blue{background:#e0f2fe;color:#0284c7}.badge-green{background:#dcfce7;color:#16a34a}.badge-amber{background:#fef3c7;color:#d97706}.sub-hero{background:linear-gradient(135deg,var(--blue),var(--blue-dark));border-radius:24px;padding:44px 32px;text-align:center;color:#fff;margin-bottom:26px;position:relative;overflow:hidden}.sub-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,0.08) 0%,transparent 60%)}.sub-hero h2{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;margin-bottom:9px;position:relative}.sub-hero p{font-size:.95rem;opacity:.9;max-width:480px;margin:0 auto 24px;line-height:1.6;position:relative}.sub-perks{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:26px}.perk-card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:20px;backdrop-filter:blur(10px);text-align:center;transition:all .25s}.perk-card:hover{transform:translateY(-3px);border-color:var(--blue)}.perk-icon{font-size:1.8rem;margin-bottom:9px}.perk-card h4{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:5px}.perk-card p{font-size:.78rem;color:var(--ink-soft);line-height:1.55}.join-btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:50px;padding:14px 36px;font-size:.95rem;font-weight:700;font-family:'Syne',sans-serif;transition:all .22s;box-shadow:0 6px 24px rgba(14,165,233,.35)}.join-btn:hover{background:var(--blue-dark);transform:translateY(-2px)}.link-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;backdrop-filter:blur(12px);box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;transition:all .26s;text-decoration:none;color:var(--ink)}.link-card:hover{transform:translateX(5px);border-color:var(--blue)}.link-icon{width:46px;height:46px;border-radius:13px;font-size:1.2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}.link-info h3{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:2px}.link-info p{font-size:.78rem;color:var(--ink-soft)}.link-arrow{margin-left:auto;font-size:.95rem;color:var(--blue);opacity:.5;transition:all .2s}.link-card:hover .link-arrow{opacity:1;transform:translateX(4px)}.newsletter-box{background:linear-gradient(135deg,#f0f9ff,var(--sky-mid));border:2px solid var(--sky-deep);border-radius:24px;padding:44px 32px;text-align:center;margin:44px 0}.newsletter-box h2{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:800;color:var(--ink);margin-bottom:7px}.nl-sub{font-size:.92rem;color:var(--ink-soft);max-width:460px;margin:0 auto 24px;line-height:1.6}.nl-form{display:flex;flex-direction:column;gap:11px;max-width:420px;margin:0 auto}.nl-input{padding:13px 17px;border:1.5px solid var(--sky-deep);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--ink);outline:none;transition:border-color .2s;background:#fff}.nl-input:focus{border-color:var(--blue)}.nl-btn{background:var(--blue);color:#fff;border:none;border-radius:11px;padding:13px;font-size:.9rem;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all .22s;box-shadow:0 4px 16px rgba(14,165,233,.28)}.nl-btn:hover{background:var(--blue-dark);transform:translateY(-1px)}.nl-note{font-size:.73rem;color:var(--ink-soft);margin-top:5px}footer{position:relative;z-index:1;text-align:center;padding:32px 24px;border-top:1px solid var(--border);color:var(--ink-soft);font-size:.8rem}footer strong{color:var(--blue);font-family:'Syne',sans-serif}@media(max-width:640px){nav{padding:12px 16px}.nav-links{display:none}h1{letter-spacing:-1px;font-size:1.8rem}.stat-item{padding:12px 16px;border-right:none;border-bottom:1px solid var(--border)}.sub-hero{padding:32px 18px}.newsletter-box{padding:32px 18px}.tip-card{flex-direction:column;gap:8px}.hook-item p{padding-right:10px}.hook-copy{display:none}}</style>
+</head>
+<body>
+<div class="countdown-bar"> <p>🔥 Limited spots available this month — doors close soon!</p> <div class="countdown-timer"> <div class="c-unit">
+<div class="c-num" id="cd-days">00</div>
+<div class="c-label">Days</div>
+</div> <div class="c-unit">
+<div class="c-num" id="cd-hours">00</div>
+<div class="c-label">Hours</div>
+</div> <div class="c-unit">
+<div class="c-num" id="cd-mins">00</div>
+<div class="c-label">Mins</div>
+</div> <div class="c-unit">
+<div class="c-num" id="cd-secs">00</div>
+<div class="c-label">Secs</div>
+</div> </div>
+</div>
+<div class="bg-blobs">
+<div class="blob blob-1">
+</div>
+<div class="blob blob-2">
+</div>
+<div class="blob blob-3">
+</div>
+</div> <nav> <div class="logo">Sarara <span>X</span>
+</div> <div class="nav-links"> <button class="nav-btn" onclick="switchTab('learn');scrollToMain()">Learn</button> <button class="nav-btn" onclick="switchTab('create');scrollToMain()">Shoot</button> <button class="nav-btn" onclick="switchTab('plan');scrollToMain()">Plan</button> <button class="nav-btn" onclick="switchTab('tools');scrollToMain()">Tools</button> <button class="nav-btn" onclick="switchTab('ideas');scrollToMain()">Ideas</button> <button class="nav-btn" onclick="switchTab('money');scrollToMain()">Monetize</button> <button class="nav-btn" onclick="switchTab('join');scrollToMain()">Join Us</button> <button class="nav-btn" onclick="switchTab('community');scrollToMain()">Links</button> </div> <div class="hamburger" onclick="toggleMobileMenu()" id="hamburger"> <span>
+</span>
+<span>
+</span>
+<span>
+</span> </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu"> <button class="mobile-nav-btn" onclick="switchTab('tools');scrollToMain();closeMobileMenu()">🛠 Tools & Gear</button> <button class="mobile-nav-btn" onclick="switchTab('create');scrollToMain();closeMobileMenu()">🎬 How to Shoot</button> <button class="mobile-nav-btn" onclick="switchTab('plan');scrollToMain();closeMobileMenu()">📅 Plan & Follow</button> <button class="mobile-nav-btn" onclick="switchTab('learn');scrollToMain();closeMobileMenu()">📚 Hooks & Story</button> <button class="mobile-nav-btn" onclick="switchTab('ideas');scrollToMain();closeMobileMenu()">💡 Content Ideas</button> <button class="mobile-nav-btn" onclick="switchTab('money');scrollToMain();closeMobileMenu()">💰 Monetize</button> <button class="mobile-nav-btn" onclick="switchTab('join');scrollToMain();closeMobileMenu()">⭐ Join Us</button> <button class="mobile-nav-btn" onclick="switchTab('community');scrollToMain();closeMobileMenu()">🌐 Links</button> <button class="mobile-nav-btn" onclick="switchTab('members');scrollToMain();closeMobileMenu()" style="background:linear-gradient(135deg,#0c1a2e,#334155);color:#fff;border-radius:12px">🔒 Members Only</button>
+</div> <section class="hero"> <div class="hero-video-bg">
+</div> <div class="hero-badge">
+<span class="dot">
+</span> Built for Creators</div> <h1>Your Creative<br/>Empire Starts <em>Here</em>
+</h1> <p class="hero-sub">We make it easy for you to create content.</p> <p class="hero-desc">Whether you're just starting out or ready to go full-time — Sarara X gives you the tools, strategy, and community to grow with confidence.</p> <div class="hero-cta"> <button class="btn-primary" onclick="switchTab('learn');scrollToMain()">Start Learning ✦</button> <button class="btn-outline" onclick="switchTab('join');scrollToMain()">Join the Community</button> </div>
+</section> <div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 24px 40px;animation:fadeUp .85s .1s ease both"> <div style="text-align:center;margin-bottom:22px"> <span style="display:inline-block;background:linear-gradient(135deg,#0c1a2e,#0ea5e9);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 18px;border-radius:50px">What Sarara X Will Do For You</span> </div> <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"> <div style="background:var(--card);border:1.5px solid #bae6fd;border-radius:20px;padding:26px;backdrop-filter:blur(12px);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:all .28s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'"> <div style="position:absolute;top:-14px;right:-14px;font-size:5rem;opacity:.06;pointer-events:none">📱</div> <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"> <div style="width:44px;height:44px;background:linear-gradient(135deg,#e0f2fe,#7dd3fc);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📱</div> <div style="font-family:Syne,sans-serif;font-size:.72rem;font-weight:800;color:#0284c7;letter-spacing:.08em;text-transform:uppercase">Promise 01</div> </div> <div style="font-family:Syne,sans-serif;font-size:1.05rem;font-weight:800;color:#0c1a2e;margin-bottom:10px;line-height:1.3">In 30 days you will know exactly how to film, hook, and post content that gets watched.</div> <p style="font-size:.84rem;color:#334155;line-height:1.65">No more posting and getting ignored. You will understand what makes people stop, watch, and follow — and you will be able to do it consistently with just your phone.</p> <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #e0f2fe"> <span style="font-size:.8rem">✅</span> <span style="font-size:.78rem;color:#0284c7;font-weight:600">Realistic. Achievable. Guaranteed with consistency.</span> </div> </div> <div style="background:var(--card);border:1.5px solid #a7f3d0;border-radius:20px;padding:26px;backdrop-filter:blur(12px);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:all .28s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'"> <div style="position:absolute;top:-14px;right:-14px;font-size:5rem;opacity:.06;pointer-events:none">📈</div> <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"> <div style="width:44px;height:44px;background:linear-gradient(135deg,#dcfce7,#6ee7b7);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📈</div> <div style="font-family:Syne,sans-serif;font-size:.72rem;font-weight:800;color:#16a34a;letter-spacing:.08em;text-transform:uppercase">Promise 02</div> </div> <div style="font-family:Syne,sans-serif;font-size:1.05rem;font-weight:800;color:#0c1a2e;margin-bottom:10px;line-height:1.3">You will grow a real, engaged audience — not just numbers, but people who actually care.</div> <p style="font-size:.84rem;color:#334155;line-height:1.65">With the right strategy and the accountability of 95+ creators around you, you will build an audience that engages, shares, and stays — the kind brands actually pay for.</p> <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #dcfce7"> <span style="font-size:.8rem">✅</span> <span style="font-size:.78rem;color:#16a34a;font-weight:600">Built through strategy, not luck or algorithm tricks.</span> </div> </div> <div style="background:var(--card);border:1.5px solid #fde68a;border-radius:20px;padding:26px;backdrop-filter:blur(12px);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:all .28s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'"> <div style="position:absolute;top:-14px;right:-14px;font-size:5rem;opacity:.06;pointer-events:none">💰</div> <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"> <div style="width:44px;height:44px;background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">💰</div> <div style="font-family:Syne,sans-serif;font-size:.72rem;font-weight:800;color:#d97706;letter-spacing:.08em;text-transform:uppercase">Promise 03</div> </div> <div style="font-family:Syne,sans-serif;font-size:1.05rem;font-weight:800;color:#0c1a2e;margin-bottom:10px;line-height:1.3">You will open your first real income stream from content — whether that is a brand deal, UGC, or a digital product.</div> <p style="font-size:.84rem;color:#334155;line-height:1.65">We do not just teach you to create — we teach you to earn. Inside Sarara X you will have the templates, strategy, and connections to turn your content into actual income.</p> <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #fef3c7"> <span style="font-size:.8rem">✅</span> <span style="font-size:.78rem;color:#d97706;font-weight:600">Even with under 1,000 followers. We have seen it happen.</span> </div> </div> </div>
+</div> <div class="swot-section"> <p class="swot-label">Understanding Your Creator Journey — The SWOT Process</p> <div class="swot-grid"> <div class="swot-card s-card">
+<div class="swot-letter">S</div>
+<h4>Strengths</h4>
+<p>Your unique voice, life experience, and passion. No one else has your exact story — that's your power.</p>
+</div> <div class="swot-card w-card">
+<div class="swot-letter">W</div>
+<h4>Weaknesses</h4>
+<p>Inconsistency, fear of judgment, no clear niche. Knowing this helps you fix it before it holds you back.</p>
+</div> <div class="swot-card o-card">
+<div class="swot-letter">O</div>
+<h4>Opportunities</h4>
+<p>Trending topics, underserved audiences, collabs. The creator economy is still wide open for new voices.</p>
+</div> <div class="swot-card t-card">
+<div class="swot-letter">T</div>
+<h4>Threats</h4>
+<p>Algorithm changes, burnout, comparison. Plan for them now so they don't catch you off guard.</p>
+</div> </div>
+</div> <div class="stats-bar"> <div class="stat-item">
+<div class="stat-num">95+</div>
+<div class="stat-label">Active Creators</div>
+</div> <div class="stat-item">
+<div class="stat-num">50+</div>
+<div class="stat-label">Free Tools</div>
+</div> <div class="stat-item">
+<div class="stat-num">∞</div>
+<div class="stat-label">Content Ideas</div>
+</div> <div class="stat-item">
+<div class="stat-num">1:1</div>
+<div class="stat-label">Consultations</div>
+</div>
+</div> <div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 24px 0"> <div style="background:linear-gradient(135deg,#0c1a2e,#0ea5e9,#7c3aed);border-radius:24px;padding:44px 32px;text-align:center;margin-bottom:28px;position:relative;overflow:hidden"> <div style="position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.06) 0%,transparent 60%)">
+</div> <div style="font-size:2.2rem;margin-bottom:12px;animation:float 3s ease-in-out infinite">🌍</div> <div style="font-family:Syne,sans-serif;font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.5px;position:relative">Sarara X is Not a Course.<br/>
+<span style="color:#7dd3fc">It is a Creator Ecosystem.</span>
+</div> <p style="font-size:.95rem;color:rgba(255,255,255,.85);max-width:560px;margin:0 auto;line-height:1.7;position:relative">We built the place where African creators go to learn the skills, grow the audience, and connect to real opportunities — brand deals, collaborations, UGC work, and a network that lifts everyone up.</p> </div> <div style="font-family:Syne,sans-serif;font-size:1rem;font-weight:700;color:#0c1a2e;text-align:center;margin-bottom:18px;letter-spacing:.05em;text-transform:uppercase;font-size:.75rem">Your Journey Inside Sarara X</div> <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:32px"> <div style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);border:1.5px solid #7dd3fc;border-radius:18px;padding:24px 18px;text-align:center"> <div style="font-size:2rem;margin-bottom:10px">📚</div> <div style="font-family:Syne,sans-serif;font-size:1rem;font-weight:800;color:#0c1a2e;margin-bottom:6px">Stage 1 — Learn</div> <p style="font-size:.8rem;color:#334155;line-height:1.55">Master the skills — hooks, filming, editing, storytelling, Instagram strategy. From zero to confident creator.</p> </div> <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #a7f3d0;border-radius:18px;padding:24px 18px;text-align:center"> <div style="font-size:2rem;margin-bottom:10px">📈</div> <div style="font-family:Syne,sans-serif;font-size:1rem;font-weight:800;color:#0c1a2e;margin-bottom:6px">Stage 2 — Grow</div> <p style="font-size:.8rem;color:#334155;line-height:1.55">Build your audience with a clear content strategy. Weekly accountability inside the community to keep you consistent.</p> </div> <div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;border-radius:18px;padding:24px 18px;text-align:center"> <div style="font-size:2rem;margin-bottom:10px">💰</div> <div style="font-family:Syne,sans-serif;font-size:1rem;font-weight:800;color:#0c1a2e;margin-bottom:6px">Stage 3 — Earn</div> <p style="font-size:.8rem;color:#334155;line-height:1.55">Get connected to brands, UGC opportunities, collabs, and income streams. This is where the ecosystem pays off.</p> </div> </div> <div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px dashed #f59e0b;border-radius:20px;padding:28px;margin-bottom:28px;text-align:center"> <div style="font-size:1.5rem;margin-bottom:8px">🚀</div> <div style="font-family:Syne,sans-serif;font-size:1.1rem;font-weight:800;color:#92400e;margin-bottom:8px">Creator Opportunities — Coming Soon</div> <p style="font-size:.85rem;color:#78350f;line-height:1.6;max-width:480px;margin:0 auto 16px">We are building direct connections between Sarara X creators and brands looking for authentic African content. UGC deals, sponsored posts, collabs, and paid opportunities — posted inside our community first.</p> <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap"> <span style="background:#fff;border:1px solid #f59e0b;color:#92400e;font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:50px">🤝 Brand Deals</span> <span style="background:#fff;border:1px solid #f59e0b;color:#92400e;font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:50px">🎬 UGC Work</span> <span style="background:#fff;border:1px solid #f59e0b;color:#92400e;font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:50px">🌐 Collabs</span> <span style="background:#fff;border:1px solid #f59e0b;color:#92400e;font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:50px">💼 Paid Posts</span> </div> </div> <div class="about-card"> <span class="section-tag">Our Story</span> <h2 style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.5px;color:#0c1a2e;margin:12px 0 14px">Built for African Creators. By African Creators. 🌍</h2> <p>Sarara X was built for one reason — too many talented creators across Tanzania and Africa are giving up before they even start. Not because they lack talent. Because they lack the right guidance, tools, and community around them.</p> <p>We are not a course you buy and forget. We are an ecosystem you join and grow inside. 95+ creators showing up every week — filming, sharing, winning, and lifting each other up. That is what makes Sarara X different.</p> <p>
+<strong>Our mission:</strong> Make content creation accessible, strategic, and profitable for every African creator — regardless of budget, experience, or equipment. And then connect those creators to real opportunities that pay.</p> <div class="about-values" style="margin-top:20px"> <div class="about-value">
+<div class="av-icon">📚</div>
+<h4>Learn</h4>
+<p>Real skills, practical training</p>
+</div> <div class="about-value">
+<div class="av-icon">📈</div>
+<h4>Grow</h4>
+<p>Strategy + community</p>
+</div> <div class="about-value">
+<div class="av-icon">💰</div>
+<h4>Earn</h4>
+<p>Opportunities + income</p>
+</div> <div class="about-value">
+<div class="av-icon">🌍</div>
+<h4>African</h4>
+<p>Built for our context</p>
+</div> </div> </div>
+</div> <div class="social-proof"> <div class="sp-header"> <span class="section-tag">Real Results. Real Creators.</span> <h2>95+ Creators Are Already Growing — Are You Next?</h2> <p>Every week inside our community, creators go from confused to confident. Here's what they say.</p> </div> <div class="marquee-wrap"> <div class="marquee-track"> <div class="marquee-item">🚀 "My Reels went from 200 to 40K views"</div> <div class="marquee-item">💰 "I landed my first brand deal in 3 weeks"</div> <div class="marquee-item">🎯 "I finally understand hooks — game changer!"</div> <div class="marquee-item">📈 "Grew 500 followers in my first month"</div> <div class="marquee-item">🔥 "The community keeps me accountable"</div> <div class="marquee-item">✨ "Best TSh 20,000 I ever spent"</div> <div class="marquee-item">💡 "I post with confidence now — no more guessing"</div> <div class="marquee-item">🎬 "My videos look professional with just my phone"</div> <div class="marquee-item">🚀 "My Reels went from 200 to 40K views"</div> <div class="marquee-item">💰 "I landed my first brand deal in 3 weeks"</div> <div class="marquee-item">🎯 "I finally understand hooks — game changer!"</div> <div class="marquee-item">📈 "Grew 500 followers in my first month"</div> <div class="marquee-item">🔥 "The community keeps me accountable"</div> <div class="marquee-item">✨ "Best TSh 20,000 I ever spent"</div> <div class="marquee-item">💡 "I post with confidence now — no more guessing"</div> <div class="marquee-item">🎬 "My videos look professional with just my phone"</div> </div> </div> <div class="testimonials-grid"> <div class="testi-card"> <a href="https://www.instagram.com/thedadarafiki" target="_blank" style="text-decoration:none"> <div style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;transition:opacity .2s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1"> <div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid rgba(255,255,255,0.5)">🎭</div> <div> <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.9rem;color:#fff">Jema Phares</div> <div style="font-size:.75rem;color:rgba(255,255,255,.85)">@thedadarafiki</div> <div style="font-size:.68rem;color:rgba(255,255,255,.7);margin-top:2px">📸 View on Instagram →</div> </div> </div> </a> <p class="testi-quote">"Before Sarara X I had no idea how to hook people in the first 3 seconds. Now my Reels get watched till the end. The community pushes me every week and I have never been more consistent. If you are waiting — stop. Just join."</p> <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">🎯 Hooks</span> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">📈 Growth</span> </div> </div> <div class="testi-card"> <a href="https://www.instagram.com/therealbabafah" target="_blank" style="text-decoration:none"> <div style="background:linear-gradient(135deg,#0ea5e9,#0c1a2e);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;transition:opacity .2s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1"> <div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid rgba(255,255,255,0.4)">💪</div> <div> <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.9rem;color:#fff">Mkombozi</div> <div style="font-size:.75rem;color:rgba(255,255,255,.85)">@therealbabafah</div> <div style="font-size:.68rem;color:rgba(255,255,255,.7);margin-top:2px">📸 View on Instagram →</div> </div> </div> </a> <p class="testi-quote">"Sarara X changed how I see content creation completely. I was posting randomly with no strategy. Now I understand the SWOT process, I know my strengths, and I create with purpose. The group is fire — 95 creators helping each other grow."</p> <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">🧠 Strategy</span> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">🤝 Community</span> </div> </div> <div class="testi-card"> <a href="https://www.instagram.com/joshcreates._" target="_blank" style="text-decoration:none"> <div style="background:linear-gradient(135deg,#10b981,#0c1a2e);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;transition:opacity .2s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1"> <div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid rgba(255,255,255,0.4)">🎬</div> <div> <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.9rem;color:#fff">Josh</div> <div style="font-size:.75rem;color:rgba(255,255,255,.85)">@joshcreates._</div> <div style="font-size:.68rem;color:rgba(255,255,255,.7);margin-top:2px">📸 View on Instagram →</div> </div> </div> </a> <p class="testi-quote">"I used to think good content needed expensive equipment. Sarara X showed me it is all about angles, lighting, and storytelling — things I can do with my phone TODAY. My engagement tripled in 30 days. Do not overthink it — just start."</p> <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">🎥 Filming</span> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">📱 Phone Only</span> </div> </div> <div class="testi-card"> <a href="https://www.instagram.com/anwar_frdm" target="_blank" style="text-decoration:none"> <div style="background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;transition:opacity .2s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1"> <div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid rgba(255,255,255,0.4)">🌟</div> <div> <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.9rem;color:#fff">Anwar</div> <div style="font-size:.75rem;color:rgba(255,255,255,.85)">@anwar_frdm</div> <div style="font-size:.68rem;color:rgba(255,255,255,.7);margin-top:2px">📸 View on Instagram →</div> </div> </div> </a> <p class="testi-quote">"The 1-on-1 consultation alone was worth everything. Someone sat with me, looked at my content, and told me exactly what to fix. Within two weeks I had more views than my entire previous year combined. This community is the real deal."</p> <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">💰 Results</span> <span style="background:var(--sky);color:var(--blue-dark);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:50px">📞 1-on-1</span> </div> </div> </div> <div style="margin-bottom:28px;">
+<div style="text-align:center;margin-bottom:16px;">
+<span style="display:inline-block;background:#dcfce7;color:#16a34a;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:50px;">💬 Real Messages From Our WhatsApp Community</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
+<div style="background:#111b21;border-radius:14px;padding:18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+<div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;">👤</div>
+<div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:700;color:#e9edef;">Creator — Mbeya 🇹🇿</div>
+</div>
+<div style="background:#202c33;border-radius:10px;padding:12px;margin-bottom:8px;">
+<p style="font-size:.8rem;color:#e9edef;line-height:1.6;">"Vizuri, nimependa unavyoonesha mahitaji huku. Inauarahisi sana mtu kuelewa. Naendelea kuiangalia. Nitarud tena hapa 🥂"</p>
+<div style="font-size:.65rem;color:#8696a0;text-align:right;margin-top:4px;">✓✓ Delivered</div>
+</div>
+<div style="font-size:.7rem;color:#25d366;font-weight:600;">📱 Food Creator</div>
+</div>
+<div style="background:#111b21;border-radius:14px;padding:18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+<div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;">👤</div>
+<div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:700;color:#e9edef;">Creator — Tanzania 🇹🇿</div>
+</div>
+<div style="background:#202c33;border-radius:10px;padding:12px;margin-bottom:8px;">
+<p style="font-size:.8rem;color:#e9edef;line-height:1.6;">"🙏 imekubali nianze sasa content. Tumefuraha sana kusikia hivyo. Sisis tupo hapa anytime kuassist. We got this ✅🤝"</p>
+<div style="font-size:.65rem;color:#8696a0;text-align:right;margin-top:4px;">✓✓ Delivered</div>
+</div>
+<div style="font-size:.7rem;color:#25d366;font-weight:600;">📱 Lifestyle Creator</div>
+</div>
+<div style="background:#111b21;border-radius:14px;padding:18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+<div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;">👤</div>
+<div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:700;color:#e9edef;">Creator — Tanzania 🇹🇿</div>
+</div>
+<div style="background:#202c33;border-radius:10px;padding:12px;margin-bottom:8px;">
+<p style="font-size:.8rem;color:#e9edef;line-height:1.6;">"Yeap imetulia. Na kama ndio ya kwanza then upo sehem nzuri sana. As we go utaongeza na utakua noma. Am proud of you 🏆"</p>
+<div style="font-size:.65rem;color:#8696a0;text-align:right;margin-top:4px;">✓✓ Delivered</div>
+</div>
+<div style="font-size:.7rem;color:#25d366;font-weight:600;">📱 First Video Creator</div>
+</div>
+<div style="background:#111b21;border-radius:14px;padding:18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+<div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;">👤</div>
+<div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:700;color:#e9edef;">Creator — Tanzania 🇹🇿</div>
+</div>
+<div style="background:#202c33;border-radius:10px;padding:12px;margin-bottom:8px;">
+<p style="font-size:.8rem;color:#e9edef;line-height:1.6;">"Hapa video iko poa imetulia, tume improve sana. Yeah 10/10 🤩 — Kwanza kabisa music choice 10/10 🤝😂"</p>
+<div style="font-size:.65rem;color:#8696a0;text-align:right;margin-top:4px;">✓✓ Delivered</div>
+</div>
+<div style="font-size:.7rem;color:#25d366;font-weight:600;">📱 Food & Lifestyle Creator</div>
+</div>
+<div style="background:#111b21;border-radius:14px;padding:18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+<div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;">👤</div>
+<div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:700;color:#e9edef;">Creator — Tanzania 🇹🇿</div>
+</div>
+<div style="background:#202c33;border-radius:10px;padding:12px;margin-bottom:8px;">
+<p style="font-size:.8rem;color:#e9edef;line-height:1.6;">"Nmekuelewa sanaaaa 🙏🙏 Okaaay All the best! Thanks 🙌 — Editing imetulia sina neno"</p>
+<div style="font-size:.65rem;color:#8696a0;text-align:right;margin-top:4px;">✓✓ Delivered</div>
+</div>
+<div style="font-size:.7rem;color:#25d366;font-weight:600;">📱 Beginner Creator</div>
+</div>
+<div style="background:#111b21;border-radius:14px;padding:18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+<div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;">👤</div>
+<div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:700;color:#e9edef;">Creator — Tanzania 🇹🇿</div>
+</div>
+<div style="background:#202c33;border-radius:10px;padding:12px;margin-bottom:8px;">
+<p style="font-size:.8rem;color:#e9edef;line-height:1.6;">"Thank you sarara 🤝 — Hamna kitu kigumu kama accountability. Ila kama umekaa ukafanya hiki ulivhofaya ni suala la muda tu"</p>
+<div style="font-size:.65rem;color:#8696a0;text-align:right;margin-top:4px;">✓✓ Delivered</div>
+</div>
+<div style="font-size:.7rem;color:#25d366;font-weight:600;">📱 Video Creator</div>
+</div>
+</div>
+</div>
+<div class="sp-cta" style="margin-top:28px;margin-bottom:32px"> <button class="btn-primary" onclick="switchTab('join');scrollToMain();" style="font-size:1.05rem;padding:18px 44px;box-shadow:0 8px 28px rgba(14,165,233,.4)">👉 Join 95+ Creators — TSh 20,000/month</button> <p style="font-size:.8rem;color:var(--ink-soft);margin-top:10px">Spots are limited. Price increases as we grow. Lock in your rate today.</p> </div> <div class="urgency-banner"> <h3>⚠️ What happens if you wait another month?</h3> <p>Your competitors won't wait. Every week you delay is another week of missed growth, missed income, and missed opportunities. The creators above decided to act — and everything changed for them.</p> </div> <div class="no-action-box"> <h3>😟 If you don't take action today, here's what continues…</h3> <div class="no-action-list"> <div class="no-action-item">
+<span class="no-action-icon">❌</span>
+<span>You keep posting and getting ignored — wondering what you're doing wrong</span>
+</div> <div class="no-action-item">
+<span class="no-action-icon">❌</span>
+<span>You watch others blow up while you stay stuck at the same follower count</span>
+</div> <div class="no-action-item">
+<span class="no-action-icon">❌</span>
+<span>You keep wasting hours creating content that gets zero engagement</span>
+</div> <div class="no-action-item">
+<span class="no-action-icon">❌</span>
+<span>Brands keep choosing other creators because your content doesn't stand out</span>
+</div> <div class="no-action-item">
+<span class="no-action-icon">❌</span>
+<span>You lose confidence and eventually give up on your creator dream entirely</span>
+</div> </div> </div> <div class="sp-cta" style="margin-top:28px"> <button class="btn-primary" onclick="switchTab('join');scrollToMain();" style="font-size:1rem;padding:16px 40px">🔥 I'm Ready — Join Sarara X Now</button> <p style="font-size:.78rem;color:var(--ink-soft);margin-top:10px">TSh 20,000/month · Cancel anytime · Instant WhatsApp access</p> </div>
+</div> <div style="position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px 20px"> <div style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);border:1.5px solid #7dd3fc;border-radius:20px;padding:28px 32px;text-align:center;position:relative;overflow:hidden"> <div style="position:absolute;top:-20px;right:-20px;font-size:6rem;opacity:.08;pointer-events:none">🎓</div> <div style="font-size:1.4rem;margin-bottom:8px">✨</div> <h3 style="font-family:Syne,sans-serif;font-size:1.2rem;font-weight:800;color:#0c1a2e;margin-bottom:8px">You Made It To The Learning Hub</h3> <p style="font-size:.9rem;color:#334155;line-height:1.65;max-width:520px;margin:0 auto">Everything below is designed to take you from where you are right now to where you want to be — step by step, section by section. Start with what calls you first. There is no wrong door.</p> <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px"> <span style="background:#fff;border:1px solid #7dd3fc;color:#0284c7;font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:50px">No experience needed</span> <span style="background:#fff;border:1px solid #7dd3fc;color:#0284c7;font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:50px">Phone only</span> <span style="background:#fff;border:1px solid #7dd3fc;color:#0284c7;font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:50px">Go at your own pace</span> </div> </div>
+</div> <div style="position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 24px 28px"> <div style="background:linear-gradient(135deg,#0c1a2e,#0ea5e9);border-radius:24px;padding:32px 28px;text-align:center;position:relative;overflow:hidden"> <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(14,165,233,0.15) 0%,transparent 60%);pointer-events:none">
+</div>
+</div>
+<main id="main-content"> <div class="section-tabs"> <button class="tab active" onclick="switchTab('tools')">🛠 Tools & Gear</button> <button class="tab" onclick="switchTab('create')">🎬 How to Shoot</button> <button class="tab" onclick="switchTab('plan')">📅 Plan & Follow</button> <button class="tab" onclick="switchTab('learn')">📚 Hooks & Story</button> <button class="tab" onclick="switchTab('ideas')">💡 Content Ideas</button> <button class="tab" onclick="switchTab('money')">💰 Monetize</button> <button class="tab" onclick="switchTab('join')">⭐ Join Us</button> <button class="tab" onclick="switchTab('community')">🌐 Links</button> <button class="tab" onclick="switchTab('members')" style="background:linear-gradient(135deg,#0c1a2e,#334155);color:#fff;border-color:#0c1a2e">🔒 Members Only</button> </div> <div class="panel" id="panel-learn"> <div style="background:linear-gradient(135deg,#0c1a2e,#7c3aed);border-radius:24px;padding:36px 28px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:12px;animation:float 3s ease-in-out infinite">🎣</div> <div style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Hook Them in <span style="color:#c4b5fd">3 Seconds</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.8);max-width:400px;margin:0 auto 20px;line-height:1.6">Master visual hooks, verbal hooks, story openings, and Instagram settings that make people stop scrolling and stay.</div> <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap"> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">👁 Visual Hooks</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🎙 Verbal Hooks</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📖 Story Openings</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📸 IG Settings</div> </div> </div> <div class="section-header"> <span class="section-tag">Hooks & Storytelling</span> <h2>Make People Stop & Stay</h2> <p>The first 3 seconds decide everything. Master your hooks and story openings to keep people watching all the way through.</p> </div> <div class="hook-section"> <div class="hook-section-title">👁 Visual Hooks <span style="font-size:0.75rem;font-weight:400;color:var(--ink-soft);margin-left:4px">— what they SEE first</span>
+</div> <div class="hook-cards" id="visual-hooks-list">
+</div> </div> <div class="hook-section"> <div class="hook-section-title">🎙 Verbal Hooks <span style="font-size:0.75rem;font-weight:400;color:var(--ink-soft);margin-left:4px">— what they HEAR first</span>
+</div> <div class="hook-cards" id="verbal-hooks-list">
+</div> </div> <div class="hook-section"> <div class="hook-section-title">📖 Story Openings <span style="font-size:0.75rem;font-weight:400;color:var(--ink-soft);margin-left:4px">— keep them listening</span>
+</div> <div class="grid-3"> <div class="story-card">
+<div class="story-num">OPENING 01</div>
+<h4>The Honest Confession</h4>
+<p>"I'm going to be honest with you about something I haven't shared before…"</p>
+</div> <div class="story-card">
+<div class="story-num">OPENING 02</div>
+<h4>The Unexpected Moment</h4>
+<p>"It was just an ordinary [day/moment] and then everything changed when…"</p>
+</div> <div class="story-card">
+<div class="story-num">OPENING 03</div>
+<h4>The Contrast Open</h4>
+<p>"Six months ago I had nothing. Today I have [result]. Here's the story no one saw."</p>
+</div> <div class="story-card">
+<div class="story-num">OPENING 04</div>
+<h4>The Question Drop</h4>
+<p>"Have you ever felt like you're doing everything right but nothing is working? Me too — until I discovered this."</p>
+</div> <div class="story-card">
+<div class="story-num">OPENING 05</div>
+<h4>The Bold Statement</h4>
+<p>"What I'm about to tell you goes against everything you've been taught. But hear me out…"</p>
+</div> <div class="story-card">
+<div class="story-num">OPENING 06</div>
+<h4>The Scene Setter</h4>
+<p>"Picture this: [vivid, specific scene]. That was the moment I realised everything had to change."</p>
+</div> </div> </div> <div style="margin-top:36px"> <div class="section-header"> <span class="section-tag">Instagram Settings</span> <h2>Set Up for High Performance</h2> <p>These adjustments take 5 minutes and can dramatically increase your reach. Do them once.</p> </div> <div class="ig-step">
+<div class="ig-step-num">1</div>
+<div class="ig-step-body">
+<h4>Switch to a Creator Account</h4>
+<p>Settings → Account → Switch to Professional Account → Creator. Unlocks analytics, contact buttons, and category labels.</p>
+</div>
+</div> <div class="ig-step">
+<div class="ig-step-num">2</div>
+<div class="ig-step-body">
+<h4>Turn On High-Quality Uploads</h4>
+<p>Settings → Account → Data Usage → turn on "Upload at Highest Quality." Your videos will look sharper in the feed immediately.</p>
+</div>
+</div> <div class="ig-step">
+<div class="ig-step-num">3</div>
+<div class="ig-step-body">
+<h4>Add a Keyword to Your Name Field</h4>
+<p>Edit Profile → Name: Add your niche keyword (e.g. "Amara | Lifestyle & Wellness"). Instagram uses this field for search — very powerful.</p>
+</div>
+</div> <div class="ig-step">
+<div class="ig-step-num">4</div>
+<div class="ig-step-body">
+<h4>Write a Bio with a Clear Call to Action</h4>
+<p>Say WHO you help, HOW you help them, and WHAT to do next (e.g. "↓ Free guide below"). Keep it under 150 characters.</p>
+</div>
+</div> <div class="ig-step">
+<div class="ig-step-num">5</div>
+<div class="ig-step-body">
+<h4>Post at Your Peak Times</h4>
+<p>Go to Insights → Followers → scroll to "Most Active Times." Post within those hours for maximum organic reach.</p>
+</div>
+</div> <div class="ig-step">
+<div class="ig-step-num">6</div>
+<div class="ig-step-body">
+<h4>Enable Cross-Sharing to Facebook</h4>
+<p>Settings → Account → Sharing to Other Apps → connect Facebook. Doubles your potential reach with zero extra effort.</p>
+</div>
+</div> <div class="ig-step">
+<div class="ig-step-num">7</div>
+<div class="ig-step-body">
+<h4>Pin Your 3 Best Reels</h4>
+<p>Hold down on your top-performing Reels and tap "Pin to Profile." New visitors see your best work first — more follows guaranteed.</p>
+</div>
+</div> </div> </div> <div class="panel" id="panel-create"> <div style="background:linear-gradient(135deg,#0c1a2e,#0ea5e9);border-radius:24px;padding:36px 28px;margin-bottom:28px;overflow:hidden;position:relative;text-align:center"> <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
+<circle cx=%2220%22 cy=%2220%22 r=%2215%22 fill=%22rgba(255,255,255,0.04)%22/>
+<circle cx=%2280%22 cy=%2270%22 r=%2220%22 fill=%22rgba(255,255,255,0.03)%22/>
+</svg>')">
+</div> <div style="font-size:2.5rem;margin-bottom:12px;animation:float 3s ease-in-out infinite">📱</div> <div style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Your Phone is a <span style="color:#7dd3fc">Cinema</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.8);max-width:400px;margin:0 auto 20px;line-height:1.6">Master these techniques and your audience will think you have a professional camera crew.</div> <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap"> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📐 Angles</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">💡 Lighting</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🎙 Audio</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🎭 Confidence</div> </div> </div> <div class="section-header"> <span class="section-tag">How to Shoot</span> <h2>Look Great on Camera — Every Time</h2> <p>Simple, practical techniques anyone can apply with just a phone. No fancy gear needed to start making great content.</p> </div> <div style="display:flex;flex-direction:column;gap:9px"> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">📐 Camera Angles That Work <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">
+<ul>
+<li>
+<strong>Eye-Level:</strong> Camera at eye height — feels like a real conversation. Best for talking-head content.</li>
+<li>
+<strong>Slightly Above Eye Level:</strong> Camera just above your face, angled slightly down. Most flattering for face and body — used by almost every creator.</li>
+<li>
+<strong>Low Angle (Power Shot):</strong> Camera below you shooting upward. Makes you look confident and authoritative. Great for bold statements.</li>
+<li>
+<strong>Over-the-Shoulder:</strong> Shows what you're working on or your surroundings. Adds context, makes viewers feel like they're with you.</li>
+<li>
+<strong>Wide Shot:</strong> Shows your full body or environment. Great for outfits, room tours, cooking, or activity content.</li>
+<li>
+<strong>Close-Up:</strong> Tight on your face or hands. Adds emotion and detail. Perfect for tutorials and reactions.</li>
+</ul>
+</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">💡 Lighting Tips <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">
+<ul>
+<li>
+<strong>Natural light is free and the best:</strong> Face a window — don't have your back to it. Soft daylight is flattering and professional-looking.</li>
+<li>
+<strong>Golden Hour:</strong> 1 hour after sunrise or before sunset gives warm, beautiful light outdoors. Perfect for lifestyle and fashion content.</li>
+<li>
+<strong>Avoid harsh overhead lighting:</strong> Creates unflattering shadows under your eyes and nose.</li>
+<li>
+<strong>Ring light tip:</strong> Position it at eye level, slightly to the side for depth. Dead centre can look flat.</li>
+<li>
+<strong>Background lighting:</strong> Add a lamp behind you for depth — separates you from the background and looks more professional.</li>
+</ul>
+</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">🎬 Framing & Composition <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">
+<ul>
+<li>
+<strong>Rule of Thirds:</strong> Don't always centre yourself. Position your face in the upper third of the frame — looks more dynamic.</li>
+<li>
+<strong>Headroom:</strong> Leave a small gap between your head and the top of the frame. Too much or too little looks off.</li>
+<li>
+<strong>Clean Background:</strong> Remove clutter. A plain wall, a shelf, or a neat space all work. Your audience should focus on YOU.</li>
+<li>
+<strong>Create Depth:</strong> Stand a few feet in front of your background. Creates a blurred background (bokeh) that looks cinematic.</li>
+<li>
+<strong>Always Film Vertical:</strong> Shoot in 9:16 portrait mode. Fill the whole frame — no black bars on Reels or TikTok.</li>
+</ul>
+</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">🎙 Audio & Sound <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">
+<ul>
+<li>
+<strong>Bad audio kills good video:</strong> People will watch blurry video, but they will immediately leave if the sound is poor.</li>
+<li>
+<strong>Quiet room first:</strong> Close windows, turn off fans, choose a room with soft furnishings — they absorb echo naturally.</li>
+<li>
+<strong>Earphone mic trick:</strong> Plug in your basic phone earphones and speak clearly. The small inline mic is a massive free upgrade over your phone's built-in mic.</li>
+<li>
+<strong>Music volume:</strong> Background music should sit well under your voice — around 20–30% volume max.</li>
+</ul>
+</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">🎭 On-Camera Confidence <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">
+<ul>
+<li>
+<strong>Look at the lens, not the screen:</strong> The camera lens is the eye of your viewer. Looking there creates real connection.</li>
+<li>
+<strong>Speak 20% more energetically than normal:</strong> Energy compresses on video. What feels big on camera often looks just right to viewers.</li>
+<li>
+<strong>Slow down:</strong> Most new creators talk too fast. Pause between ideas — it builds tension and keeps viewers engaged.</li>
+<li>
+<strong>Use your hands naturally:</strong> Hand gestures make you look confident and keep energy flowing in the frame.</li>
+<li>
+<strong>Smile before you hit record:</strong> Relaxes your face and sets a warm, welcoming tone from the very first frame.</li>
+<li>
+<strong>Do multiple takes:</strong> Your 3rd or 4th take is almost always better than your first. That's normal — not failure.</li>
+</ul>
+</div>
+</div>
+</div> </div> </div> <div class="panel" id="panel-plan"> <div style="background:linear-gradient(135deg,#10b981,#0c1a2e);border-radius:24px;padding:36px 28px;margin-bottom:28px;position:relative;text-align:center;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:12px;animation:float 3s ease-in-out infinite 0.5s">📅</div> <div style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Plan <span style="color:#6ee7b7">Smart.</span> Grow <span style="color:#6ee7b7">Fast.</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.8);max-width:400px;margin:0 auto 20px;line-height:1.6">The creators who grow fastest are not the ones who post the most — they are the ones who post with a clear strategy.</div> <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap"> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🎯 Educate</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">❤️ Connect</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">😂 Entertain</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🔄 Repeat</div> </div> </div> <div class="section-header"> <span class="section-tag">Content Planning</span> <h2>Post with Purpose, Not Pressure</h2> <p>Consistency beats frequency. Here's how many times per week actually makes sense for real growth.</p> </div> <div class="plan-grid"> <div class="plan-card">
+<div class="plan-days">1x</div>
+<div class="plan-label">per week</div>
+<div class="plan-level">Just Starting</div>
+<p>Focus on quality over quantity. One great video a week builds skills and confidence without burning out.</p>
+</div> <div class="plan-card">
+<div class="plan-days">3x</div>
+<div class="plan-label">per week</div>
+<div class="plan-level">Growing Stage</div>
+<p>The sweet spot for most creators. Enough to stay visible and train the algorithm without overwhelming yourself.</p>
+</div> <div class="plan-card">
+<div class="plan-days">5x</div>
+<div class="plan-label">per week</div>
+<div class="plan-level">Accelerating</div>
+<p>Batch-record on weekends and schedule ahead. Never sacrifice quality for volume — quality still wins.</p>
+</div> <div class="plan-card">
+<div class="plan-days">7x</div>
+<div class="plan-label">per week</div>
+<div class="plan-level">Full-Time Creator</div>
+<p>Daily posting works when you have a content bank. Aim for 2–3 weeks banked before committing to daily.</p>
+</div> </div> <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;margin-bottom:32px;backdrop-filter:blur(10px)"> <h3 style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--ink)">📋 Simple Weekly Content Formula</h3> <div style="display:flex;flex-direction:column;gap:9px"> <div style="display:flex;gap:12px;align-items:center;padding:12px 15px;background:var(--sky);border-radius:11px">
+<span style="font-size:1rem">🎯</span>
+<div>
+<strong style="font-size:.85rem">Educate</strong> — <span style="font-size:.82rem;color:var(--ink-soft)">Teach something useful. Tips, tutorials, how-tos in your niche.</span>
+</div>
+</div> <div style="display:flex;gap:12px;align-items:center;padding:12px 15px;background:var(--sky);border-radius:11px">
+<span style="font-size:1rem">❤️</span>
+<div>
+<strong style="font-size:.85rem">Connect</strong> — <span style="font-size:.82rem;color:var(--ink-soft)">Share your story, opinion, or something personal and relatable.</span>
+</div>
+</div> <div style="display:flex;gap:12px;align-items:center;padding:12px 15px;background:var(--sky);border-radius:11px">
+<span style="font-size:1rem">😂</span>
+<div>
+<strong style="font-size:.85rem">Entertain</strong> — <span style="font-size:.82rem;color:var(--ink-soft)">A trend, challenge, relatable moment, or funny take on your niche.</span>
+</div>
+</div> </div> </div> <div class="section-header"> <span class="section-tag">Creators to Follow</span> <h2>Learn From the Best</h2> <p>Pick what you want to get better at and follow the creators already excelling in that area.</p> </div> <div class="creator-tabs"> <button class="ctab active" onclick="showCreators(event,'all')">All</button> <button class="ctab" onclick="showCreators(event,'storytelling')">Storytelling</button> <button class="ctab" onclick="showCreators(event,'editing')">Editing</button> <button class="ctab" onclick="showCreators(event,'growth')">Growth</button> <button class="ctab" onclick="showCreators(event,'money')">Monetisation</button> </div> <div class="creator-list" id="creator-list">
+</div> </div> <div class="panel active" id="panel-tools"> <div style="background:linear-gradient(135deg,#7c3aed,#0ea5e9);border-radius:24px;padding:36px 28px;margin-bottom:28px;position:relative;text-align:center;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:12px;animation:float 3s ease-in-out infinite 1s">🛠</div> <div style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Your Gear. <span style="color:#c4b5fd">Your Rules.</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.8);max-width:420px;margin:0 auto 20px;line-height:1.6">You do not need to spend millions. The best creators started with what they had — a phone, good light, and a story to tell.</div> <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap"> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📱 Phone</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🔭 Tripod</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">💡 Light</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🎙 Mic</div> </div> </div> <div class="section-header"> <span class="section-tag">Equipment</span> <h2>Start With What You Have</h2> <p>You don't need expensive gear to begin. Here's everything a beginner creator actually needs — no pressure, nothing extra.</p> </div> <div class="grid-3" style="margin-bottom:38px"> <div class="equip-card">
+<div class="equip-icon">📱</div>
+<h3>A Good Smartphone</h3>
+<p>Your phone camera is more than enough. Any iPhone 11+ or recent Android shoots stunning video. Clean your lens before every single shoot.</p>
+<span class="equip-badge">✓ You likely already have this</span>
+</div> <div class="equip-card">
+<div class="equip-icon">🔭</div>
+<h3>Tripod Stand</h3>
+<p>The #1 most important purchase. Even a basic tripod from $10–$30 eliminates shaky footage and frees both your hands to create freely.</p>
+<span class="equip-badge">✓ From $10</span>
+</div> <div class="equip-card">
+<div class="equip-icon">💡</div>
+<h3>Ring Light</h3>
+<p>A small 6–10 inch ring light makes a massive difference to how you look on video — especially for indoor, beauty, or talking-head content.</p>
+<span class="equip-badge">✓ From $20</span>
+</div> <div class="equip-card">
+<div class="equip-icon">🎙</div>
+<h3>Lavalier Clip Mic</h3>
+<p>A clip-on mic that plugs into your phone. Crisp, clear audio that beats your phone's built-in mic by miles. A must for voice-heavy content.</p>
+<span class="equip-badge">✓ From $15</span>
+</div> <div class="equip-card">
+<div class="equip-icon">🎒</div>
+<h3>Clean Background</h3>
+<p>A plain wall, a neat shelf, or a simple $15 paper backdrop. Your background should complement you, not compete with you. Keep it consistent.</p>
+<span class="equip-badge">✓ Free or very cheap</span>
+</div> <div class="equip-card">
+<div class="equip-icon">📷</div>
+<h3>Selfie Stick + Tripod</h3>
+<p>A 2-in-1 selfie stick that converts to a tripod. Perfect for travel, outdoor shoots, and versatile content creation on the go.</p>
+<span class="equip-badge">✓ From $15</span>
+</div> <div class="equip-card">
+<div class="equip-icon">🔋</div>
+<h3>Power Bank</h3>
+<p>Nothing ruins a shoot like a dying battery. Keep a portable charger handy for long filming sessions or outdoor content days.</p>
+<span class="equip-badge">✓ From $15</span>
+</div> <div class="equip-card">
+<div class="equip-icon">🌬</div>
+<h3>Foam Mic Windscreen</h3>
+<p>If you shoot outdoors, wind noise destroys your audio. A simple foam cover costs $5 and eliminates wind noise completely.</p>
+<span class="equip-badge">✓ Under $10</span>
+</div> <div class="equip-card">
+<div class="equip-icon">☁️</div>
+<h3>Cloud Backup (Google Photos)</h3>
+<p>Auto-backup your footage so you never lose a shoot. Google Photos free tier is more than enough for most beginners starting out.</p>
+<span class="equip-badge">✓ Free to start</span>
+</div> </div> <div class="section-header"> <span class="section-tag">Free Creator Tools</span> <h2>Your Digital Toolkit</h2> <p>The best free and affordable tools to edit, design, plan, and grow your content.</p> </div> <div class="grid-3"> <div class="card">
+<div class="card-icon">🎨</div>
+<span class="card-tag">Design</span>
+<h3>Canva</h3>
+<p>Thumbnails, graphics, carousels. Free plan is powerful enough for most creators.</p>
+<a class="card-link" href="https://canva.com" target="_blank">Open →</a>
+</div> <div class="card">
+<div class="card-icon">✂️</div>
+<span class="card-tag">Video Editing</span>
+<h3>CapCut</h3>
+<p>The go-to editing app for Reels and TikToks. AI captions, trending effects, beginner-friendly.</p>
+<a class="card-link" href="https://capcut.com" target="_blank">Open →</a>
+</div> <div class="card">
+<div class="card-icon">📊</div>
+<span class="card-tag">Analytics</span>
+<h3>Social Blade</h3>
+<p>Track your growth and study what top creators in your niche are doing differently.</p>
+<a class="card-link" href="https://socialblade.com" target="_blank">Open →</a>
+</div> <div class="card">
+<div class="card-icon">🔍</div>
+<span class="card-tag">SEO & Keywords</span>
+<h3>VidIQ</h3>
+<p>Find trending keywords, optimize titles and hashtags, get discovered by the right audience.</p>
+<a class="card-link" href="https://vidiq.com" target="_blank">Open →</a>
+</div> <div class="card">
+<div class="card-icon">📅</div>
+<span class="card-tag">Scheduling</span>
+<h3>Buffer</h3>
+<p>Schedule posts in advance and publish at the perfect time — even while you sleep.</p>
+<a class="card-link" href="https://buffer.com" target="_blank">Open →</a>
+</div> <div class="card">
+<div class="card-icon">🎵</div>
+<span class="card-tag">Music</span>
+<h3>Epidemic Sound</h3>
+<p>Royalty-free music with zero copyright strikes. Essential for serious video creators.</p>
+<a class="card-link" href="https://epidemicsound.com" target="_blank">Open →</a>
+</div> </div> </div> <div class="panel" id="panel-ideas"> <div style="background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:24px;padding:36px 28px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:12px;animation:float 3s ease-in-out infinite 1.5s">💡</div> <div style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Never Run Out of <span style="color:#fde68a">Ideas</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.85);max-width:400px;margin:0 auto 20px;line-height:1.6">100+ ready-made content ideas across every niche — plus AI-powered generation for ideas tailored just to you.</div> <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap"> <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📚 100+ Ideas</div> <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🤖 AI Powered</div> <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🎯 By Niche</div> </div> </div> <div class="section-header"> <span class="section-tag">Content Ideas</span> <h2>Never Run Out of Ideas</h2> <p>Browse ready-made ideas by niche, or tap the AI button to get custom ideas generated just for you on Claude.</p> </div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px"> <div style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);border:1.5px solid #7dd3fc;border-radius:18px;padding:24px;text-align:center"> <div style="font-size:1.8rem;margin-bottom:8px">📚</div> <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.95rem;color:#0c1a2e;margin-bottom:5px">Ready-Made Ideas</div> <div style="font-size:.78rem;color:#334155;margin-bottom:14px;line-height:1.5">Browse ideas by niche — always works, no internet needed</div> <button onclick="document.getElementById('browse-section').scrollIntoView({behavior:'smooth'})" style="background:#0ea5e9;color:#fff;border:none;border-radius:50px;padding:9px 20px;font-size:.8rem;font-weight:700;font-family:Syne,sans-serif;cursor:pointer">Browse Ideas ↓</button> </div> <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #a7f3d0;border-radius:18px;padding:24px;text-align:center"> <div style="font-size:1.8rem;margin-bottom:8px">🤖</div> <div style="font-family:Syne,sans-serif;font-weight:700;font-size:.95rem;color:#0c1a2e;margin-bottom:5px">AI-Generated Ideas</div> <div style="font-size:.78rem;color:#334155;margin-bottom:14px;line-height:1.5">Get custom ideas made for your exact niche using Claude AI</div> <a href="https://claude.ai/new?q=Give+me+10+creative+content+ideas+for+a+creator+in+my+niche.+Make+them+specific,+engaging,+and+ready+to+film+for+Instagram+Reels+or+TikTok." target="_blank" style="background:#10b981;color:#fff;border:none;border-radius:50px;padding:9px 20px;font-size:.8rem;font-weight:700;font-family:Syne,sans-serif;cursor:pointer;text-decoration:none;display:inline-block">Open Claude AI →</a> </div> </div> <div id="browse-section"> <div style="font-family:Syne,sans-serif;font-size:1rem;font-weight:700;color:#0c1a2e;margin-bottom:14px">📂 Browse by Niche</div> <div class="creator-tabs" style="margin-bottom:20px"> <button class="ctab active" onclick="showIdeas(event,'lifestyle')">Lifestyle</button> <button class="ctab" onclick="showIdeas(event,'fashion')">Fashion</button> <button class="ctab" onclick="showIdeas(event,'food')">Food</button> <button class="ctab" onclick="showIdeas(event,'fitness')">Fitness</button> <button class="ctab" onclick="showIdeas(event,'travel')">Travel</button> <button class="ctab" onclick="showIdeas(event,'business')">Business</button> <button class="ctab" onclick="showIdeas(event,'finance')">Finance</button> <button class="ctab" onclick="showIdeas(event,'comedy')">Comedy</button> </div> <div id="ideas-browse" class="ideas-out">
+</div> </div> </div> <div class="panel" id="panel-money"> <div style="background:linear-gradient(135deg,#16a34a,#0c1a2e);border-radius:24px;padding:36px 28px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:12px;animation:float 3s ease-in-out infinite 2s">💰</div> <div style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Turn Content Into <span style="color:#86efac">Cash</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.82);max-width:400px;margin:0 auto 20px;line-height:1.6">You do not need millions of followers. You need the right strategy. Here are 6 proven income streams for creators at any level.</div> <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap"> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🤝 Brand Deals</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📦 Products</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">🔗 Affiliate</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">💼 UGC</div> </div> </div> <div class="section-header"> <span class="section-tag">Monetization</span> <h2>Turn Your Content Into Income</h2> <p>You don't need millions of followers to earn. Here are proven strategies from day one to full-time creator.</p> </div> <div class="tip-card">
+<div class="tip-num">01</div>
+<div class="tip-body">
+<h3>Brand Partnerships & Sponsorships</h3>
+<p>Reach out to brands in your niche with a simple media kit. Show your engagement rate, not just follower count. Micro-creators (1K–10K followers) land paid deals regularly.</p>
+<span class="tip-badge badge-blue">Beginner Friendly</span>
+</div>
+</div> <div class="tip-card">
+<div class="tip-num">02</div>
+<div class="tip-body">
+<h3>Digital Products</h3>
+<p>Sell ebooks, presets, templates, or online courses. Create once, sell forever. Gumroad or Payhip let you start with zero upfront cost.</p>
+<span class="tip-badge badge-green">High Profit Margin</span>
+</div>
+</div> <div class="tip-card">
+<div class="tip-num">03</div>
+<div class="tip-body">
+<h3>Affiliate Marketing</h3>
+<p>Recommend products you genuinely use and earn a commission per sale. Amazon Associates, LTK, and ShareASale are great starting points for any niche.</p>
+<span class="tip-badge badge-blue">Passive Income</span>
+</div>
+</div> <div class="tip-card">
+<div class="tip-num">04</div>
+<div class="tip-body">
+<h3>Paid Subscriptions & Memberships</h3>
+<p>Exclusive content through Patreon or Instagram Subscriptions. Even 100 fans paying $5/month = $500 recurring income every single month.</p>
+<span class="tip-badge badge-green">Recurring Revenue</span>
+</div>
+</div> <div class="tip-card">
+<div class="tip-num">05</div>
+<div class="tip-body">
+<h3>UGC (User Generated Content)</h3>
+<p>Brands pay $150–$500+ per video for UGC content. You don't even need a big following — just the skill to create quality, authentic videos.</p>
+<span class="tip-badge badge-amber">High Demand 2025</span>
+</div>
+</div> <div class="tip-card">
+<div class="tip-num">06</div>
+<div class="tip-body">
+<h3>Coaching & Consultation</h3>
+<p>Package your knowledge into 1:1 coaching or done-for-you services. Calendly + Stripe is all you need to start booking paying clients today.</p>
+<span class="tip-badge badge-green">Premium Pricing</span>
+</div>
+</div> </div> <div class="panel" id="panel-join"> <div style="background:linear-gradient(135deg,#0ea5e9,#7c3aed);border-radius:24px;padding:40px 28px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:10px;animation:float 3s ease-in-out infinite 0.3s">⭐</div> <div style="font-family:Syne,sans-serif;font-size:1.7rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Join the <span style="color:#c4b5fd">Inner Circle</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.85);max-width:420px;margin:0 auto 20px;line-height:1.6">95+ creators. Weekly training. CapCut Pro. 1-on-1 consultation. Everything you need — for one simple price.</div> <div style="display:inline-block;background:rgba(255,255,255,0.18);border:2px solid rgba(255,255,255,0.4);border-radius:16px;padding:16px 36px;margin-bottom:8px"> <div style="font-size:0.72rem;opacity:0.85;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">Monthly Membership</div> <div style="font-family:Syne,sans-serif;font-size:2.6rem;font-weight:800;line-height:1;color:#fff">TSh 20,000</div> <div style="font-size:0.82rem;opacity:0.85;margin-top:5px;color:#fff">per month &nbsp;&middot;&nbsp; Cancel anytime</div> </div> </div> <div class="sub-perks"> <div class="perk-card">
+<div class="perk-icon">💬</div>
+<h4>Private WhatsApp Group</h4>
+<p>Join 95+ creators actively making videos every week. Get feedback, accountability, and inspiration from people on the same journey as you.</p>
+</div> <div class="perk-card">
+<div class="perk-icon">✂️</div>
+<h4>Free CapCut Pro Access</h4>
+<p>CapCut Pro features included in your membership. Edit like a professional from day one — no extra subscription needed.</p>
+</div> <div class="perk-card">
+<div class="perk-icon">📞</div>
+<h4>1-on-1 Online Consultation</h4>
+<p>A personal session to review your content, identify what's holding you back, and build a clear plan to kickstart or grow your creator journey.</p>
+</div> <div class="perk-card">
+<div class="perk-icon">🎓</div>
+<h4>Weekly Content Training</h4>
+<p>We teach inside the group every week. Hooks, editing, filming strategy — all practical, actionable, and beginner-friendly.</p>
+</div> </div> <div style="text-align:center;padding:10px 0 6px"> <a class="join-btn" href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank">👉 Join Now — TSh 20,000/month</a> <p style="font-size:.78rem;color:var(--ink-soft);margin-top:12px">Pay TSh 20,000 via TIGO Pesa to +255 659 992 801, then send proof to our WhatsApp to get instant access.</p> </div> <div style="text-align:center;padding:16px 0 24px"> <p style="font-size:.82rem;color:var(--ink-soft);margin-bottom:12px">Or reach us directly</p> <a href="https://wa.me/255659992801" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;text-decoration:none;border-radius:50px;padding:13px 28px;font-size:.9rem;font-weight:700;font-family:'Syne',sans-serif;box-shadow:0 6px 20px rgba(37,211,102,.35);transition:all .22s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">💬 WhatsApp Us · +255 659 992 801</a> </div> </div> <div class="panel" id="panel-community"> <div style="background:linear-gradient(135deg,#0c1a2e,#10b981);border-radius:24px;padding:36px 28px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:12px;animation:float 3s ease-in-out infinite 0.8s">🌐</div> <div style="font-family:Syne,sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Connect With <span style="color:#6ee7b7">Sarara X</span>
+</div> <div style="font-size:.9rem;color:rgba(255,255,255,.82);max-width:400px;margin:0 auto 20px;line-height:1.6">Follow us, join the group, book a consultation, or sign up for weekly creator drops. Everything is one tap away.</div> <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap"> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📸 Instagram</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">💬 WhatsApp</div> <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:#fff;font-weight:500">📧 Newsletter</div> </div> </div> <div class="section-header"> <span class="section-tag">Links</span> <h2>Find Us Everywhere</h2> <p>Follow along, join the conversation, and never miss a drop from Sarara X.</p> </div> <div class="grid-2"> <a class="link-card" href="https://www.instagram.com/sarara_connects?igsh=MWgxNGRsemhjcW44ag==" target="_blank">
+<div class="link-icon" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0)">📸</div>
+<div class="link-info">
+<h3>Instagram — @sarara_connects</h3>
+<p>Daily tips, inspo, and behind-the-scenes content</p>
+</div>
+<div class="link-arrow">→</div>
+</a> <a class="link-card" href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank">
+<div class="link-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)">💬</div>
+<div class="link-info">
+<h3>WhatsApp Creator Group</h3>
+<p>95+ active creators — request access to join</p>
+</div>
+<div class="link-arrow">→</div>
+</a> <a class="link-card" href="#" onclick="switchTab('join');scrollToMain();return false;">
+<div class="link-icon" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd)">📞</div>
+<div class="link-info">
+<h3>Book a 1:1 Consultation</h3>
+<p>Get a personal content creation session</p>
+</div>
+<div class="link-arrow">→</div>
+</a> <a class="link-card" href="#newsletter" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});return false;">
+<div class="link-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">📧</div>
+<div class="link-info">
+<h3>The Creator Insider Newsletter</h3>
+<p>Weekly hooks, tools, and growth tips to your inbox</p>
+</div>
+<div class="link-arrow">→</div>
+</a> <a class="link-card" href="https://wa.me/255659992801" target="_blank">
+<div class="link-icon" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7)">📲</div>
+<div class="link-info">
+<h3>Direct WhatsApp · +255 659 992 801</h3>
+<p>Message us directly — we respond personally</p>
+</div>
+<div class="link-arrow">→</div>
+</a> </div> </div> <div class="panel" id="panel-members"> <div id="password-gate"> <div style="background:linear-gradient(135deg,#0c1a2e,#1e3a5f);border-radius:24px;padding:48px 32px;text-align:center;position:relative;overflow:hidden"> <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(14,165,233,0.12) 0%,transparent 60%);pointer-events:none">
+</div> <div style="font-size:3rem;margin-bottom:14px;animation:float 3s ease-in-out infinite;position:relative">🔒</div> <div style="font-family:Syne,sans-serif;font-size:1.9rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.5px;position:relative">Members <span style="color:#7dd3fc">Only</span> Zone</div> <p style="font-size:.92rem;color:rgba(255,255,255,.8);max-width:420px;margin:0 auto 28px;line-height:1.65;position:relative">This zone is exclusively for Sarara X members. If you have paid and received your password via WhatsApp, enter it below to unlock everything instantly.</p> <div style="max-width:320px;margin:0 auto 24px;position:relative"> <input type="password" id="member-pw" placeholder="Enter your member password…"
+style="width:100%;padding:15px 18px;border-radius:14px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-family:DM Sans,sans-serif;font-size:.95rem;outline:none;margin-bottom:12px;box-sizing:border-box;transition:border-color .2s"
+onkeydown="if(event.key==='Enter')checkPW()"
+onfocus="this.style.borderColor='#7dd3fc'"
+onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+/> <button onclick="checkPW()" style="width:100%;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;border:none;border-radius:14px;padding:15px;font-size:.95rem;font-weight:700;font-family:Syne,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(14,165,233,.4);transition:all .22s"
+onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+🔓 Unlock Members Zone
+</button> <p id="pw-error" style="display:none;color:#fca5a5;font-size:.82rem;margin-top:12px;background:rgba(239,68,68,0.15);padding:10px 16px;border-radius:10px">
+❌ Wrong password. Check your WhatsApp message from Sarara X.
+</p> </div> <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:28px;position:relative"> <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,.85);font-size:.75rem;font-weight:600;padding:6px 16px;border-radius:50px">🎯 Advanced Hooks</span> <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,.85);font-size:.75rem;font-weight:600;padding:6px 16px;border-radius:50px">💰 Brand Deal Templates</span> <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,.85);font-size:.75rem;font-weight:600;padding:6px 16px;border-radius:50px">📅 30-Day Calendar</span> <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,.85);font-size:.75rem;font-weight:600;padding:6px 16px;border-radius:50px">🌐 Opportunities Board</span> <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,.85);font-size:.75rem;font-weight:600;padding:6px 16px;border-radius:50px">📊 Media Kit Template</span> </div> <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;position:relative"> <p style="font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:14px">Not a member yet? Join for TSh 20,000/month and get your password instantly via WhatsApp.</p> <a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank"
+style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.25);color:#fff;text-decoration:none;border-radius:50px;padding:11px 28px;font-family:Syne,sans-serif;font-weight:600;font-size:.88rem;transition:all .22s"
+onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+💬 Join Sarara X — TSh 20,000/month
+</a> </div> </div> </div> <div id="members-content" style="display:none"> <div style="background:linear-gradient(135deg,#0ea5e9,#0c1a2e);border-radius:24px;padding:36px 28px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden"> <div style="font-size:2.5rem;margin-bottom:10px;animation:float 3s ease-in-out infinite">🔓</div> <div style="font-family:Syne,sans-serif;font-size:1.7rem;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px">Welcome, <span style="color:#7dd3fc">Creator!</span>
+</div> <p style="font-size:.9rem;color:rgba(255,255,255,.85);max-width:420px;margin:0 auto 16px;line-height:1.6">You are inside. Everything below is yours — click any section to open the full content.</p> <button onclick="lockMembers()" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;border-radius:50px;padding:8px 20px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif">🔒 Lock Zone</button> </div> <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px"> <button class="mtab active" onclick="switchMTab('hooks',this)">🎯 Advanced Hooks</button> <button class="mtab" onclick="switchMTab('brands',this)">💰 Brand Deals</button> <button class="mtab" onclick="switchMTab('calendar',this)">📅 Content Calendar</button> <button class="mtab" onclick="switchMTab('mediakit',this)">📊 Media Kit</button> <button class="mtab" onclick="switchMTab('opportunities',this)">🌐 Opportunities</button> <button class="mtab" onclick="switchMTab('captions',this)">✍️ Caption Formulas</button> </div> <div class="mpanel active" id="mpanel-hooks"> <div style="background:linear-gradient(135deg,#0c1a2e,#7c3aed);border-radius:18px;padding:28px;margin-bottom:20px;text-align:center"> <div style="font-size:2rem;margin-bottom:8px">🎯</div> <div style="font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px">Advanced Hook Formulas</div> <p style="font-size:.85rem;color:rgba(255,255,255,.8)">Word-for-word scripts used by creators with 100K+ followers.</p> </div> <div style="display:flex;flex-direction:column;gap:12px"> <div class="mcard">
+<div class="mcard-label">FORMULA 01 — The Contradiction Hook</div>
+<div class="mcard-title">Say the opposite of what they expect</div>
+<p class="mcard-body">"Everyone tells you to post every day. I stopped posting for 3 weeks and my account grew faster than ever. Here is what happened."</p>
+<div class="mcard-tip">💡 Why it works: Contradicts a belief they already hold. Forces them to stay and find out why.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 02 — The Specific Number Hook</div>
+<div class="mcard-title">Use a precise number — never round</div>
+<p class="mcard-body">"I got 47,382 views from one Reel using this exact 3-second technique. I will show you the whole thing."</p>
+<div class="mcard-tip">💡 Why it works: Specific numbers feel real and credible. "50K views" sounds made up. "47,382" sounds like a real result.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 03 — The Confession Hook</div>
+<div class="mcard-title">Admit something uncomfortable first</div>
+<p class="mcard-body">"I am going to be honest — my first 50 videos were embarrassing. But video 51 changed everything and I need to show you what I changed."</p>
+<div class="mcard-tip">💡 Why it works: Vulnerability creates trust instantly. People lean in when creators are honest about failure.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 04 — The Time Pressure Hook</div>
+<div class="mcard-title">Create urgency around information</div>
+<p class="mcard-body">"This Instagram feature is working RIGHT NOW but most creators do not know about it yet. Once everyone finds out it will stop working — so watch this now."</p>
+<div class="mcard-tip">💡 Why it works: FOMO. People fear missing something that is working right now.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 05 — The Relatable Failure Hook</div>
+<div class="mcard-title">Start with the feeling they already have</div>
+<p class="mcard-body">"You spend 3 hours making a Reel. You post it. 47 views. All from your mum. I know exactly how that feels — and I know exactly what you are doing wrong."</p>
+<div class="mcard-tip">💡 Why it works: Mirrors their exact experience. They feel seen and immediately trust you understand their problem.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 06 — The Permission Hook</div>
+<div class="mcard-title">Give them permission to do the thing they are afraid of</div>
+<p class="mcard-body">"You do not need to be confident. You do not need expensive equipment. You do not even need a niche yet. You just need to start — and I will show you how."</p>
+<div class="mcard-tip">💡 Why it works: Removes every excuse and objection before they can even think it.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 07 — The Insider Secret Hook</div>
+<div class="mcard-title">Position information as exclusive knowledge</div>
+<p class="mcard-body">"What I am about to share with you is something most creators figure out only after 2 or 3 years. I am going to give it to you right now in the next 60 seconds."</p>
+<div class="mcard-tip">💡 Why it works: Makes viewers feel they are getting privileged access to information others do not have.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 08 — The Before/After Hook</div>
+<div class="mcard-title">Show the transformation upfront</div>
+<p class="mcard-body">"Six months ago I had 200 followers and zero brand deals. Today I have 18,000 followers and 4 paid partnerships. The only thing I changed was this one thing."</p>
+<div class="mcard-tip">💡 Why it works: People buy transformations not information. Show the destination first and they will follow you on the journey.</div>
+</div> </div> </div> <div class="mpanel" id="mpanel-brands"> <div style="background:linear-gradient(135deg,#16a34a,#0c1a2e);border-radius:18px;padding:28px;margin-bottom:20px;text-align:center"> <div style="font-size:2rem;margin-bottom:8px">💰</div> <div style="font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px">Brand Deal Pitch Templates</div> <p style="font-size:.85rem;color:rgba(255,255,255,.8)">Copy-paste these exactly. Tested and proven to get responses.</p> </div> <div style="display:flex;flex-direction:column;gap:12px"> <div class="mcard">
+<div class="mcard-label">TEMPLATE 01 — Cold DM to a Brand (Short)</div>
+<div class="mcard-title">Use this on Instagram DM</div>
+<p class="mcard-body" style="font-family:monospace;background:#f8fafc;padding:14px;border-radius:10px;border-left:3px solid #0ea5e9;font-size:.82rem;line-height:1.7">Hi [Brand Name] team 👋<br/>
+<br/>I am [Your Name], a content creator in [your niche] with [X] followers on Instagram. My audience is [describe your audience — e.g. young women in Tanzania interested in fashion].<br/>
+<br/>I love your brand and I genuinely think my audience would connect with your products. I would love to explore a collaboration — could be a paid post, story series, or UGC content.<br/>
+<br/>Would you be open to a quick conversation? I can share my media kit on request.<br/>
+<br/>Thank you 🙏</p>
+<div class="mcard-tip">💡 Keep it short. Brands receive hundreds of messages. Get to the point in 4 lines.</div>
+</div> <div class="mcard">
+<div class="mcard-label">TEMPLATE 02 — Email Pitch to a Brand</div>
+<div class="mcard-title">Use this for formal email outreach</div>
+<p class="mcard-body" style="font-family:monospace;background:#f8fafc;padding:14px;border-radius:10px;border-left:3px solid #0ea5e9;font-size:.82rem;line-height:1.7">Subject: Content Partnership Proposal — [Your Name] x [Brand Name]<br/>
+<br/>Hi [Contact Name],<br/>
+<br/>My name is [Your Name] and I create [niche] content on Instagram (@yourhandle) with [X] followers and an average engagement rate of [X]%.<br/>
+<br/>I have been following [Brand Name] for a while and I genuinely believe your [specific product] would resonate deeply with my audience of [describe audience].<br/>
+<br/>I would love to create [specific type of content — e.g. 3 Reels, a product review series] for your brand. I have attached my media kit for your review.<br/>
+<br/>Would you be available for a 15-minute call this week to discuss further?<br/>
+<br/>Best regards,<br/>[Your Name]<br/>[Your Instagram handle]<br/>[Your phone number]</p>
+<div class="mcard-tip">💡 Always mention their specific product — never send a generic email. Personalisation is everything.</div>
+</div> <div class="mcard">
+<div class="mcard-label">TEMPLATE 03 — Follow-Up Message</div>
+<div class="mcard-title">Send this if they do not reply in 5 days</div>
+<p class="mcard-body" style="font-family:monospace;background:#f8fafc;padding:14px;border-radius:10px;border-left:3px solid #0ea5e9;font-size:.82rem;line-height:1.7">Hi [Name],<br/>
+<br/>Just following up on my message from [X] days ago about a potential content partnership.<br/>
+<br/>I recently posted a [type of content] that got [impressive result] — I think I could create something similar for [Brand Name] that would drive real results.<br/>
+<br/>Would love to connect if the timing is right 🙏<br/>
+<br/>[Your Name]</p>
+<div class="mcard-tip">💡 Most deals are closed on the follow-up, not the first message. Always follow up once.</div>
+</div> <div class="mcard">
+<div class="mcard-label">SETTING YOUR RATES</div>
+<div class="mcard-title">What to charge as a creator</div>
+<p class="mcard-body">As a general guide: Under 5K followers — TSh 50,000 to 150,000 per post. 5K to 20K followers — TSh 150,000 to 500,000 per post. 20K to 50K followers — TSh 500,000 to 1,500,000 per post. Always charge more for Reels than stories. Always charge more for exclusive usage rights. Never work for free — even gifted products should have a cash fee attached.</p>
+<div class="mcard-tip">💡 These are starting points. Your engagement rate matters more than your follower count. 5K highly engaged followers can charge more than 50K passive followers.</div>
+</div> </div> </div> <div class="mpanel" id="mpanel-calendar"> <div style="background:linear-gradient(135deg,#0ea5e9,#10b981);border-radius:18px;padding:28px;margin-bottom:20px;text-align:center"> <div style="font-size:2rem;margin-bottom:8px">📅</div> <div style="font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px">30-Day Content Calendar</div> <p style="font-size:.85rem;color:rgba(255,255,255,.8)">Post with purpose every single day for 30 days.</p> </div> <div style="display:flex;flex-direction:column;gap:10px"> <div style="background:var(--sky);border-radius:14px;padding:16px 18px"> <div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:800;color:#0284c7;letter-spacing:.06em;margin-bottom:10px">WEEK 1 — INTRODUCE YOURSELF</div> <div style="display:flex;flex-direction:column;gap:8px"> <div class="cal-item">
+<span class="cal-day">Day 1</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Who you are + what you create + why people should follow you</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 2</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Share your creator origin story — why you started</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 3</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Your #1 tip for your niche — make it immediately useful</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 4</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">React to a trend in your niche with your unique take</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 5</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Show your process — behind the scenes of how you create</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 6</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Common mistake in your niche that you see everyone making</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 7</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">Something funny or relatable about your niche life</span>
+</div> </div> </div> <div style="background:var(--sky);border-radius:14px;padding:16px 18px"> <div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:800;color:#0284c7;letter-spacing:.06em;margin-bottom:10px">WEEK 2 — BUILD AUTHORITY</div> <div style="display:flex;flex-direction:column;gap:8px"> <div class="cal-item">
+<span class="cal-day">Day 8</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Step by step tutorial on your most asked topic</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 9</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Share a personal win or milestone — celebrate with your audience</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 10</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Tool or resource you swear by — review it honestly</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 11</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">Expectation vs reality in your niche — keep it relatable</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 12</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Answer the most common question you get from followers</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 13</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Myth busting — debunk something people believe in your niche</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 14</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">Day in your life — show the real, unfiltered version</span>
+</div> </div> </div> <div style="background:var(--sky);border-radius:14px;padding:16px 18px"> <div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:800;color:#0284c7;letter-spacing:.06em;margin-bottom:10px">WEEK 3 — DEEPEN CONNECTION</div> <div style="display:flex;flex-direction:column;gap:8px"> <div class="cal-item">
+<span class="cal-day">Day 15</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Share a failure or lesson — be vulnerable and honest</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 16</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Comparison post — option A vs option B with your verdict</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 17</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">Things only people in your niche will understand</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 18</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Your morning or evening routine related to your niche</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 19</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Respond to a comment or question with a full video answer</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 20</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">What you wish you knew when you started in your niche</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 21</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">Try something outside your comfort zone — document the reaction</span>
+</div> </div> </div> <div style="background:var(--sky);border-radius:14px;padding:16px 18px"> <div style="font-family:Syne,sans-serif;font-size:.78rem;font-weight:800;color:#0284c7;letter-spacing:.06em;margin-bottom:10px">WEEK 4 — CONVERT & GROW</div> <div style="display:flex;flex-direction:column;gap:8px"> <div class="cal-item">
+<span class="cal-day">Day 22</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Your best performing tip of the month — repackage and expand it</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 23</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Thank your followers — celebrate a community milestone</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 24</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">Collab with another creator — do a challenge or duet</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 25</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Share results from your month — be transparent about your growth</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 26</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Ask your audience what they want to see next — create engagement</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 27</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Your top 3 lessons from 30 days of consistent posting</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 28</span>
+<span class="cal-type ent">Entertain</span>
+<span class="cal-desc">Recreate your most viral content with a twist</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 29</span>
+<span class="cal-type con">Connect</span>
+<span class="cal-desc">Share your biggest goal for next month — create accountability</span>
+</div> <div class="cal-item">
+<span class="cal-day">Day 30</span>
+<span class="cal-type edu">Educate</span>
+<span class="cal-desc">Your final message to your audience — make it memorable and emotional</span>
+</div> </div> </div> </div> </div> <div class="mpanel" id="mpanel-mediakit"> <div style="background:linear-gradient(135deg,#7c3aed,#0c1a2e);border-radius:18px;padding:28px;margin-bottom:20px;text-align:center"> <div style="font-size:2rem;margin-bottom:8px">📊</div> <div style="font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px">Creator Media Kit Guide</div> <p style="font-size:.85rem;color:rgba(255,255,255,.8)">Build a media kit that makes brands take you seriously.</p> </div> <div style="display:flex;flex-direction:column;gap:12px"> <div class="mcard">
+<div class="mcard-label">WHAT IS A MEDIA KIT</div>
+<div class="mcard-title">Your professional creator CV</div>
+<p class="mcard-body">A media kit is a 1-2 page document that tells brands everything they need to know about you as a creator — your audience, your numbers, your content style, and your rates. Think of it as your CV for brand partnerships. Without one, brands will not take you seriously. With one, you look like a professional even with small numbers.</p>
+</div> <div class="mcard">
+<div class="mcard-label">SECTION 1 — YOUR INTRODUCTION</div>
+<div class="mcard-title">Who you are in 3 sentences</div>
+<p class="mcard-body">Write: Your name and handle. Your niche in one sentence. Your audience in one sentence. Example: "I am Amara, a lifestyle and wellness creator based in Dar es Salaam. I create content about simple, affordable healthy living for everyday Tanzanians. My audience is primarily women aged 18-35 who want to live better without spending more."</p>
+<div class="mcard-tip">💡 Be specific about your location and audience. Local relevance is your competitive advantage over international creators.</div>
+</div> <div class="mcard">
+<div class="mcard-label">SECTION 2 — YOUR NUMBERS</div>
+<div class="mcard-title">Include these exact stats</div>
+<p class="mcard-body">Total followers across platforms. Monthly reach or impressions. Average engagement rate (likes + comments divided by followers x 100). Average views per Reel. Your best performing post stats. Audience demographics if you have them (age, gender, location). Update these every month — never use outdated numbers.</p>
+<div class="mcard-tip">💡 Engagement rate is more important than follower count. A 10% engagement rate with 2,000 followers is more valuable to brands than 1% with 20,000.</div>
+</div> <div class="mcard">
+<div class="mcard-label">SECTION 3 — YOUR SERVICES AND RATES</div>
+<div class="mcard-title">What you offer and what you charge</div>
+<p class="mcard-body">List clearly: Instagram Reel (sponsored) — your price. Instagram Story (3 slides) — your price. Instagram static post — your price. UGC content (raw file, no posting) — your price. Content package (Reel + story + static) — bundled price. Long-term ambassador deal — negotiate separately. Always include a note that rates are negotiable and you are open to gifted collaborations with a cash fee.</p>
+</div> <div class="mcard">
+<div class="mcard-label">SECTION 4 — PAST WORK AND TESTIMONIALS</div>
+<div class="mcard-title">Social proof closes deals</div>
+<p class="mcard-body">If you have worked with brands before — even gifted collabs — include screenshots or logos. If you have positive comments from followers about products you have recommended, screenshot those too. If this is your first collaboration, write: "Open to first collaborations with brands whose values align with my content." Never lie about past work — the internet is small.</p>
+<div class="mcard-tip">💡 Build your media kit on Canva for free. Search "media kit" in Canva templates and customise one to match your brand colours.</div>
+</div> </div> </div> <div class="mpanel" id="mpanel-opportunities"> <div style="background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:18px;padding:28px;margin-bottom:20px;text-align:center"> <div style="font-size:2rem;margin-bottom:8px">🌐</div> <div style="font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px">Creator Opportunities Board</div> <p style="font-size:.85rem;color:rgba(255,255,255,.95)">How to find and land real creator opportunities right now.</p> </div> <div style="display:flex;flex-direction:column;gap:12px"> <div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:1.5px solid #f59e0b;border-radius:16px;padding:20px;text-align:center"> <div style="font-size:1.3rem;margin-bottom:6px">🚀</div> <div style="font-family:Syne,sans-serif;font-size:.95rem;font-weight:800;color:#92400e;margin-bottom:6px">Sarara X Brand Partnerships — Coming Soon</div> <p style="font-size:.82rem;color:#78350f;line-height:1.6">We are actively building relationships with brands looking for authentic African creators. When opportunities are available, Sarara X members get first access — before anyone else. Stay active in the community.</p> </div> <div class="mcard">
+<div class="mcard-label">WHERE TO FIND OPPORTUNITIES NOW</div>
+<div class="mcard-title">5 places to look today</div>
+<p class="mcard-body">1. TRIBE Platform — connects micro-creators with brands globally. Free to join at tribungroup.com. 2. AspireIQ — brands post looking for creators. Sign up and complete your profile fully. 3. Instagram Creator Marketplace — available in Creator account settings if eligible. 4. Direct outreach — search hashtags like #tanzaniabrand or #madeintz and DM brands directly. 5. Facebook Groups — search "Tanzania brand deals" or "Africa influencer marketing" groups.</p>
+<div class="mcard-tip">💡 The fastest path to your first deal is direct outreach. Do not wait for brands to find you. Go find them.</div>
+</div> <div class="mcard">
+<div class="mcard-label">HOW TO SPOT A SCAM DEAL</div>
+<div class="mcard-title">Protect yourself as a creator</div>
+<p class="mcard-body">Real brands will: Pay you before or at delivery. Have a real website and social presence. Give you a clear brief. Never ask you to pay anything upfront. Scam deals will: Ask you to buy the product first and "get reimbursed." Have no contract or agreement. Offer unrealistically high payment. Pressure you to decide immediately. If something feels wrong, trust your gut and walk away.</p>
+<div class="mcard-tip">💡 Always get agreement in writing — even a WhatsApp message confirming the deal terms is better than nothing.</div>
+</div> </div> </div> <div class="mpanel" id="mpanel-captions"> <div style="background:linear-gradient(135deg,#0ea5e9,#10b981);border-radius:18px;padding:28px;margin-bottom:20px;text-align:center"> <div style="font-size:2rem;margin-bottom:8px">✍️</div> <div style="font-family:Syne,sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px">Caption Formulas That Convert</div> <p style="font-size:.85rem;color:rgba(255,255,255,.8)">Captions that make people comment, save, and follow.</p> </div> <div style="display:flex;flex-direction:column;gap:12px"> <div class="mcard">
+<div class="mcard-label">FORMULA 01 — The Hook-Story-CTA</div>
+<div class="mcard-title">The most reliable caption structure</div>
+<p class="mcard-body" style="font-family:monospace;background:#f8fafc;padding:14px;border-radius:10px;border-left:3px solid #0ea5e9;font-size:.82rem;line-height:1.8">HOOK: [Grab attention in 1-2 lines — make them stop]<br/>
+<br/>STORY: [2-3 sentences of context, personal detail, or the problem]<br/>
+<br/>VALUE: [The main point, lesson, or takeaway]<br/>
+<br/>CTA: [One clear action — save this, comment below, follow for more]<br/>
+<br/>Example:<br/>I almost quit content creation 3 months ago.<br/>
+<br/>I was posting every day, getting 200 views, and watching creators I started with hit 100K followers. I felt invisible.<br/>
+<br/>Then I changed one thing — I stopped making content FOR the algorithm and started making it FOR my audience. Everything changed.<br/>
+<br/>Save this if you ever feel like giving up. It gets better — but only if you stay consistent 🙏</p>
+<div class="mcard-tip">💡 Your first line is everything. If the first line does not stop them, they will never read the rest.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 02 — The List Caption</div>
+<div class="mcard-title">Easy to read, highly saveable</div>
+<p class="mcard-body">Start with a bold statement. Then list 3-5 points numbered clearly. End with a save CTA. Example: "5 things I stopped doing that doubled my engagement: 1. Posting without a hook. 2. Using generic hashtags. 3. Ignoring comments in the first hour. 4. Posting at random times. 5. Making content for everyone instead of someone specific. Save this — you will need it."</p>
+<div class="mcard-tip">💡 List captions get saved 3x more than paragraph captions. People love to reference lists later.</div>
+</div> <div class="mcard">
+<div class="mcard-label">FORMULA 03 — The Question Caption</div>
+<div class="mcard-title">Drives comments and conversation</div>
+<p class="mcard-body">State your opinion or experience. Then ask your audience a direct question at the end. Make the question easy and low-effort to answer. Example: "I used to think I needed 10K followers before I could make money from content. I got my first brand deal at 800 followers. What is the biggest myth you believed about content creation? Drop it below 👇"</p>
+<div class="mcard-tip">💡 Comments boost your reach more than likes. Questions are the easiest way to get comments.</div>
+</div> <div class="mcard">
+<div class="mcard-label">HASHTAG STRATEGY</div>
+<div class="mcard-title">How many and which ones</div>
+<p class="mcard-body">Use 5 to 10 hashtags maximum — not 30. Mix three sizes: 2 large hashtags (1M+ posts) — for reach. 3 medium hashtags (100K to 500K posts) — for discoverability. 3 small or niche hashtags (under 50K posts) — for ranking. Always include 1 to 2 location hashtags if you are targeting a local audience. Example for a Tanzanian lifestyle creator: #lifestyletz #tanzaniancreator #darsalaam #africanlifestyle #contentcreatortanzania.</p>
+<div class="mcard-tip">💡 Put hashtags in the caption, not the comments. Instagram confirmed captions get better reach than comment hashtags.</div>
+</div> </div> </div> <div style="text-align:center;margin-top:28px;padding:32px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);border-radius:20px;border:1.5px solid #7dd3fc"> <div style="font-family:Syne,sans-serif;font-size:1.1rem;font-weight:800;color:#0c1a2e;margin-bottom:8px">Questions? We are inside the WhatsApp group 💬</div> <p style="font-size:.85rem;color:#334155;max-width:420px;margin:0 auto 18px;line-height:1.6">Jump in, ask questions, share your content, and get real feedback from 95+ creators who are on the same journey.</p> <a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="join-btn">💬 Open WhatsApp Group</a> </div> </div> </div> </main> <div id="newsletter" style="position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 24px 72px"> <div class="newsletter-box"> <span class="section-tag" style="margin-bottom:12px;display:inline-block">Free Weekly Updates</span> <h2>The Creator Insider 🔥</h2> <p class="nl-sub">Join hundreds of creators getting weekly hooks, trends, tools, and growth tips straight to their phone and inbox — before anyone else sees them.</p> <div style="background:var(--sky);border:1.5px dashed var(--sky-deep);border-radius:14px;padding:22px;margin-bottom:16px"> <p style="font-size:.88rem;color:var(--blue-dark);font-weight:600;margin-bottom:6px">📋 Sign up via our Tally form</p> <p style="font-size:.82rem;color:var(--ink-soft);margin-bottom:14px">We use Tally to securely collect your details. Click below to fill in your name, email, and phone number.</p> <a id="tally-link" href="https://tally.so/r/GxLAbe" target="_blank" style="display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:11px;padding:13px 28px;font-size:.9rem;font-weight:700;font-family:'Syne',sans-serif;box-shadow:0 4px 16px rgba(14,165,233,.3);transition:all .22s" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">✦ Sign Me Up for the Insider</a> <p style="font-size:.72rem;color:var(--ink-soft);margin-top:10px">No account needed — form opens in a new tab in seconds.</p> </div> <p class="nl-note">No spam, ever. Unsubscribe anytime. We respect your inbox.</p> </div>
+</div> <div style="position:relative;z-index:1;max-width:780px;margin:40px auto 0;padding:0 24px 60px"> <div style="text-align:center;margin-bottom:26px"> <span class="section-tag">FAQ</span> <h2 style="font-family:Syne,sans-serif;font-size:1.75rem;font-weight:800;color:#0c1a2e;margin:10px 0 8px">Questions? We Have Answers.</h2> <p style="font-size:.92rem;color:#334155">Everything you need to know before joining Sarara X.</p> </div> <div style="display:flex;flex-direction:column;gap:10px"> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">Do I need experience to join? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">Absolutely not. Sarara X is built for complete beginners. If you have a smartphone and the desire to create — you have everything you need. We start from zero and build you up step by step.</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">How do I pay the TSh 20,000? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">Payment is made via TIGO Pesa to +255 659 992 801. After payment, send your proof of payment screenshot to our WhatsApp and you will receive instant access to the group and all resources.</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">What do I get for TSh 20,000/month? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">You get access to our private WhatsApp creator group (95+ active creators), free CapCut Pro access, a personal 1-on-1 online consultation, and weekly content creation training — all for TSh 20,000 per month.</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">Do I need expensive equipment? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">No. Your smartphone is enough to start. We teach you how to get professional-looking results using what you already have. Many of our top creators shoot everything on an ordinary phone.</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">How active is the WhatsApp group? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">Very active. We have 95+ creators posting content, sharing feedback, celebrating wins, and learning together every single week. It is one of the most engaged creator communities in Tanzania.</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">Can I cancel my membership? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">Yes, you can cancel anytime. Simply message us on WhatsApp and we will process your cancellation. No long-term commitment required — though most members stay because of the value they get.</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">What platforms do you teach for? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">We focus primarily on Instagram Reels and TikTok, but the skills — hooks, storytelling, filming, editing — apply to every platform including YouTube Shorts, Facebook, and LinkedIn.</div>
+</div>
+</div> <div class="accordion-item">
+<div class="accordion-head" onclick="toggleAcc(this)">How soon will I see results? <span class="arr">▼</span>
+</div>
+<div class="accordion-body">
+<div class="accordion-inner">Most creators see noticeable improvement in their content quality and engagement within 2 to 4 weeks of applying what they learn. Results depend on consistency — but the tools and support are all here for you.</div>
+</div>
+</div> </div>
+</div> <footer>
+Made with ✦ by <strong>Sarara X</strong> &nbsp;·&nbsp;
+<a href="https://www.instagram.com/sarara_connects?igsh=MWgxNGRsemhjcW44ag==" target="_blank" style="color:var(--blue);text-decoration:none">@sarara_connects</a>
+&nbsp;·&nbsp;
+<a href="https://wa.me/255659992801" target="_blank" style="color:var(--blue);text-decoration:none">+255 659 992 801</a>
+</footer> <script>const ideasData={ lifestyle:[ {idea:"Morning routine that actually changed my life",hook:"Show before vs after your day when you follow this routine."}, {idea:"5 habits I dropped that were secretly draining me",hook:"The honest things nobody wants to admit they do."}, {idea:"What my Sunday reset looks like step by step",hook:"From messy week to fresh start — show every step."}, {idea:"Things I stopped buying that saved me money and stress",hook:"Minimalism isn't boring — it's freeing."}, {idea:"A day in my life but I only say yes to things I love",hook:"What does a truly intentional day look like?"}, {idea:"Honest things I wish I knew at 20",hook:"The advice nobody gives you until it's almost too late."}, ], fashion:[ {idea:"One dress 5 completely different ways to style it",hook:"You don't need more clothes — you need more creativity."}, {idea:"Thrift haul and how I styled every single piece",hook:"Sustainable fashion that actually looks amazing."}, {idea:"Outfits I get the most compliments on and why",hook:"The psychology of why certain outfits just work."}, {idea:"Wardrobe detox — everything I got rid of and why",hook:"Less in your closet means more in your confidence."}, {idea:"Affordable dupes for expensive fashion pieces",hook:"Look expensive without spending a fortune."}, {idea:"Get ready with me for a big event",hook:"The full transformation from nothing to everything."}, ], food:[ {idea:"5 meals I make every week that take under 20 minutes",hook:"Quick, healthy, and actually delicious — recipe included."}, {idea:"What I eat in a day on a tight budget",hook:"Eating well doesn't have to cost a fortune."}, {idea:"I tried cooking viral TikTok recipes — honest review",hook:"Which ones are actually worth making?"}, {idea:"Meal prep Sunday with me for the whole week",hook:"One afternoon of work means stress-free eating all week."}, {idea:"The one recipe everyone asks me for at parties",hook:"Simple ingredients, ridiculous results."}, {idea:"Foods I thought I hated until I cooked them right",hook:"The technique matters more than the ingredient."}, ], fitness:[ {idea:"30 day body transformation — honest and unfiltered",hook:"No filters, no shortcuts — just real results and real struggles."}, {idea:"Workout I do when I have zero motivation",hook:"The 10 minute routine that always gets me going."}, {idea:"Gym mistakes I made for years without knowing",hook:"If you're not seeing results, this might be why."}, {idea:"How I stay consistent when life gets chaotic",hook:"The system that works even when you don't feel like it."}, {idea:"Full body workout with no equipment at home",hook:"Your living room is your gym — no excuses."}, {idea:"What I eat before and after every workout",hook:"Fuel your body right and watch your results change."}, ], travel:[ {idea:"Hidden gems in [your city] tourists never find",hook:"Locals only — the places that don't make the tourist guides."}, {idea:"How I travel on a budget without sacrificing fun",hook:"I spent less than $500 and had the best week of my life."}, {idea:"Things I always pack that save me every single trip",hook:"The packing list I spent 10 years perfecting."}, {idea:"Solo travel for the first time — honest experience",hook:"Scary, freeing, and life-changing all at once."}, {idea:"Best street food I found in [destination]",hook:"Skip the restaurants — this is where the real food is."}, {idea:"My travel routine that keeps me energized and stress-free",hook:"How to actually enjoy travel instead of surviving it."}, ], business:[ {idea:"How I got my first paying client with zero following",hook:"No audience, no ads — just one simple strategy."}, {idea:"Tools I use every day to run my business from my phone",hook:"The app stack that replaced my entire office."}, {idea:"Mistakes I made in my first year of business",hook:"So you don't have to learn them the hard way."}, {idea:"How I set my prices and stopped undercharging",hook:"The mindset shift that doubled my income."}, {idea:"A day in my life running a business solo",hook:"The real unglamorous truth behind entrepreneurship."}, {idea:"How I get clients without spending money on ads",hook:"Organic growth strategies that actually convert."}, ], finance:[ {idea:"How I saved my first 1 million shillings step by step",hook:"The exact plan — income, expenses, and mindset."}, {idea:"Money habits that changed my financial life",hook:"Small daily decisions that compound into big results."}, {idea:"Things I stopped spending money on this year",hook:"The cuts that hurt at first but freed me completely."}, {idea:"How to build an emergency fund from scratch",hook:"Start with whatever you have — even 5,000 shillings counts."}, {idea:"Multiple income streams I built while working full time",hook:"How I stopped relying on one source of income."}, {idea:"The honest conversation about money nobody has",hook:"What financial freedom actually looks like in real life."}, ], comedy:[ {idea:"Things Tanzanians do that make no sense to the rest of the world",hook:"We all do it — nobody talks about it."}, {idea:"Honest voiceover of what people are actually thinking",hook:"The internal monologue we never say out loud."}, {idea:"Expectations vs reality of [relatable everyday situation]",hook:"Why does everything look easier in our heads?"}, {idea:"Types of people you always find at [local place]",hook:"You know exactly who I'm talking about."}, {idea:"POV: you're trying to do something simple but life disagrees",hook:"Relatable chaos that everyone has experienced."}, {idea:"Reacting to the most common advice that actually doesn't work",hook:"We've all heard it — and it's always wrong."}, ], }; function showIdeas(evt, niche){ document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active')); evt.target.classList.add('active'); const list=document.getElementById('ideas-browse'); const ideas=ideasData[niche]||[]; list.innerHTML=ideas.map((item,i)=>` <div class="idea-card"> <div class="idea-num">IDEA ${String(i+1).padStart(2,'0')}</div> <p>
+<strong>${item.idea}</strong>
+<br/>
+<span style="color:#0284c7;font-size:.8rem">${item.hook}</span>
+</p> <button class="copy-btn" onclick="copyTxt(this,'${item.idea.replace(/'/g,"\'")}')">💾</button> </div>`).join(''); } setTimeout(()=>{ const firstCtab=document.querySelector('#panel-ideas .ctab'); if(firstCtab) showIdeas({target:firstCtab},'lifestyle'); },100); const creators=[ {name:'Gary Vaynerchuk',handle:'@garyvee',cat:'growth',focus:'Growth Strategy',bg:'#e0f2fe',e:'📈'}, {name:'Ali Abdaal',handle:'@aliabdaal',cat:'editing',focus:'YouTube & Editing',bg:'#f0fdf4',e:'🎬'}, {name:'Alex Hormozi',handle:'@hormozi',cat:'money',focus:'Monetisation',bg:'#fef3c7',e:'💰'}, {name:'Nas Daily',handle:'@nasdaily',cat:'storytelling',focus:'Storytelling',bg:'#fce4ec',e:'📖'}, {name:'Lilly Singh',handle:'@iisuperwomanii',cat:'storytelling',focus:'Storytelling & Comedy',bg:'#f3e8ff',e:'🎭'}, {name:'Matt D\'Avella',handle:'@mattdavella',cat:'editing',focus:'Cinematography',bg:'#e0f2fe',e:'🎥'}, {name:'Vanessa Lau',handle:'@vanessalauco',cat:'growth',focus:'Instagram Growth',bg:'#fce4ec',e:'🚀'}, {name:'Dan Koe',handle:'@thedankoe',cat:'money',focus:'Digital Products',bg:'#fef3c7',e:'💡'}, {name:'Mkbhd',handle:'@mkbhd',cat:'editing',focus:'Video Production',bg:'#e0f2fe',e:'📱'}, {name:'Mel Robbins',handle:'@melrobbins',cat:'storytelling',focus:'Personal Storytelling',bg:'#f0fdf4',e:'❤️'}, {name:'Iman Gadzhi',handle:'@imangadzhi',cat:'money',focus:'Agency & Income',bg:'#fef3c7',e:'💼'}, {name:'Colin & Samir',handle:'@colinandsamir',cat:'growth',focus:'Creator Business',bg:'#f3e8ff',e:'🎯'}, ]; function showCreators(evt,cat){ document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active')); evt.target.classList.add('active'); const list=document.getElementById('creator-list'); const f=cat==='all'?creators:creators.filter(c=>c.cat===cat); list.innerHTML=f.map(c=>`<div class="creator-item">
+<div class="creator-avatar" style="background:${c.bg}">${c.e}</div>
+<div class="creator-info">
+<h4>${c.name}</h4>
+<p>${c.handle}</p>
+<span>${c.focus}</span>
+</div>
+</div>`).join(''); } showCreators({target:document.querySelector('.ctab')||{classList:{add:function(){},remove:function(){}},closest:function(){return null}}},'all'); const tabMap={tools:0,create:1,plan:2,learn:3,ideas:4,money:5,join:6,community:7,members:8}; function switchTab(id){ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active')); document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.getElementById('panel-'+id).classList.add('active'); const idx=tabMap[id]; if(idx!==undefined) document.querySelectorAll('.tab')[idx].classList.add('active'); } function scrollToMain(){document.getElementById('main-content').scrollIntoView({behavior:'smooth',block:'start'});} function toggleAcc(head){ const body=head.nextElementSibling; const open=body.classList.contains('open'); document.querySelectorAll('.accordion-body').forEach(b=>b.classList.remove('open')); document.querySelectorAll('.accordion-head').forEach(h=>h.classList.remove('open')); if(!open){body.classList.add('open');head.classList.add('open');} } function copyTxt(btn,text){ navigator.clipboard.writeText(text).then(()=>{ const o=btn.textContent;btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent=o,1600); }); } async function generateIdeas(){ const niche=document.getElementById('niche-select').value; const platform=document.getElementById('platform-select').value; if(!niche||!platform){alert('Please select both a niche and a platform!');return;} const btn=document.getElementById('gen-btn'); const out=document.getElementById('ideas-output'); btn.disabled=true;btn.textContent='Generating…'; out.innerHTML='<div class="loading-ideas">
+<div class="spinner">
+</div>Crafting ideas just for you…</div>'; try{ const res=await fetch("https://api.anthropic.com/v1/messages",{ method:"POST",headers:{"Content-Type":"application/json"}, body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000, messages:[{role:"user",content:`Generate exactly 6 specific, creative, highly engaging content ideas for a ${niche} creator on ${platform}. Return ONLY a JSON array, no markdown fences, no extra text. Each item must have: {"idea":"punchy title max 12 words","hook":"one irresistible sentence max 20 words"}`}]}) }); const data=await res.json(); const raw=data.content.map(b=>b.text||'').join(''); const ideas=JSON.parse(raw.replace(/```json|```/g,'').trim()); out.innerHTML=`<p style="font-size:.8rem;color:var(--ink-soft);margin-bottom:12px">6 ideas for <strong>${niche}</strong> on <strong>${platform}</strong>
+</p>
+<div class="ideas-out">`+ ideas.map((item,i)=>`<div class="idea-card">
+<div class="idea-num">IDEA ${String(i+1).padStart(2,'0')}</div>
+<p>
+<strong>${item.idea}</strong>
+<br/>
+<span style="color:var(--blue-dark);font-size:.8rem">${item.hook}</span>
+</p>
+<button class="copy-btn" onclick="copyTxt(this,'${item.idea.replace(/'/g,"\\'")}')">💾</button>
+</div>`).join('')+'</div>'; }catch(e){out.innerHTML='<div class="loading-ideas" style="color:#e11d48">Something went wrong. Please try again.</div>';} btn.disabled=false;btn.textContent='✦ Generate'; } const visualHooks=[ "Start mid-action — show yourself already doing the thing before you say a word.", "Show bold text on screen BEFORE you speak — let them read your claim and get curious.", "Reveal the end result first — the transformation, the finish, the reaction — then go back to the beginning.", "Fill the frame with your face and make direct eye contact with the lens. Instant connection.", "Use a dramatic scene change or outfit switch in the first 2 seconds — contrast grabs the eye.", "Point directly at the camera lens as your first frame — it feels like you chose THEM personally.", "Open with a split screen — before and after side by side. Let the result speak before you speak.", "Start with your hands doing something — unwrapping, writing, cooking — action before words.", "Show a shocking number or statistic on screen before you say anything.", "Open with a confused or surprised facial expression — no words, just the look. People will stay to understand.", "Hold up an object that represents your topic and stare at it for 2 seconds before talking.", "Walk into frame mid-stride — movement catches the eye instantly in a static feed.", "Start with the messiest, ugliest, or most dramatic version of your topic — then promise the solution.", "Use dramatic zoom in on your face as your opening shot — it creates tension.", "Flash 3 rapid cuts of different scenes in the first 2 seconds — energy grabs attention.", "Sit in an unusual location — car, rooftop, floor — somewhere unexpected that makes people pause.", "Start with your phone pointing at something else, then turn it to face you — the reveal creates curiosity.", "Write your hook as text on screen and let people read it in silence for 2 full seconds.", "Open with a close-up of something small — hands, food, product — then pull back to show the full picture.", "Start outdoors in golden light with no words — just you and the environment. Aesthetic hooks too.", ]; const verbalHooks=[ "Nobody talks about this, but it changed everything for me…", "I wish someone told me this when I started — so I am telling you now.", "Stop scrolling. This is the most important thing you will hear today.", "Here is what actually happens when you do the thing you are afraid to do…", "I went from zero to results in 30 days — and I am showing you exactly how.", "Everyone gets this wrong — including me, until I figured out the truth.", "This one thing costs nothing and it will change your content forever.", "I tried this for 30 days so you do not have to make the same mistakes I did.", "The reason your content is not working has nothing to do with the algorithm.", "What no one tells you about creating content when you are just starting out.", "Three seconds. That is all you have. Here is how to use them perfectly.", "I am going to show you something that took me two years to figure out.", "You have been doing this wrong and it is costing you thousands of followers.", "The creators who blow up fast all do this one thing — and it is not what you think.", "This is the exact script I use every time I sit down to film.", "If I were starting from zero today this is the only thing I would focus on.", "Most people scroll past content for one simple reason — and it is completely fixable.", "I did an experiment with my content for 7 days and the results shocked me.", "Here is the truth about going viral that nobody wants to admit.", "You do not need more followers. You need this one thing I am about to show you.", "The difference between creators who grow and those who stay stuck is this.", "I used to be afraid of the camera. Here is the exact thing that changed everything.", "Stop trying to be perfect. The most viral content has this quality instead.", "This hack takes 30 seconds and will make your next Reel perform 10 times better.", "I got my first brand deal with under 500 followers. Here is exactly how.", "The one question you should ask yourself before every single piece of content.", "Nobody is watching your content because of this — and the fix is so simple.", "What happened when I posted every single day for a month — honest results.", "The algorithm does not hate you. It is trying to tell you something important.", "Before you film your next video watch this — it will save you months of guessing.", ]; function renderHooks(){ const vList=document.getElementById('visual-hooks-list'); const vrList=document.getElementById('verbal-hooks-list'); if(vList) vList.innerHTML=visualHooks.map(h=>`<div class="hook-item">
+<div class="hook-type">Visual Hook</div>
+<p>"${h}"</p>
+<button class="hook-copy" onclick="copyTxt(this,'${h.replace(/'/g,"\'")}')">Copy</button>
+</div>`).join(''); if(vrList) vrList.innerHTML=verbalHooks.map(h=>`<div class="hook-item">
+<div class="hook-type">Verbal Hook</div>
+<p>"${h}"</p>
+<button class="hook-copy" onclick="copyTxt(this,'${h.replace(/'/g,"\'")}')">Copy</button>
+</div>`).join(''); } renderHooks(); function runCountdown(){ const target = new Date(); target.setDate(target.getDate() + 7); function tick(){ const now = new Date(); const diff = target - now; if(diff <= 0) return; const d = Math.floor(diff/86400000); const h = Math.floor((diff%86400000)/3600000); const m = Math.floor((diff%3600000)/60000); const s = Math.floor((diff%60000)/1000); document.getElementById('cd-days').textContent = String(d).padStart(2,'0'); document.getElementById('cd-hours').textContent = String(h).padStart(2,'0'); document.getElementById('cd-mins').textContent = String(m).padStart(2,'0'); document.getElementById('cd-secs').textContent = String(s).padStart(2,'0'); } tick(); setInterval(tick,1000); } runCountdown(); function toggleMobileMenu(){ const menu = document.getElementById('mobile-menu'); menu.classList.toggle('open'); } function closeMobileMenu(){ document.getElementById('mobile-menu').classList.remove('open'); } function switchMTab(id,el){ document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active')); if(el) el.classList.add('active'); document.getElementById('mpanel-'+id).classList.add('active'); } const MEMBER_PW = 'sararaxfreedom'; function checkPW(){ const input = document.getElementById('member-pw').value.trim(); const error = document.getElementById('pw-error'); if(input === MEMBER_PW){ document.getElementById('password-gate').style.display = 'none'; document.getElementById('members-content').style.display = 'block'; error.style.display = 'none'; sessionStorage.setItem('sx_unlocked','1'); } else { error.style.display = 'block'; document.getElementById('member-pw').style.borderColor = '#fca5a5'; setTimeout(()=>{ document.getElementById('member-pw').style.borderColor = 'rgba(255,255,255,0.2)'; }, 2000); } } function lockMembers(){ document.getElementById('password-gate').style.display = 'block'; document.getElementById('members-content').style.display = 'none'; document.getElementById('member-pw').value = ''; sessionStorage.removeItem('sx_unlocked'); } if(sessionStorage.getItem('sx_unlocked')==='1'){ setTimeout(()=>{ const gate = document.getElementById('password-gate'); const content = document.getElementById('members-content'); if(gate && content){ gate.style.display='none'; content.style.display='block'; } }, 100); } function submitNL(){ const name=document.getElementById('nl-name').value.trim(); const email=document.getElementById('nl-email').value.trim(); if(!name||!email){alert('Please enter your name and email to continue.');return;} document.getElementById('nl-form').style.display='none'; document.getElementById('nl-success').style.display='block'; }</script>
+
+<script>
+// Lazy load background video after page loads
+window.addEventListener('load',function(){
+  var v=document.getElementById('bgvid');
+  if(v){
+    var s=v.querySelector('source');
+    if(s && s.dataset.src){
+      s.src=s.dataset.src;
+      v.load();
+    }
+  }
+});
+</script>
+</body>
+</html>
