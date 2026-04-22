@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SARARA — Personal Style Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f7f3ee;color:#1c1612;font-family:'DM Sans',sans-serif;font-weight:300;}
+img{display:block;}
+
+/* ── HEADER ── */
+.hdr{background:#fff;border-bottom:1px solid #e2d9cc;padding:0 40px;display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:16px;position:sticky;top:0;z-index:100;}
+.brand{display:flex;align-items:baseline;gap:12px;flex-shrink:0;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:28px;letter-spacing:0.18em;color:#1c1612;font-weight:500;white-space:nowrap;}
+.brand-name span{color:#a8841c;}
+.brand-tagline{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#9a8e82;border-left:1px solid #e2d9cc;padding-left:12px;white-space:nowrap;}
+.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+.toggle-label{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#9a8e82;}
+.gender-toggle{display:flex;border:2px solid #a8841c;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(168,132,28,.15);}
+.gbtn{padding:10px 22px;background:transparent;border:none;color:#a8841c;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;font-weight:600;white-space:nowrap;min-width:72px;transition:all .2s;}
+.gbtn.on{background:#a8841c;color:#fff;}
+.gbtn:not(.on):hover{background:#f5e9c8;}
+
+/* ── NAV ── */
+.nav{background:#fff;border-bottom:1px solid #e2d9cc;padding:0 40px;display:flex;overflow-x:auto;gap:4px;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nbtn{padding:15px 22px;background:transparent;border:none;border-bottom:2px solid transparent;color:#9a8e82;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.nbtn.on{color:#a8841c;border-bottom-color:#a8841c;}
+.nbtn:not(.on):hover{color:#1c1612;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#6b4f2a 0%,#3a2510 50%,#1c0f05 100%);padding:48px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.hero-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#c9a84c;margin-bottom:14px;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:42px;color:#fdf8f0;font-weight:400;line-height:1.2;margin-bottom:14px;}
+.hero-title em{color:#c9a84c;font-style:italic;}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.6);line-height:1.7;max-width:480px;font-weight:300;}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:34px;color:#c9a84c;font-weight:500;}
+.stat-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
+
+/* ── MAIN ── */
+.main{padding:44px 40px;max-width:1380px;margin:0 auto;}
+.section{display:none;}
+.section.on{display:block;}
+
+/* ── CARDS ── */
+.card{background:#fff;border:1px solid #e2d9cc;padding:26px;}
+.card-sm{background:#fff;border:1px solid #e2d9cc;padding:20px;}
+.card-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#a8841c;margin-bottom:16px;font-weight:600;}
+
+/* ── PROFILE ── */
+.pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:32px;}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.opts.col1{grid-template-columns:1fr;}
+.opt{padding:11px 13px;background:#f2ede6;border:1.5px solid transparent;color:#4a3f35;font-family:'DM Sans',sans-serif;font-size:12.5px;cursor:pointer;text-align:left;border-radius:2px;transition:all .2s;width:100%;}
+.opt.sel{border-color:#a8841c;background:#f5e9c8;color:#6b4f2a;font-weight:500;}
+.opt:not(.sel):hover{border-color:#e2d9cc;background:#fff;}
+.archetype{background:linear-gradient(135deg,#2c1a00,#1a0f00);border:1px solid #c9a84c;padding:36px;margin-top:24px;}
+.arc-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;}
+.arc-name{font-family:'Cormorant Garamond',serif;font-size:30px;color:#fdf8f0;margin-bottom:12px;}
+.arc-desc{font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.75;font-weight:300;max-width:640px;}
+.arc-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.arc-tag{padding:4px 13px;border:1px solid #c9a84c;color:#c9a84c;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;}
+.empty-state{text-align:center;padding:64px 40px;border:1.5px dashed #e2d9cc;background:#f2ede6;}
+.empty-icon{font-size:38px;margin-bottom:14px;}
+.empty-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#4a3f35;margin-bottom:8px;}
+.empty-sub{font-size:13px;color:#9a8e82;}
+
+/* ── SUIT BUILDER ── */
+.blayout{display:grid;grid-template-columns:290px 1fr;gap:24px;}
+.bsidebar{display:flex;flex-direction:column;gap:14px;}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;}
+.swatch{width:33px;height:33px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:all .22s;flex-shrink:0;}
+.swatch.sel{border-color:#a8841c;transform:scale(1.18);box-shadow:0 0 0 3px #f7f3ee,0 0 0 5px #a8841c;}
+.sel-name{margin-top:8px;font-size:12px;color:#9a8e82;}
+.sel-name b{color:#a8841c;}
+.sel-input{width:100%;background:#f2ede6;border:1.5px solid #e2d9cc;color:#1c1612;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;appearance:none;outline:none;border-radius:2px;}
+.sel-input:focus{border-color:#a8841c;}
+.preview{background:#fff;border:1px solid #e2d9cc;padding:32px;}
+.prev-name{font-family:'Cormorant Garamond',serif;font-size:26px;color:#1c1612;margin-bottom:4px;}
+.prev-occ{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#9a8e82;margin-bottom:26px;}
+.prev-body{display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start;}
+.outfit-img-wrap{border:1px solid #e2d9cc;overflow:hidden;background:#f2ede6;}
+.outfit-img{width:100%;height:340px;object-fit:cover;object-position:top center;}
+.shoe-img-wrap{margin-top:10px;border:1px solid #e2d9cc;overflow:hidden;background:#f2ede6;}
+.shoe-img{width:100%;height:110px;object-fit:cover;object-position:center;}
+.img-caption{padding:7px 12px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#9a8e82;border-top:1px solid #e2d9cc;background:#fff;}
+.acc-list{display:flex;flex-direction:column;gap:10px;}
+.acc-item{display:flex;align-items:center;gap:14px;padding:12px 15px;background:#f2ede6;border-left:3px solid #a8841c;}
+.acc-icon{font-size:18px;width:28px;text-align:center;flex-shrink:0;}
+.acc-type{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#9a8e82;margin-bottom:2px;}
+.acc-val{font-size:13px;color:#1c1612;font-weight:400;}
+.stylist-note{margin-top:18px;background:#f5e9c8;border:1px solid rgba(168,132,28,.3);padding:16px 18px;display:flex;gap:12px;}
+.sn-icon{font-size:15px;flex-shrink:0;margin-top:1px;}
+.sn-text{font-size:13px;line-height:1.65;color:#4a3f35;font-weight:300;}
+.sn-text b{color:#6b4f2a;font-weight:600;}
+
+/* ── WEEKLY PLANNER ── */
+.wgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin-bottom:24px;}
+.dcard{background:#fff;border:1.5px solid #e2d9cc;cursor:pointer;transition:all .25s;overflow:hidden;position:relative;}
+.dcard::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#a8841c;transform:scaleX(0);transition:transform .25s;transform-origin:left;}
+.dcard:hover::after,.dcard.on::after{transform:scaleX(1);}
+.dcard.on{border-color:#c9a84c;background:#f5e9c8;}
+.dcard-img{width:100%;height:130px;object-fit:cover;object-position:top center;}
+.dcard-body{padding:14px;}
+.dcard-day{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#a8841c;margin-bottom:5px;}
+.dcard-outfit{font-family:'Cormorant Garamond',serif;font-size:15px;color:#1c1612;margin-bottom:4px;line-height:1.3;}
+.dcard-desc{font-size:11px;color:#9a8e82;line-height:1.4;}
+.ddetail{background:#fff;border:1px solid #e2d9cc;padding:36px;}
+.ddetail-grid{display:grid;grid-template-columns:270px 1fr;gap:32px;}
+.ddetail-img{width:100%;height:360px;object-fit:cover;object-position:top;border:1px solid #e2d9cc;}
+.ddetail-shoe{width:100%;height:100px;object-fit:cover;margin-top:10px;border:1px solid #e2d9cc;}
+.ddetail-day{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#a8841c;margin-bottom:7px;}
+.ddetail-name{font-family:'Cormorant Garamond',serif;font-size:28px;color:#1c1612;margin-bottom:22px;}
+.ddetail-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.dl-label{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#a8841c;margin-bottom:12px;font-weight:600;}
+.di{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start;}
+.di-dot{width:5px;height:5px;border-radius:50%;background:#a8841c;flex-shrink:0;margin-top:6px;}
+.di-text{font-size:13px;color:#4a3f35;line-height:1.5;}
+.di-text b{color:#6b4f2a;font-weight:600;}
+.avoid-item{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start;}
+.avoid-x{color:#8b2020;font-size:12px;flex-shrink:0;margin-top:2px;font-weight:700;}
+.avoid-text{font-size:13px;color:#4a3f35;line-height:1.5;}
+.day-rule{margin-top:18px;background:#f5e9c8;border:1px solid rgba(168,132,28,.25);padding:14px 16px;font-size:13px;color:#4a3f35;line-height:1.65;font-weight:300;}
+.day-rule b{color:#6b4f2a;font-weight:600;}
+
+/* ── WOMEN'S SECTION ── */
+.women-hero{background:linear-gradient(135deg,#1a0a0f,#2d1520,#120810);border:1px solid rgba(200,150,120,.2);padding:48px;margin-bottom:28px;display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:center;}
+.wh-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#d4a0a0;margin-bottom:10px;}
+.wh-title{font-family:'Cormorant Garamond',serif;font-size:38px;color:#fdf4f0;margin-bottom:14px;font-weight:400;line-height:1.2;}
+.wh-title em{color:#e8b4a0;font-style:italic;}
+.wh-sub{font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.75;font-weight:300;}
+.wh-img{width:100%;height:260px;object-fit:cover;object-position:top;border:1px solid rgba(200,150,120,.15);border-radius:2px;}
+.wgrid2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px;}
+.wcard{background:#fff;border:1px solid #e2d9cc;overflow:hidden;transition:all .25s;cursor:pointer;}
+.wcard:hover{border-color:#c9a84c;transform:translateY(-3px);box-shadow:0 8px 24px rgba(168,132,28,.1);}
+.wcard-img{width:100%;height:170px;object-fit:cover;object-position:top center;}
+.wcard-body{padding:18px;}
+.wcard-icon{font-size:26px;margin-bottom:8px;}
+.wcard-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:#1c1612;margin-bottom:7px;}
+.wcard-desc{font-size:12px;color:#9a8e82;line-height:1.6;margin-bottom:11px;}
+.mini-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.mtag{padding:3px 9px;background:#f5e9c8;border:1px solid rgba(168,132,28,.3);color:#a8841c;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0;}
+.fit-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:#1c1612;margin-bottom:14px;font-weight:500;}
+
+/* ── STYLE GUIDE ── */
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.tcard{background:#fff;border:1px solid #e2d9cc;padding:28px;transition:border-color .2s;}
+.tcard:hover{border-color:#c9a84c;}
+.tcard-icon{font-size:32px;margin-bottom:12px;}
+.tcard-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#1c1612;margin-bottom:10px;}
+.tcard-body{font-size:13px;color:#4a3f35;line-height:1.75;font-weight:300;list-style:none;}
+.tcard-body li{margin-bottom:7px;padding-left:18px;position:relative;}
+.tcard-body li::before{content:'—';position:absolute;left:0;color:#a8841c;font-size:11px;}
+.rules-wrap{background:#fff;border:1px solid #e2d9cc;padding:36px;margin-top:24px;}
+.rules-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:#1c1612;margin-bottom:5px;}
+.rules-sub{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9a8e82;margin-bottom:28px;}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;}
+.rule-item{border-top:2px solid #e2d9cc;padding-top:18px;}
+.rule-num{font-size:11px;color:#a8841c;font-weight:700;letter-spacing:0.1em;margin-bottom:7px;}
+.rule-t{font-family:'Cormorant Garamond',serif;font-size:17px;color:#1c1612;margin-bottom:7px;}
+.rule-b{font-size:12px;color:#9a8e82;line-height:1.6;font-weight:300;}
+
+/* ── SHARED ── */
+.gold-rule{width:100%;height:1px;background:linear-gradient(90deg,#a8841c,transparent);margin:40px 0;}
+.quote{text-align:center;padding:28px 0;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#1c1612;max-width:540px;margin:0 auto 10px;line-height:1.55;}
+.q-author{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#9a8e82;}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:28px;border-top:1px solid #e2d9cc;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#9a8e82;background:#fff;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1060px){
+  .pgrid{grid-template-columns:1fr 1fr;}
+  .blayout{grid-template-columns:1fr;}
+  .prev-body{grid-template-columns:1fr;}
+  .wgrid{grid-template-columns:1fr 1fr;}
+  .wgrid2{grid-template-columns:1fr 1fr;}
+  .ddetail-grid{grid-template-columns:1fr;}
+  .rules-grid{grid-template-columns:1fr 1fr;}
+  .tgrid{grid-template-columns:1fr;}
+  .women-hero{grid-template-columns:1fr;}
+  .wh-img{display:none;}
+  .main{padding:32px 22px;}
+  .hdr{padding:0 22px;}
+  .nav{padding:0 20px;}
+  .hero{padding:36px 22px;}
+  .brand-tagline{display:none;}
+}
+@media(max-width:640px){
+  .pgrid{grid-template-columns:1fr;}
+  .wgrid{grid-template-columns:1fr 1fr;}
+  .wgrid2{grid-template-columns:1fr;}
+  .ddetail-cols{grid-template-columns:1fr;}
+  .rules-grid{grid-template-columns:1fr;}
+  .fit-grid{grid-template-columns:1fr;}
+  .hero-title{font-size:30px;}
+  .brand-name{font-size:22px;}
+  .gbtn{padding:10px 14px;font-size:10px;min-width:58px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ HEADER -->
+<header class="hdr">
+  <div class="brand">
+    <div class="brand-name">S<span>A</span>R<span>A</span>R<span>A</span></div>
+    <div class="brand-tagline">Personal Style Intelligence</div>
+  </div>
+  <div class="hdr-right">
+    <div class="toggle-label">Viewing Edition</div>
+    <div class="gender-toggle">
+      <button class="gbtn on" id="btn-men" onclick="setGender('men')">♂ Men</button>
+      <button class="gbtn" id="btn-women" onclick="setGender('women')">♀ Women</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ NAV -->
+<nav class="nav">
+  <button class="nbtn on" data-tab="profile" onclick="setTab('profile')">Style Profile</button>
+  <button class="nbtn" data-tab="builder" onclick="setTab('builder')">Suit Builder</button>
+  <button class="nbtn" data-tab="weekly" onclick="setTab('weekly')">Weekly Planner</button>
+  <button class="nbtn" data-tab="women" onclick="setTab('women')">Women's Edit</button>
+  <button class="nbtn" data-tab="guide" onclick="setTab('guide')">Style Guide</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow" id="hero-eyebrow">Step One</div>
+    <div class="hero-title" id="hero-title">Discover Your <em>Style DNA</em></div>
+    <div class="hero-sub" id="hero-sub">Answer three questions to unlock your personal SARARA archetype and dressing philosophy.</div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Sections</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Suit Colours</div></div>
+    <div class="stat"><div class="stat-num">5+5</div><div class="stat-label">Office Outfits</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Editions</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MAIN SECTIONS -->
+<main class="main">
+
+  <!-- ── PROFILE ── -->
+  <section id="sec-profile" class="section on">
+    <div id="profile-content"></div>
+  </section>
+
+  <!-- ── BUILDER ── -->
+  <section id="sec-builder" class="section">
+    <div id="builder-content"></div>
+  </section>
+
+  <!-- ── WEEKLY ── -->
+  <section id="sec-weekly" class="section">
+    <div id="weekly-content"></div>
+  </section>
+
+  <!-- ── WOMEN ── -->
+  <section id="sec-women" class="section">
+    <div class="women-hero">
+      <div>
+        <div class="wh-eyebrow">SARARA — Exclusively For Her</div>
+        <div class="wh-title">The Art of <em>Feminine Power Dressing</em></div>
+        <div class="wh-sub">Power dressing for women is not about mimicking men's suiting — it is about owning your authority while expressing your individuality. Structure, intention, and confidence are your three non-negotiables.</div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=320&fit=crop&crop=top" alt="Women's power dressing" class="wh-img" onerror="this.style.display='none'"/>
+    </div>
+    <div class="wgrid2" id="women-cards"></div>
+    <div class="gold-rule"></div>
+    <div class="quote">
+      <div class="q-text">"Dressing well is a form of good manners — and for a woman in a boardroom, it is also a form of power."</div>
+      <div class="q-author">— SARARA Style Philosophy</div>
+    </div>
+    <div class="fit-grid" id="women-fit"></div>
+  </section>
+
+  <!-- ── STYLE GUIDE ── -->
+  <section id="sec-guide" class="section">
+    <div class="tgrid" id="guide-tips"></div>
+    <div class="gold-rule"></div>
+    <div class="quote">
+      <div class="q-text">"Elegance is not about being noticed, it is about being remembered."</div>
+      <div class="q-author">— Giorgio Armani</div>
+    </div>
+    <div class="rules-wrap">
+      <div class="rules-title">The SARARA Non-Negotiables</div>
+      <div class="rules-sub">Principles that separate dressed from well-dressed</div>
+      <div class="rules-grid" id="guide-rules"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2025 SARARA — Personal Style Intelligence &nbsp;·&nbsp; Dress with Intention</footer>
+
+<!-- ═══════════════════════════════════════════════════════ SCRIPT -->
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+var state = {
+  gender: 'men',
+  tab: 'profile',
+  body: null,
+  season: null,
+  persona: null,
+  suitColorIndex: 0,
+  fabric: 'Wool Twill',
+  occasion: 'Business Formal',
+  activeDay: 0
+};
+
+// ── DATA ───────────────────────────────────────────────────────────────────
+var SUIT_IMGS = {
+  men: [
+    'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1598808503746-f34cfb12aced?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1592878849122-facb97ed9cfe?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1610652492500-ded49ceeb378?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1614251056798-0a63eda2bb25?w=500&h=700&fit=crop&crop=top'
+  ],
+  women: [
+    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1485218126466-34e6392ec754?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=700&fit=crop&crop=top',
+    'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&h=700&fit=crop&crop=top'
+  ]
+};
+
+var SHOE_IMGS = {
+  men: {
+    black:   'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=200&fit=crop',
+    brown:   'https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=500&h=200&fit=crop',
+    burgundy:'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=200&fit=crop',
+    loafer:  'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500&h=200&fit=crop'
+  },
+  women: {
+    black:   'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&h=200&fit=crop',
+    nude:    'https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?w=500&h=200&fit=crop',
+    tan:     'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=500&h=200&fit=crop',
+    loafer:  'https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=500&h=200&fit=crop'
+  }
+};
+
+var WEEK_IMGS = {
+  men: [
+    {suit:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.men.brown},
+    {suit:'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.men.black},
+    {suit:'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.men.burgundy},
+    {suit:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.men.black},
+    {suit:'https://images.unsplash.com/photo-1592878849122-facb97ed9cfe?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.men.loafer}
+  ],
+  women: [
+    {suit:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.women.black},
+    {suit:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.women.nude},
+    {suit:'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.women.tan},
+    {suit:'https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.women.black},
+    {suit:'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&h=800&fit=crop&crop=top', shoe:SHOE_IMGS.women.loafer}
+  ]
+};
+
+var SUIT_COLORS = [
+  {name:'Charcoal',  hex:'#36454F'},
+  {name:'Navy',      hex:'#1B2A4A'},
+  {name:'Black',     hex:'#1a1a1a'},
+  {name:'Mid Grey',  hex:'#7b7b7b'},
+  {name:'Camel',     hex:'#C19A6B'},
+  {name:'Burgundy',  hex:'#6B1A2A'},
+  {name:'Forest',    hex:'#2D4A3E'},
+  {name:'Light Grey',hex:'#b0b0b0'},
+  {name:'Cream',     hex:'#E8E0D0'},
+  {name:'Taupe',     hex:'#9B8472'}
+];
+
+var BODY_TYPES = {
+  men:   ['Slim / Lean','Athletic','Regular','Broad Shoulder','Stocky / Full'],
+  women: ['Petite','Slim','Hourglass','Athletic','Full / Curvy']
+};
+var SEASONS = ['Cool Winter','Warm Autumn','Cool Summer','Warm Spring'];
+var PERSONAS = {
+  men:   ['Classic Executive','Modern Minimalist','Creative Director','Power Player','Smart Casual'],
+  women: ['Boardroom Chic','Understated Elegance','Bold & Structured','Feminine Power','Creative Professional']
+};
+
+var WEEKDAYS = {
+  men: [
+    {day:'Monday',   outfit:'The Authority Open',   desc:'Navy suit, white shirt, setting the week\'s intention',
+     details:{suit:'Navy 2-button single-breasted',shirt:'White poplin, slim collar',neckwear:'Solid burgundy silk tie',shoes:'Tan leather oxford',
+      accessories:['Brown leather belt','Silver watch','White pocket square (flat fold)','No lapel pin'],
+      avoidances:['Patterned shirt with patterned tie','Black shoes with navy — always brown']}},
+    {day:'Tuesday',  outfit:'Mid-Week Power',        desc:'Charcoal suit, blue shirt, decisive and sharp',
+     details:{suit:'Charcoal 3-piece or 2-piece',shirt:'Light blue Egyptian cotton',neckwear:'Silver or grey striped silk tie',shoes:'Black derby or oxford',
+      accessories:['Black leather belt','Steel-case watch','Silver tie bar aligned to lapels'],
+      avoidances:['Brown shoes with charcoal (too casual)','Tie bar higher than the 3rd button']}},
+    {day:'Wednesday',outfit:'Creative Edge',         desc:'Grey suit, open collar, controlled authority',
+     details:{suit:'Mid grey slim fit',shirt:'White with subtle texture or fine stripe',neckwear:'Optional — if worn, bold or printed',shoes:'Burgundy loafer or suede derby',
+      accessories:['Cognac leather watch strap','Pocket square, casual puff fold','No tie bar needed'],
+      avoidances:['Over-accessorising on a no-tie day','Casual sneakers in a formal context']}},
+    {day:'Thursday', outfit:'Boardroom Ready',       desc:'Peak formality — dress as if the biggest deal closes today',
+     details:{suit:'Dark navy or charcoal with faint stripe',shirt:'White French cuff',neckwear:'Gold or navy silk grenadine tie',shoes:'Black cap-toe oxford, freshly polished',
+      accessories:['Cufflinks — gold or silver','Leather portfolio','Minimal flat pocket square'],
+      avoidances:['Unpolished shoes — a career-level error','Novelty cufflinks in formal settings']}},
+    {day:'Friday',   outfit:'Smart Casual Sign-Off', desc:'Blazer + trousers, earned and intentional ease',
+     details:{suit:'Navy or camel blazer with separate grey or stone trousers',shirt:'Chambray, OCBD, or soft stripe',neckwear:'No tie — or knit tie if preferred',shoes:'Loafers, suede chukka, or clean leather sneaker',
+      accessories:['No tie bar','Casual leather watch','Casual pocket square optional'],
+      avoidances:['Treating Friday as "anything goes"','Gym shoes or overly casual footwear']}}
+  ],
+  women: [
+    {day:'Monday',   outfit:'Commanding Presence',   desc:'Tailored blazer + wide-leg trousers, setting the tone',
+     details:{suit:'Navy power blazer + matching wide-leg trousers',shirt:'White silk blouse or ivory fitted turtleneck',neckwear:'Small gold earrings',shoes:'Black pointed-toe heels or block heels',
+      accessories:['Gold studs (small)','Structured leather handbag','Minimal necklace'],
+      avoidances:['Overly decorative jewellery on Monday','Casual tote with a formal suit']}},
+    {day:'Tuesday',  outfit:'Structured Confidence', desc:'Charcoal suit, feminine colour detail',
+     details:{suit:'Charcoal blazer + pencil skirt or slim trousers',shirt:'Blush or dusty rose silk blouse',neckwear:'Fine chain necklace',shoes:'Nude or blush pointed pumps',
+      accessories:['Pearl or gold studs','Slim gold watch','Leather clutch or structured bag'],
+      avoidances:['Matching blouse exactly to blush trouser — too matchy','Chunky jewellery with a refined suit']}},
+    {day:'Wednesday',outfit:'Elevated Creative',     desc:'Blazer + midi skirt, texture and intention',
+     details:{suit:'Cream or camel blazer + pleated or A-line midi skirt',shirt:'Silk cami or fitted knit top',neckwear:'Silk scarf or statement earring',shoes:'Tan mule or loafer heel',
+      accessories:['Silk scarf','Gold bangles','Structured tote'],
+      avoidances:['Heavy pattern mixing without a unifying colour','Flat shoes with a floaty midi — loses structure']}},
+    {day:'Thursday', outfit:'Boardroom Authority',   desc:'Matched set, maximum formality, maximum presence',
+     details:{suit:'Black or midnight navy power suit — full matching set',shirt:'White poplin or ivory silk blouse',neckwear:'Structured necklace or small brooch',shoes:'Black heels (kitten or mid-heel) — polished',
+      accessories:['Pearl or diamond studs','Structured handbag','Minimal rings'],
+      avoidances:['Platform shoes (undermines suit elegance)','Overly casual hairstyle on a Thursday']}},
+    {day:'Friday',   outfit:'Refined Ease',          desc:'Blazer over midi dress — curated, not casual',
+     details:{suit:'Oversized blazer + tailored midi dress or wide-leg culottes',shirt:'Fitted turtleneck or soft wrap top',neckwear:'Statement earrings',shoes:'Block heel mules, loafers, or ankle boots',
+      accessories:['Statement earrings','Relaxed-tone leather bag','Stacked bracelets'],
+      avoidances:['Going fully casual — SARARA clients are always intentional','Denim unless structured and polished']}}
+  ]
+};
+
+var DAY_RULES = [
+  'Monday signals your week\'s entire intention. Dress sharply and own the room from the first hour.',
+  'Tuesday is for precision. No excuses — you\'re in full execution mode this week.',
+  'Wednesday allows one creative flourish. Keep the suit; break one rule elegantly.',
+  'Thursday is your power day — treat it as the most important day of the week.',
+  'Friday is earned ease. Intentional, never sloppy.'
+];
+
+var OUTFIT_DATA = {
+  men: {
+    'Charcoal': {shirt:'White or pale blue poplin',neckwear:'Burgundy or silver grenadine tie',shoes:'Black cap-toe oxford',belt:'Black leather, silver buckle',pocket:'White linen square, flat fold',watch:'Silver or steel, white dial',shoeKey:'black',tip:'Charcoal is the most versatile suit — match metal tones. Silver tie bar pairs with silver cufflinks.'},
+    'Navy':     {shirt:'White, light blue, or lavender shirt',neckwear:'Gold, warm brown, or polka-dot silk tie',shoes:'Brown oxford — try tan or burgundy',belt:'Brown leather, gold buckle',pocket:'Navy/white border or solid white',watch:'Gold or brown leather strap',shoeKey:'brown',tip:'Navy and brown is the classic European pairing. Never wear black shoes with navy.'},
+    'Black':    {shirt:'White or pale grey',neckwear:'Black, silver, or deep jewel-tone tie',shoes:'Black cap-toe oxford — nothing else',belt:'Black leather, minimal hardware',pocket:'White silk, TV fold',watch:'Black or silver',shoeKey:'black',tip:'Black suits are formal territory. Reserve for evenings or very formal workplaces — not everyday.'},
+    'Camel':    {shirt:'White or off-white shirt',neckwear:'Brown or earthy knit tie',shoes:'Brown leather oxford or suede loafer',belt:'Tan leather, brushed gold buckle',pocket:'Cream linen, casual fold',watch:'Tan leather strap, gold case',shoeKey:'loafer',tip:'Camel suits are autumn power dressing. Stay warm with cream and tan — avoid cool greys.'},
+    'default':  {shirt:'White poplin',neckwear:'Solid silk tie',shoes:'Black or brown leather oxford',belt:'Matching leather belt',pocket:'White pocket square',watch:'Steel or gold dress watch',shoeKey:'black',tip:'When in doubt: white shirt, solid tie, black shoes. Elegance through simplicity.'}
+  },
+  women: {
+    'Charcoal': {shirt:'Ivory silk blouse or crisp white poplin',neckwear:'Gold chain necklace or navy silk scarf',shoes:'Black leather pointed-toe pumps',belt:'Thin black or cognac leather belt',pocket:'Ivory silk handkerchief',watch:'Silver or rose gold, minimal dial',shoeKey:'black',tip:'Charcoal is your workhorse. A flash of fine jewellery at the collar elevates it from corporate to commanding.'},
+    'Navy':     {shirt:'White or pale pink silk blouse',neckwear:'Printed silk scarf or delicate gold necklace',shoes:'Nude or cognac leather heels',belt:'Cognac or tan leather',pocket:'Coral or blush silk square',watch:'Gold or two-tone, slim case',shoeKey:'nude',tip:'Navy with tan or cognac accessories breaks the corporate feel and adds warmth.'},
+    'Black':    {shirt:'White, ivory, or a bold colour blouse',neckwear:'Silver jewellery or a contrast-colour scarf',shoes:'Black patent or a bold colour pump',belt:'Black leather, minimal hardware',pocket:'White or bold contrast silk',watch:'Black or silver, structured case',shoeKey:'black',tip:'Black suits need life — deliver it through texture, a sharp lip colour, or one statement piece.'},
+    'Camel':    {shirt:'White or ivory silk blouse',neckwear:'Brown or olive silk scarf',shoes:'Tan or nude block heels',belt:'Tan or cognac leather',pocket:'Ivory or terracotta silk',watch:'Gold, warm-toned case',shoeKey:'tan',tip:'Camel is a power neutral — pair with white and warm gold accessories for maximum impact.'},
+    'default':  {shirt:'White silk blouse',neckwear:'Fine gold chain or silk scarf',shoes:'Neutral pointed-toe heels',belt:'Slim leather belt',pocket:'Ivory handkerchief',watch:'Gold or silver slim watch',shoeKey:'nude',tip:'When unsure: white blouse, neutral heels, fine gold jewellery. Command through restraint.'}
+  }
+};
+
+var WOMEN_CARDS = [
+  {icon:'👔',title:'The Power Suit',desc:'A perfectly tailored blazer and matching trousers is the modern woman\'s armour. Fit is everything — structured shoulders, defined waist, clean silhouette.',picks:['Double-breasted Navy','Charcoal Pinstripe','Ivory Linen','Chocolate Brown'],img:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=180&fit=crop&crop=top'},
+  {icon:'👗',title:'Blazer + Midi Skirt',desc:'The blazer-and-skirt combination balances structure with femininity. A-line, pleated, or pencil — each signals a different register of authority.',picks:['Blazer + A-line Midi','Blazer + Pencil','Long Blazer + Maxi','Cropped + Pleated'],img:'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&h=180&fit=crop'},
+  {icon:'🧣',title:'Statement Accessories',desc:'For women in suiting, accessories are the punctuation of the look. Too little and the look goes flat. Too much and the suit loses its authority.',picks:['Fine Gold Chain','Silk Scarf','Pearl Studs','Structured Handbag'],img:'https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?w=400&h=180&fit=crop'},
+  {icon:'👠',title:'Footwear Strategy',desc:'The shoe changes everything. The same suit reads entirely differently in a stiletto, a loafer, or a pointed flat. Heel height affects perceived authority.',picks:['Block Heel Pump','Kitten Heel','Pointed Loafer','Ankle Boot'],img:'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&h=180&fit=crop'},
+  {icon:'🎨',title:'Colour Palette Guide',desc:'Women in suiting have more colour latitude than men. Build a neutral base, then add one seasonal signature colour that becomes your trademark.',picks:['Navy + Blush','Black + Ivory','Camel + White','Forest + Gold'],img:'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&h=180&fit=crop&crop=top'},
+  {icon:'📐',title:'Fit Principles',desc:'A suit that fits perfectly makes you appear more confident, capable, and polished before you say a word. Never skip tailoring — it is the highest-ROI investment in dressing.',picks:['Shoulder alignment','Jacket length','Trouser break','Skirt placement'],img:'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&h=180&fit=crop&crop=top'}
+];
+
+var STYLE_TIPS = [
+  {icon:'📏',title:'The Fit Hierarchy',body:['Fit overrides fabric, brand, and price — always.','Shoulder seams must sit exactly at your shoulder edge.','Jacket sleeves should show ½ inch of shirt cuff.','Trouser break: slight (slim) to none (modern) preferred.','Never button the bottom button of a 2-button jacket.']},
+  {icon:'🎨',title:'Colour Architecture',body:['Build around 3 core neutrals: navy, charcoal, and grey.','Add one "personality colour" each season — rotate through accessories.','Avoid matching exact shades — contrast is more sophisticated.','Warm skin tones: camel, brown, olive, warm grey.','Cool skin tones: navy, black, cool grey, burgundy.']},
+  {icon:'🧵',title:'Fabric Intelligence',body:['Wool is the gold standard — breathes, drapes, holds its shape.','Summer: fresco wool, linen, or cotton-linen blends.','Avoid polyester blends — they shine and pill prematurely.','Super 110s–150s wool for best everyday wearability.','Invest in fabric quality before brand prestige.']},
+  {icon:'💡',title:'The 10-Item Wardrobe',body:['2 suits: navy + charcoal as your foundation.','5 shirts: 3 white, 1 blue, 1 subtle stripe.','3 ties or neckwear: solid, stripe, subtle pattern.','2 pairs of shoes: black oxfords + brown oxfords/loafers.','1 silver watch, 1 leather belt per shoe colour.']},
+  {icon:'✂️',title:'When to Tailor',body:['Always tailor off-the-rack suits — always budget for it.','Priority: jacket sleeves, trouser hem, waist suppression.','Side seams on the jacket: cheapest transformation.','A good tailor adds significant value to any suit.','Never wear a suit without checking sleeve length first.']},
+  {icon:'⌚',title:'The Accessory Code',body:['Match metals consistently: all gold or all silver.','Belt and shoe leather must match in colour family.','Pocket square should complement, not match, the tie.','One statement accessory maximum per outfit.','Tie tip should just reach the trouser waistband.']}
+];
+
+var RULES = [
+  ['01','Fit is King','No fabric, brand, or price compensates for poor fit. Tailor everything, always.'],
+  ['02','Match Your Metals','Silver watch = silver cufflinks = silver tie bar. Consistency signals attention to detail.'],
+  ['03','Shoes Tell the Story','Polished shoes signal discipline. A great suit with worn shoes signals neglect.'],
+  ['04','Dress for the Room','Overdressing shows respect. Underdressing shows carelessness.'],
+  ['05','Less Is More','One statement piece per outfit maximum. Discipline is its own kind of elegance.'],
+  ['06','Iron Everything','Wrinkles communicate disorganisation. This rule is not negotiable — ever.']
+];
+
+var HEROES = {
+  profile:{eyebrow:'Step One',   title:'Discover Your <em>Style DNA</em>',        sub:'Answer three questions to unlock your personal SARARA archetype and dressing philosophy.'},
+  builder:{eyebrow:'Step Two',   title:'Build Your <em>Perfect Outfit</em>',       sub:'Select your suit colour, fabric, and occasion. Your complete look — outfit to footwear — generated instantly.'},
+  weekly: {eyebrow:'Step Three', title:'Your <em>Weekly Office Wardrobe</em>',     sub:'A curated, considered outfit for every day of your professional week — with full styling notes.'},
+  women:  {eyebrow:'For Her',    title:'Feminine <em>Power Dressing</em>',         sub:'The complete guide to suits, skirts, blazers, and boardroom authority for modern women.'},
+  guide:  {eyebrow:'The Code',   title:'Principles of <em>the Well-Dressed</em>', sub:'The fundamentals that distinguish a man or woman who is dressed from one who is well-dressed.'}
+};
+
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function getOutfit(gender, colorName) {
+  var map = OUTFIT_DATA[gender];
+  return map[colorName] || map['default'];
+}
+
+function imgErr(el) { el.style.display='none'; }
+
+// ── RENDER: PROFILE ────────────────────────────────────────────────────────
+function renderProfile() {
+  var g = state.gender;
+  var bodies = BODY_TYPES[g];
+  var personas = PERSONAS[g];
+
+  function opt(value, group, selected) {
+    var sel = selected ? ' sel' : '';
+    return '<button class="opt'+sel+'" onclick="selectOpt(\''+group+'\',\''+value.replace(/'/g,'\\\'').replace(/\//g,'\\/')+'\')">' + value + '</button>';
+  }
+
+  var bodyOpts = bodies.map(function(b){ return opt(b,'body',state.body===b); }).join('');
+  var seasonOpts = SEASONS.map(function(s){ return opt(s,'season',state.season===s); }).join('');
+  var personaOpts = personas.map(function(p){ return opt(p,'persona',state.persona===p); }).join('');
+
+  var archetypeHTML = '';
+  if(state.body && state.season && state.persona) {
+    var isW = g==='women';
+    var name = isW ? 'The Power Aesthete' : 'The Distinguished Gentleman';
+    var desc = isW
+      ? 'Your profile reveals a woman who commands presence through considered dressing. Structured blazers, wide-leg trousers, and tailored midi skirts form your foundation. Choose fabrics that move with authority — crepe, wool, ponte. Your accessories should punctuate, not decorate.'
+      : 'Your profile signals a man who values quality over trend. Focus on timeless cuts that flatter your silhouette, build a foundation in navy, charcoal, and grey — then add personality through accessories. Every choice should feel deliberate.';
+    var baseTags = isW ? ['Structured','Commanding','Clean Lines','Elevated Fabric'] : ['Timeless','Intentional','Quality-First','Neutral Base'];
+    var allTags = baseTags.concat([state.body, state.season]);
+    var tagsHTML = allTags.map(function(t){ return '<span class="arc-tag">'+t+'</span>'; }).join('');
+    archetypeHTML = '<div class="archetype"><div class="arc-eyebrow">Your SARARA Style Archetype</div><div class="arc-name">'+name+'</div><div class="arc-desc">'+desc+'</div><div class="arc-tags">'+tagsHTML+'</div></div>';
+  } else {
+    archetypeHTML = '<div class="empty-state"><div class="empty-icon">✦</div><div class="empty-title">Complete your profile above</div><div class="empty-sub">Select body type, colour season &amp; style personality to reveal your SARARA archetype</div></div>';
+  }
+
+  document.getElementById('profile-content').innerHTML =
+    '<div class="pgrid">'
+    +'<div class="card"><div class="card-label">Body Type</div><div class="opts">'+bodyOpts+'</div></div>'
+    +'<div class="card"><div class="card-label">Colour Season</div><div class="opts col1">'+seasonOpts+'</div></div>'
+    +'<div class="card"><div class="card-label">Style Personality</div><div class="opts col1">'+personaOpts+'</div></div>'
+    +'</div>'
+    + archetypeHTML;
+}
+
+function selectOpt(group, value) {
+  state[group] = value;
+  renderProfile();
+}
+
+// ── RENDER: BUILDER ────────────────────────────────────────────────────────
+function renderBuilder() {
+  var g = state.gender;
+  var color = SUIT_COLORS[state.suitColorIndex];
+  var outfit = getOutfit(g, color.name);
+  var suitImg = SUIT_IMGS[g][state.suitColorIndex];
+  var shoeImg = SHOE_IMGS[g][outfit.shoeKey] || SHOE_IMGS[g]['black'];
+  var isW = g==='women';
+
+  var swatchHTML = SUIT_COLORS.map(function(c,i){
+    var sel = i===state.suitColorIndex ? ' sel' : '';
+    return '<div class="swatch'+sel+'" style="background:'+c.hex+'" title="'+c.name+'" onclick="selectColor('+i+')" tabindex="0"></div>';
+  }).join('');
+
+  var fabrics = ['Wool Twill','Fresco Wool','Wool-Cashmere','Cotton-Linen','Velvet (Evening)','Flannel'];
+  var occasions = ['Business Formal','Board Meeting','Client Lunch','Smart Casual','Evening / Gala','Wedding (Guest)'];
+  var lapels = ['Notch Lapel (Classic)','Peak Lapel (Power)','Shawl Collar (Evening)'];
+
+  var fabOpts = fabrics.map(function(f){ return '<option'+(f===state.fabric?' selected':'')+'>'+f+'</option>'; }).join('');
+  var occOpts = occasions.map(function(o){ return '<option'+(o===state.occasion?' selected':'')+'>'+o+'</option>'; }).join('');
+  var lapOpts = lapels.map(function(l){ return '<option>'+l+'</option>'; }).join('');
+
+  var accItems = [
+    {icon:isW?'👚':'👔', type:isW?'Blouse / Top':'Shirt',           val:outfit.shirt},
+    {icon:isW?'💎':'🎗️', type:isW?'Jewellery / Scarf':'Tie',        val:outfit.neckwear},
+    {icon:'🧣',           type:isW?'Belt (Optional)':'Belt',          val:outfit.belt},
+    {icon:'🎩',           type:'Pocket Square',                        val:outfit.pocket},
+    {icon:'⌚',           type:'Watch',                                val:outfit.watch}
+  ];
+
+  var shoeAccItem = '<div class="acc-item"><div class="acc-icon">👟</div><div><div class="acc-type">Shoes</div><div class="acc-val">'+outfit.shoes+'</div></div></div>';
+  var accHTML = shoeAccItem + accItems.map(function(a){
+    return '<div class="acc-item"><div class="acc-icon">'+a.icon+'</div><div><div class="acc-type">'+a.type+'</div><div class="acc-val">'+a.val+'</div></div></div>';
+  }).join('');
+
+  document.getElementById('builder-content').innerHTML =
+    '<div class="blayout">'
+    +'<div class="bsidebar">'
+    +'<div class="card-sm"><div class="card-label">Suit Colour</div><div class="swatches">'+swatchHTML+'</div><div class="sel-name">Selected: <b>'+color.name+'</b></div></div>'
+    +'<div class="card-sm"><div class="card-label">Fabric</div><select class="sel-input" onchange="state.fabric=this.value;renderBuilder()">'+fabOpts+'</select></div>'
+    +'<div class="card-sm"><div class="card-label">Occasion</div><select class="sel-input" onchange="state.occasion=this.value;renderBuilder()">'+occOpts+'</select></div>'
+    +'<div class="card-sm"><div class="card-label">Lapel Style</div><select class="sel-input">'+lapOpts+'</select></div>'
+    +'</div>'
+    +'<div class="preview">'
+    +'<div class="prev-name">'+color.name+' '+state.fabric+'</div>'
+    +'<div class="prev-occ">'+state.occasion+' — '+(isW?"Women's Edit":"Men's Edit")+'</div>'
+    +'<div class="prev-body">'
+    +'<div>'
+    +'<div class="outfit-img-wrap"><img src="'+suitImg+'" alt="'+color.name+' suit" class="outfit-img" onerror="this.style.display=\'none\'"/><div class="img-caption">The Suit — '+color.name+'</div></div>'
+    +'<div class="shoe-img-wrap"><img src="'+shoeImg+'" alt="shoes" class="shoe-img" onerror="this.style.display=\'none\'"/><div class="img-caption">Footwear — '+outfit.shoes+'</div></div>'
+    +'</div>'
+    +'<div>'
+    +'<div class="acc-list">'+accHTML+'</div>'
+    +'<div class="stylist-note"><div class="sn-icon">💡</div><div class="sn-text"><b>SARARA Stylist Note:</b> '+outfit.tip+'</div></div>'
+    +'</div>'
+    +'</div>'
+    +'</div>'
+    +'</div>';
+}
+
+function selectColor(i) {
+  state.suitColorIndex = i;
+  renderBuilder();
+}
+
+// ── RENDER: WEEKLY ─────────────────────────────────────────────────────────
+function renderWeekly() {
+  var g = state.gender;
+  var plans = WEEKDAYS[g];
+  var imgs = WEEK_IMGS[g];
+  var plan = plans[state.activeDay];
+  var img = imgs[state.activeDay];
+
+  var cardsHTML = plans.map(function(p,i){
+    var on = i===state.activeDay ? ' on' : '';
+    return '<div class="dcard'+on+'" onclick="selectDay('+i+')">'
+      +'<img src="'+imgs[i].suit+'" alt="'+p.outfit+'" class="dcard-img" onerror="this.style.display=\'none\'"/>'
+      +'<div class="dcard-body">'
+      +'<div class="dcard-day">'+p.day+'</div>'
+      +'<div class="dcard-outfit">'+p.outfit+'</div>'
+      +'<div class="dcard-desc">'+p.desc+'</div>'
+      +'</div></div>';
+  }).join('');
+
+  var outfitRows = [
+    ['Suit / Set', plan.details.suit],
+    ['Shirt / Top', plan.details.shirt],
+    ['Neckwear', plan.details.neckwear],
+    ['Shoes', plan.details.shoes]
+  ];
+  var outfitHTML = outfitRows.map(function(r){ return '<div class="di"><div class="di-dot"></div><div class="di-text"><b>'+r[0]+':</b> '+r[1]+'</div></div>'; }).join('');
+  outfitHTML += plan.details.accessories.map(function(a){ return '<div class="di"><div class="di-dot"></div><div class="di-text">'+a+'</div></div>'; }).join('');
+
+  var avoidHTML = plan.details.avoidances.map(function(a){ return '<div class="avoid-item"><span class="avoid-x">✕</span><div class="avoid-text">'+a+'</div></div>'; }).join('');
+
+  document.getElementById('weekly-content').innerHTML =
+    '<div class="wgrid">'+cardsHTML+'</div>'
+    +'<div class="ddetail">'
+    +'<div class="ddetail-grid">'
+    +'<div>'
+    +'<img src="'+img.suit+'" alt="'+plan.outfit+'" class="ddetail-img" onerror="this.style.display=\'none\'"/>'
+    +'<img src="'+img.shoe+'" alt="shoes" class="ddetail-shoe" onerror="this.style.display=\'none\'"/>'
+    +'</div>'
+    +'<div>'
+    +'<div class="ddetail-day">'+plan.day+'\'s Complete Look</div>'
+    +'<div class="ddetail-name">'+plan.outfit+'</div>'
+    +'<div class="ddetail-cols">'
+    +'<div><div class="dl-label">The Outfit</div>'+outfitHTML+'</div>'
+    +'<div><div class="dl-label">What To Avoid</div>'+avoidHTML
+    +'<div class="day-rule"><b>The '+plan.day+' Rule:</b> '+DAY_RULES[state.activeDay]+'</div>'
+    +'</div>'
+    +'</div>'
+    +'</div>'
+    +'</div>'
+    +'</div>';
+}
+
+function selectDay(i) {
+  state.activeDay = i;
+  renderWeekly();
+}
+
+// ── RENDER: WOMEN ──────────────────────────────────────────────────────────
+function renderWomen() {
+  var cardsHTML = WOMEN_CARDS.map(function(c){
+    var tags = c.picks.map(function(p){ return '<span class="mtag">'+p+'</span>'; }).join('');
+    return '<div class="wcard">'
+      +'<img src="'+c.img+'" alt="'+c.title+'" class="wcard-img" onerror="this.style.display=\'none\'"/>'
+      +'<div class="wcard-body">'
+      +'<div class="wcard-icon">'+c.icon+'</div>'
+      +'<div class="wcard-title">'+c.title+'</div>'
+      +'<div class="wcard-desc">'+c.desc+'</div>'
+      +'<div class="mini-tags">'+tags+'</div>'
+      +'</div></div>';
+  }).join('');
+  document.getElementById('women-cards').innerHTML = cardsHTML;
+
+  var fitData = [
+    {title:'The Blazer Fit Checklist',items:['Shoulder seam sits exactly at the edge of your shoulder','When buttoned, jacket should not pull or gap at the chest','Sleeve length: shows ½ inch of blouse, or hits the wrist bone','Back vent should lay flat — not pull open when standing','Classic length hits mid-hip; cropped hits natural waist']},
+    {title:'Skirt & Trouser Guidelines',items:['Pencil skirt hem: at or just below the knee for professional settings','Midi skirt: flows 4–6 inches below the knee in structured fabric','Wide-leg trousers: should graze the floor slightly in heels','Avoid excessive volume in formal meetings','Forward pleats add volume; backward pleats streamline']}
+  ];
+  var fitHTML = fitData.map(function(s){
+    var items = s.items.map(function(i){ return '<li>'+i+'</li>'; }).join('');
+    return '<div class="card"><div class="fit-title">'+s.title+'</div><ul class="tcard-body">'+items+'</ul></div>';
+  }).join('');
+  document.getElementById('women-fit').innerHTML = fitHTML;
+}
+
+// ── RENDER: GUIDE ──────────────────────────────────────────────────────────
+function renderGuide() {
+  var tipsHTML = STYLE_TIPS.map(function(t){
+    var items = t.body.map(function(b){ return '<li>'+b+'</li>'; }).join('');
+    return '<div class="tcard"><div class="tcard-icon">'+t.icon+'</div><div class="tcard-title">'+t.title+'</div><ul class="tcard-body">'+items+'</ul></div>';
+  }).join('');
+  document.getElementById('guide-tips').innerHTML = tipsHTML;
+
+  var rulesHTML = RULES.map(function(r){
+    return '<div class="rule-item"><div class="rule-num">'+r[0]+'</div><div class="rule-t">'+r[1]+'</div><div class="rule-b">'+r[2]+'</div></div>';
+  }).join('');
+  document.getElementById('guide-rules').innerHTML = rulesHTML;
+}
+
+// ── NAVIGATION ─────────────────────────────────────────────────────────────
+function setTab(tab) {
+  state.tab = tab;
+  // update nav buttons
+  document.querySelectorAll('.nbtn').forEach(function(b){
+    b.classList.toggle('on', b.dataset.tab===tab);
+  });
+  // show/hide sections
+  document.querySelectorAll('.section').forEach(function(s){
+    s.classList.toggle('on', s.id==='sec-'+tab);
+  });
+  // update hero
+  var h = HEROES[tab];
+  document.getElementById('hero-eyebrow').textContent = h.eyebrow;
+  document.getElementById('hero-title').innerHTML = h.title;
+  document.getElementById('hero-sub').textContent = h.sub;
+  // render section
+  if(tab==='profile') renderProfile();
+  if(tab==='builder') renderBuilder();
+  if(tab==='weekly')  renderWeekly();
+  // women & guide are static, rendered once on init
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setGender(g) {
+  state.gender = g;
+  state.body = null;
+  state.season = null;
+  state.persona = null;
+  state.activeDay = 0;
+  document.getElementById('btn-men').classList.toggle('on', g==='men');
+  document.getElementById('btn-women').classList.toggle('on', g==='women');
+  // re-render active section
+  var t = state.tab;
+  if(t==='profile') renderProfile();
+  if(t==='builder') renderBuilder();
+  if(t==='weekly')  renderWeekly();
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+renderProfile();
+renderBuilder();
+renderWeekly();
+renderWomen();
+renderGuide();
+</script>
+</body>
+</html>
