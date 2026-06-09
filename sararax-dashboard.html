@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<title>Sarara X</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & BASE ── */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;font-family:'Outfit',sans-serif;background:#f7f8fc;color:#1a1a2e}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+a{text-decoration:none;color:inherit}
+
+/* ── APP SHELL ── */
+#app{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;
+  background:#f7f8fc;
+  overflow:hidden;
+  max-width:480px;
+  margin:0 auto;
+  box-shadow:0 0 60px rgba(0,0,0,.12);
+}
+
+/* ── TOP BAR ── */
+#topbar{
+  flex-shrink:0;
+  height:60px;
+  background:#fff;
+  border-bottom:1px solid #eef0f6;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+  position:relative;
+  z-index:50;
+}
+.topbar-logo{
+  font-family:'Outfit',sans-serif;
+  font-weight:900;font-size:1.25rem;
+  color:#1a1a2e;letter-spacing:-.5px;
+}
+.topbar-logo span{
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.topbar-title{
+  font-weight:700;font-size:.95rem;
+  color:#1a1a2e;
+  position:absolute;left:50%;transform:translateX(-50%);
+  white-space:nowrap;
+}
+.topbar-back{
+  width:36px;height:36px;
+  background:#f7f8fc;border-radius:50%;
+  display:none;align-items:center;justify-content:center;
+  font-size:1rem;color:#1a1a2e;
+  transition:all .15s;
+  border:1px solid #eef0f6;
+}
+.topbar-back:active{background:#eef0f6;transform:scale(.93)}
+.topbar-action{
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+  color:#fff;border-radius:50px;
+  padding:7px 16px;font-size:.72rem;font-weight:700;
+  transition:all .15s;
+  white-space:nowrap;
+}
+.topbar-action:active{opacity:.85;transform:scale(.96)}
+
+/* ── SCREEN CONTAINER ── */
+#screens{
+  flex:1;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ── INDIVIDUAL SCREENS ── */
+.screen{
+  position:absolute;inset:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  background:#f7f8fc;
+  transition:transform .32s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.screen.home{transform:translateX(0)}
+.screen.panel{transform:translateX(100%)}
+.screen.panel.active{transform:translateX(0)}
+.screen.panel.exit{transform:translateX(100%)}
+
+/* ── HOME SCREEN ── */
+#home-screen{padding:20px 16px 20px}
+
+.home-greeting{
+  margin-bottom:20px;
+}
+.home-greeting h1{
+  font-size:1.6rem;font-weight:900;
+  color:#1a1a2e;letter-spacing:-.5px;
+  line-height:1.1;
+  margin-bottom:4px;
+}
+.home-greeting h1 span{
+  background:linear-gradient(135deg,#833ab4,#e1306c,#fd7b33);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.home-greeting p{
+  font-size:.85rem;color:#718096;font-weight:500;
+}
+
+/* quick stats strip */
+.stats-strip{
+  display:flex;gap:10px;
+  margin-bottom:24px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding-bottom:2px;
+}
+.stats-strip::-webkit-scrollbar{display:none}
+.stat-chip{
+  flex-shrink:0;
+  background:#fff;border:1px solid #eef0f6;
+  border-radius:14px;padding:10px 16px;
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.stat-chip-icon{font-size:1rem}
+.stat-chip-num{font-size:.95rem;font-weight:800;color:#1a1a2e}
+.stat-chip-label{font-size:.65rem;color:#718096;font-weight:500}
+
+/* section label */
+.section-label{
+  font-size:.68rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:#a0aec0;margin-bottom:12px;
+}
+
+/* ── TAB GRID ── */
+.tab-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+  margin-bottom:12px;
+}
+
+.tab-tile{
+  position:relative;
+  border-radius:20px;
+  padding:20px 16px 48px;
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
+  box-shadow:0 4px 20px rgba(0,0,0,.12);
+  min-height:140px;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.tab-tile:active{transform:scale(.95);box-shadow:0 2px 10px rgba(0,0,0,.1)}
+
+/* shine overlay */
+.tab-tile::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(145deg,rgba(255,255,255,.18) 0%,transparent 55%);
+  border-radius:inherit;pointer-events:none;
+}
+
+/* 4-color system */
+.tc-purple{background:linear-gradient(145deg,#a855f7 0%,#6d28d9 100%)}
+.tc-pink  {background:linear-gradient(145deg,#f43f8e 0%,#be123c 100%)}
+.tc-orange{background:linear-gradient(145deg,#fb923c 0%,#c2410c 100%)}
+.tc-blue  {background:linear-gradient(145deg,#38bdf8 0%,#1d4ed8 100%)}
+.tc-brand {background:linear-gradient(135deg,#833ab4 0%,#e1306c 55%,#fd7b33 100%)}
+.tc-dark  {background:linear-gradient(145deg,#312e81 0%,#1e1b4b 100%)}
+
+.tile-icon{
+  width:44px;height:44px;
+  background:rgba(255,255,255,.22);
+  border:1.5px solid rgba(255,255,255,.32);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;margin-bottom:12px;
+}
+.tile-name{
+  font-size:1rem;font-weight:800;
+  color:#fff;line-height:1.15;
+  letter-spacing:-.2px;
+  text-shadow:0 1px 6px rgba(0,0,0,.18);
+  margin-bottom:4px;
+}
+.tile-desc{
+  font-size:.68rem;color:rgba(255,255,255,.78);
+  line-height:1.45;font-weight:500;
+}
+.tile-arrow{
+  position:absolute;bottom:14px;right:14px;
+  width:26px;height:26px;
+  background:rgba(255,255,255,.22);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;color:#fff;font-weight:700;
+}
+
+/* members tile — full width */
+.tab-tile.full-width{
+  grid-column:1/-1;
+  min-height:auto;
+  padding:18px 20px;
+  display:flex;align-items:center;gap:16px;
+}
+.tab-tile.full-width .tile-icon{margin-bottom:0;flex-shrink:0}
+.tab-tile.full-width .tile-text{flex:1;min-width:0}
+.tab-tile.full-width .tile-name{font-size:.95rem;margin-bottom:2px}
+.tab-tile.full-width .tile-desc{font-size:.71rem}
+.members-badge{
+  flex-shrink:0;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;border-radius:8px;
+  padding:5px 12px;font-size:.65rem;font-weight:700;
+  letter-spacing:.04em;white-space:nowrap;
+}
+
+/* ── BOTTOM NAV ── */
+#bottom-nav{
+  flex-shrink:0;
+  height:64px;
+  background:#fff;
+  border-top:1px solid #eef0f6;
+  display:flex;align-items:stretch;
+  padding:0 8px;
+  padding-bottom:env(safe-area-inset-bottom);
+  position:relative;z-index:50;
+}
+.nav-item{
+  flex:1;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:3px;
+  border-radius:12px;
+  transition:all .15s;
+  padding:6px 4px;
+  cursor:pointer;
+}
+.nav-item:active{background:#f7f8fc}
+.nav-icon{font-size:1.2rem;line-height:1}
+.nav-label{
+  font-size:.6rem;font-weight:600;
+  color:#a0aec0;letter-spacing:.02em;
+}
+.nav-item.active .nav-label{
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-weight:700;
+}
+.nav-dot{
+  width:4px;height:4px;border-radius:50%;
+  background:transparent;
+  transition:.15s;
+}
+.nav-item.active .nav-dot{
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+}
+
+/* ── PANEL SCREEN ── */
+#panel-screen{background:#f7f8fc}
+.panel-content{padding:16px 16px 32px}
+
+/* panel banner */
+.panel-banner{
+  border-radius:20px;padding:32px 24px;
+  margin-bottom:20px;
+  text-align:center;
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,.12);
+}
+.panel-banner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(145deg,rgba(255,255,255,.15) 0%,transparent 55%);
+  pointer-events:none;
+}
+.panel-banner h2{
+  font-size:1.5rem;font-weight:900;
+  color:#fff;margin-bottom:6px;
+  letter-spacing:-.4px;
+  text-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.panel-banner p{
+  font-size:.82rem;color:rgba(255,255,255,.82);
+  max-width:340px;margin:0 auto;line-height:1.55;
+}
+
+/* content elements */
+.sec-tag{
+  display:inline-block;
+  background:linear-gradient(135deg,rgba(131,58,180,.1),rgba(225,48,108,.1));
+  border:1px solid rgba(225,48,108,.18);
+  color:#e1306c;font-size:.62rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 12px;border-radius:50px;margin-bottom:8px;
+}
+.sec-h{
+  font-size:1.05rem;font-weight:800;
+  color:#1a1a2e;margin-bottom:14px;letter-spacing:-.3px;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:10px;margin-bottom:22px;
+}
+.c-card{
+  background:#fff;border:1.5px solid #eef0f6;
+  border-radius:14px;padding:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  transition:.18s;
+}
+.c-card:active{transform:scale(.97)}
+.c-card-icon{font-size:1.3rem;margin-bottom:8px}
+.c-card h3{font-size:.82rem;font-weight:700;color:#1a1a2e;margin-bottom:4px}
+.c-card p{font-size:.73rem;color:#718096;line-height:1.55}
+.c-badge{
+  display:inline-block;margin-top:8px;
+  background:linear-gradient(135deg,#d1fae5,#a7f3d0);
+  color:#065f46;font-size:.6rem;font-weight:700;
+  padding:2px 8px;border-radius:50px;border:1px solid #6ee7b7;
+}
+.acc-wrap{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.acc{background:#fff;border:1.5px solid #eef0f6;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.acc-h{
+  padding:14px 18px;display:flex;align-items:center;
+  justify-content:space-between;
+  font-size:.84rem;font-weight:700;color:#1a1a2e;cursor:pointer;
+}
+.acc-arr{color:#e1306c;transition:transform .28s;font-size:.72rem}
+.acc-h.open .acc-arr{transform:rotate(180deg)}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.acc-b.open{max-height:600px}
+.acc-inner{
+  padding:0 18px 16px;font-size:.79rem;
+  color:#718096;line-height:1.72;
+  border-top:1px solid #eef0f6;
+}
+.acc-inner strong{color:#1a1a2e}
+.step{
+  display:flex;gap:12px;align-items:flex-start;
+  background:#fff;border:1.5px solid #eef0f6;
+  border-radius:14px;padding:14px 16px;margin-bottom:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.step-num{
+  width:28px;height:28px;flex-shrink:0;
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+  color:#fff;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:800;
+}
+.step-body h4{font-size:.82rem;font-weight:700;color:#1a1a2e;margin-bottom:2px}
+.step-body p{font-size:.74rem;color:#718096;line-height:1.5}
+.hook{
+  background:#fff;border:1.5px solid #eef0f6;
+  border-radius:14px;padding:13px 16px;margin-bottom:7px;
+  position:relative;cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  transition:.15s;
+}
+.hook:active{transform:scale(.98);background:#fafbff}
+.hook-type{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#e1306c;margin-bottom:3px}
+.hook p{font-size:.77rem;color:#4a5568;line-height:1.5;font-style:italic;padding-right:44px}
+.hook-copy{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+  border:none;border-radius:7px;padding:4px 10px;
+  font-size:.6rem;font-weight:700;color:#fff;
+  opacity:0;transition:.15s;cursor:pointer;
+}
+.hook:hover .hook-copy{opacity:1}
+.story-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:9px;margin-bottom:20px;
+}
+.story-c{background:#fff;border:1.5px solid #eef0f6;border-radius:14px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.story-num{font-size:.56rem;font-weight:800;color:#e1306c;letter-spacing:.08em;margin-bottom:4px}
+.story-c h4{font-size:.8rem;font-weight:700;color:#1a1a2e;margin-bottom:4px}
+.story-c p{font-size:.72rem;color:#718096;line-height:1.5;font-style:italic}
+.plan-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:20px}
+.plan-c{background:#fff;border:1.5px solid #eef0f6;border-radius:14px;padding:18px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.plan-num{
+  font-size:2rem;font-weight:900;line-height:1;margin-bottom:3px;
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.plan-lbl{font-size:.67rem;color:#718096;margin-bottom:5px;font-weight:600}
+.plan-badge{display:inline-block;background:linear-gradient(135deg,rgba(131,58,180,.1),rgba(225,48,108,.1));border:1px solid rgba(225,48,108,.18);color:#e1306c;font-size:.6rem;font-weight:700;padding:2px 9px;border-radius:50px}
+.plan-c p{font-size:.7rem;color:#718096;margin-top:7px;line-height:1.5}
+.tip{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1.5px solid #eef0f6;border-radius:14px;padding:16px;margin-bottom:9px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.tip-num{
+  font-size:1.5rem;font-weight:900;min-width:28px;line-height:1;
+  background:linear-gradient(135deg,#833ab4,#e1306c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.tip-b h3{font-size:.85rem;font-weight:700;color:#1a1a2e;margin-bottom:2px}
+.tip-b p{font-size:.75rem;color:#718096;line-height:1.58}
+.t-badge{display:inline-block;margin-top:5px;font-size:.6rem;font-weight:700;padding:2px 9px;border-radius:50px}
+.tb-blue{background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
+.tb-green{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
+.tb-gold{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.gen-box{background:#fff;border:1.5px solid #eef0f6;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.gen-label{font-size:.75rem;font-weight:600;color:#718096;margin-bottom:10px}
+.gen-row{display:flex;gap:8px;flex-wrap:wrap}
+.gen-select{flex:1;min-width:120px;padding:9px 12px;border:1.5px solid #eef0f6;border-radius:10px;background:#f7f8fc;color:#1a1a2e;font-family:'Outfit',sans-serif;font-size:.8rem;outline:none}
+.gen-btn{background:linear-gradient(135deg,#833ab4,#e1306c);color:#fff;border:none;border-radius:10px;padding:9px 20px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;box-shadow:0 4px 14px rgba(131,58,180,.3);transition:.15s}
+.gen-btn:active{transform:scale(.96)}
+.gen-btn:disabled{opacity:.4;cursor:not-allowed}
+.ideas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:9px}
+.idea-c{background:linear-gradient(135deg,rgba(131,58,180,.06),rgba(225,48,108,.06));border:1.5px solid rgba(225,48,108,.13);border-radius:14px;padding:13px}
+.idea-n{font-size:.58rem;font-weight:800;color:#e1306c;letter-spacing:.06em;margin-bottom:3px}
+.idea-c p{font-size:.75rem;color:#4a5568;line-height:1.5}
+.spinner{width:24px;height:24px;border:2.5px solid rgba(225,48,108,.2);border-top-color:#e1306c;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.vtip{background:#fff;border:1.5px solid #eef0f6;border-radius:16px;overflow:hidden;margin-bottom:9px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.vtip-head{padding:13px 16px;display:flex;align-items:center;gap:10px;background:#fafbff}
+.vtip-icon{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,rgba(131,58,180,.1),rgba(225,48,108,.1));display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.vtip-meta .tip-n{font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#a0aec0}
+.vtip-meta .tip-title{font-size:.86rem;font-weight:700;color:#1a1a2e}
+.vtip-body{padding:0 16px 16px;font-size:.78rem;color:#718096;line-height:1.68;border-top:1px solid #eef0f6;padding-top:12px}
+.vtip-tip{margin-top:9px;background:linear-gradient(135deg,rgba(131,58,180,.05),rgba(225,48,108,.05));border:1px solid rgba(225,48,108,.1);border-radius:8px;padding:9px 11px;font-size:.73rem;color:#e1306c;line-height:1.5}
+.panel-cta{background:linear-gradient(135deg,rgba(131,58,180,.07),rgba(225,48,108,.07));border:1.5px solid rgba(225,48,108,.14);border-radius:18px;padding:24px;text-align:center;margin-top:24px}
+.panel-cta h3{font-size:.95rem;font-weight:800;color:#1a1a2e;margin-bottom:5px}
+.panel-cta p{font-size:.76rem;color:#718096;margin-bottom:14px;line-height:1.5}
+.panel-join-btn{display:inline-block;background:linear-gradient(135deg,#833ab4,#e1306c);color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:.84rem;font-weight:700;box-shadow:0 4px 16px rgba(131,58,180,.3);transition:.15s}
+.panel-join-btn:active{transform:scale(.96)}
+/* join screen */
+.join-hero{background:linear-gradient(135deg,#833ab4 0%,#e1306c 60%,#fd7b33 100%);border-radius:20px;padding:36px 22px;text-align:center;margin-bottom:18px;box-shadow:0 8px 32px rgba(131,58,180,.3)}
+.join-hero h2{font-size:1.6rem;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-.4px}
+.join-hero p{font-size:.84rem;color:rgba(255,255,255,.85);max-width:320px;margin:0 auto 20px}
+.join-btn-main{background:#fff;color:#833ab4;border:none;border-radius:50px;padding:12px 28px;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:800;display:inline-block;box-shadow:0 4px 20px rgba(0,0,0,.15);transition:.15s}
+.join-btn-main:active{transform:scale(.96)}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
+.perk{background:#fff;border:1.5px solid #eef0f6;border-radius:14px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.perk-icon{font-size:1.4rem;margin-bottom:6px}
+.perk h4{font-size:.79rem;font-weight:700;color:#1a1a2e;margin-bottom:3px}
+.perk p{font-size:.7rem;color:#718096;line-height:1.45}
+.wa-btn{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:#fff;border-radius:50px;padding:11px 24px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.84rem;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:.15s}
+.wa-btn:active{transform:scale(.96)}
+/* members */
+.pw-gate{background:linear-gradient(135deg,#0f0c29,#302b63);border-radius:20px;padding:44px 24px;text-align:center;box-shadow:0 8px 32px rgba(15,12,41,.4)}
+.pw-gate h2{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:6px}
+.pw-gate p{font-size:.81rem;color:rgba(255,255,255,.6);max-width:280px;margin:0 auto 22px}
+.pw-input{width:100%;max-width:260px;padding:11px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-family:'Outfit',sans-serif;font-size:.86rem;outline:none;text-align:center;margin:0 auto 11px;display:block}
+.pw-btn{background:linear-gradient(135deg,#833ab4,#e1306c);color:#fff;border:none;border-radius:10px;padding:11px 26px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.86rem;box-shadow:0 4px 14px rgba(131,58,180,.4)}
+.pw-error{color:#fca5a5;font-size:.74rem;margin-top:8px;display:none}
+.members-welcome{background:linear-gradient(135deg,#833ab4,#e1306c);border-radius:18px;padding:24px;margin-bottom:16px;text-align:center}
+.members-welcome h2{font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:4px}
+.members-welcome p{font-size:.79rem;color:rgba(255,255,255,.8);margin-bottom:12px}
+.lock-btn{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50px;padding:6px 16px;font-size:.72rem;font-weight:600;cursor:pointer}
+.mtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;scrollbar-width:none}
+.mtabs::-webkit-scrollbar{display:none}
+.mtab{flex-shrink:0;font-size:.7rem;font-weight:700;border:1.5px solid #eef0f6;background:#fff;border-radius:50px;padding:6px 14px;color:#718096;transition:.15s;white-space:nowrap}
+.mtab.active{background:linear-gradient(135deg,#833ab4,#e1306c);color:#fff;border-color:transparent}
+.mpanel{display:none}
+.mpanel.active{display:block;animation:fadeUp .28s ease}
+.mcard{background:#fff;border:1.5px solid #eef0f6;border-radius:14px;padding:18px;margin-bottom:9px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.mcard-label{font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#e1306c;margin-bottom:4px}
+.mcard-title{font-size:.87rem;font-weight:700;color:#1a1a2e;margin-bottom:7px}
+.mcard-body{font-size:.77rem;color:#718096;line-height:1.7}
+.mcard-mono{font-family:monospace;background:#f7f8fc;padding:12px;border-radius:8px;border-left:3px solid #e1306c;font-size:.74rem;line-height:1.75;color:#4a5568}
+.mcard-tip{font-size:.72rem;color:#e1306c;background:linear-gradient(135deg,rgba(131,58,180,.05),rgba(225,48,108,.05));border:1px solid rgba(225,48,108,.12);border-radius:8px;padding:9px 11px;margin-top:9px;line-height:1.5}
+.cal-block{background:#fff;border:1.5px solid #eef0f6;border-radius:14px;padding:14px;margin-bottom:9px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.cal-label{font-size:.62rem;font-weight:800;color:#e1306c;letter-spacing:.06em;text-transform:uppercase;margin-bottom:9px}
+.cal-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:.73rem;margin-bottom:5px}
+.cal-day{font-weight:700;color:#1a1a2e;min-width:40px;font-size:.68rem}
+.cal-type{font-size:.58rem;font-weight:700;padding:2px 7px;border-radius:50px;white-space:nowrap}
+.edu{background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
+.con{background:#fce7f3;color:#be185d;border:1px solid #fbcfe8}
+.ent{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
+.cal-desc{color:#718096;flex:1;font-size:.71rem}
+
+/* ── HOME TAB SECTIONS ── */
+.home-tab-content{display:none}
+.home-tab-content.active{display:block;animation:fadeUp .25s ease}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* tile entrance animation */
+.tab-tile{opacity:0;animation:tileIn .4s ease forwards}
+.tab-tile:nth-child(1){animation-delay:.05s}
+.tab-tile:nth-child(2){animation-delay:.1s}
+.tab-tile:nth-child(3){animation-delay:.15s}
+.tab-tile:nth-child(4){animation-delay:.2s}
+.tab-tile:nth-child(5){animation-delay:.25s}
+.tab-tile:nth-child(6){animation-delay:.3s}
+.tab-tile:nth-child(7){animation-delay:.35s}
+.tab-tile:nth-child(8){animation-delay:.4s}
+.tab-tile:nth-child(9){animation-delay:.45s}
+@keyframes tileIn{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* slide transition */
+#panel-screen{transition:transform .32s cubic-bezier(.4,0,.2,1)}
+#panel-screen.hidden{transform:translateX(100%)}
+
+/* ── SCROLLBAR ── */
+.screen::-webkit-scrollbar{width:0}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- TOP BAR -->
+  <div id="topbar">
+    <button class="topbar-back" id="topbar-back" onclick="goBack()">←</button>
+    <div class="topbar-logo" id="topbar-logo">Sarara <span>X</span></div>
+    <div class="topbar-title" id="topbar-title" style="display:none"></div>
+    <a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="topbar-action" id="topbar-action">Join Free</a>
+  </div>
+
+  <!-- SCREENS -->
+  <div id="screens">
+
+    <!-- HOME SCREEN -->
+    <div class="screen home" id="home-screen">
+      <div id="home-screen-inner" style="padding:20px 16px 24px">
+        <div class="home-greeting">
+          <h1>Your Creator<br/><span>Toolkit 🔥</span></h1>
+          <p>Everything you need to create, grow & earn.</p>
+        </div>
+        <div class="stats-strip">
+          <div class="stat-chip"><span class="stat-chip-icon">👥</span><div><div class="stat-chip-num">95+</div><div class="stat-chip-label">Creators</div></div></div>
+          <div class="stat-chip"><span class="stat-chip-icon">💡</span><div><div class="stat-chip-num">∞</div><div class="stat-chip-label">Ideas</div></div></div>
+          <div class="stat-chip"><span class="stat-chip-icon">💰</span><div><div class="stat-chip-num">20K</div><div class="stat-chip-label">TSh/mo</div></div></div>
+          <div class="stat-chip"><span class="stat-chip-icon">📞</span><div><div class="stat-chip-num">1:1</div><div class="stat-chip-label">Sessions</div></div></div>
+        </div>
+        <div class="section-label">Pick a module</div>
+        <div class="tab-grid" id="main-grid">
+          <div class="tab-tile tc-purple" onclick="openPanel('tools')"><div class="tile-icon">🛠</div><div class="tile-name">Tools & Gear</div><div class="tile-desc">Everything you need to start creating today.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile tc-blue" onclick="openPanel('create')"><div class="tile-icon">🎬</div><div class="tile-name">How to Shoot</div><div class="tile-desc">Angles, lighting, audio — pro results on a phone.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile tc-orange" onclick="openPanel('plan')"><div class="tile-icon">📅</div><div class="tile-name">Plan & Grow</div><div class="tile-desc">Posting schedules and 30-day content structure.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile tc-pink" onclick="openPanel('learn')"><div class="tile-icon">🎣</div><div class="tile-name">Hooks & Story</div><div class="tile-desc">Stop the scroll in 3 seconds, every time.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile tc-orange" onclick="openPanel('ideas')"><div class="tile-icon">💡</div><div class="tile-name">Content Ideas</div><div class="tile-desc">AI ideas by niche + 100 ready-made prompts.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile tc-pink" onclick="openPanel('money')"><div class="tile-icon">💰</div><div class="tile-name">Monetize</div><div class="tile-desc">6 income streams. Even under 1,000 followers.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile tc-blue" onclick="openPanel('viral')"><div class="tile-icon">🔥</div><div class="tile-name">Go Viral</div><div class="tile-desc">10 principles every viral post follows.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile tc-purple" onclick="openPanel('join')"><div class="tile-icon">⭐</div><div class="tile-name">Join Sarara X</div><div class="tile-desc">Community, training & 1-on-1 consultation.</div><div class="tile-arrow">↗</div></div>
+          <div class="tab-tile full-width tc-dark" onclick="openPanel('members')">
+            <div class="tile-icon">🔒</div>
+            <div class="tile-text"><div class="tile-name">Members Only</div><div class="tile-desc">Advanced hooks, brand deals, calendar, media kit.</div></div>
+            <div class="members-badge">Exclusive</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL SCREEN -->
+    <div class="screen panel" id="panel-screen">
+      <div class="panel-content" id="panel-inner"></div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div id="bottom-nav">
+    <div class="nav-item active" id="nav-home" onclick="switchNav('home')">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" id="nav-ideas" onclick="openPanel('ideas');switchNav('ideas')">
+      <span class="nav-icon">💡</span>
+      <span class="nav-label">Ideas</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" id="nav-learn" onclick="openPanel('learn');switchNav('learn')">
+      <span class="nav-icon">🎣</span>
+      <span class="nav-label">Hooks</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" id="nav-money" onclick="openPanel('money');switchNav('money')">
+      <span class="nav-icon">💰</span>
+      <span class="nav-label">Earn</span>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" id="nav-join" onclick="openPanel('join');switchNav('join')">
+      <span class="nav-icon">⭐</span>
+      <span class="nav-label">Join</span>
+      <div class="nav-dot"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ── DATA ── */
+var ideasData={lifestyle:[{idea:"Morning routine that actually changed my life",hook:"Show before vs after your day."},{idea:"5 habits I dropped that were secretly draining me",hook:"The honest things nobody wants to admit."},{idea:"What my Sunday reset looks like step by step",hook:"From messy week to fresh start."},{idea:"Things I stopped buying that saved me money",hook:"Minimalism is freeing."},{idea:"A day in my life but I only say yes to things I love",hook:"What does an intentional day look like?"},{idea:"Honest things I wish I knew at 20",hook:"The advice nobody gives you until it is too late."}],fashion:[{idea:"One dress 5 completely different ways to style it",hook:"You do not need more clothes — you need more creativity."},{idea:"Thrift haul and how I styled every piece",hook:"Sustainable fashion that actually looks amazing."},{idea:"Outfits I get the most compliments on and why",hook:"The psychology of why certain outfits work."},{idea:"Wardrobe detox — everything I got rid of and why",hook:"Less in your closet means more confidence."},{idea:"Affordable dupes for expensive fashion pieces",hook:"Look expensive without spending a fortune."},{idea:"Get ready with me for a big event",hook:"The full transformation from nothing to everything."}],food:[{idea:"5 meals I make every week that take under 20 minutes",hook:"Quick, healthy, and actually delicious."},{idea:"What I eat in a day on a tight budget",hook:"Eating well does not have to cost a fortune."},{idea:"I tried cooking viral recipes — honest review",hook:"Which ones are actually worth making?"},{idea:"Meal prep Sunday with me for the whole week",hook:"One afternoon means stress-free eating all week."},{idea:"The one recipe everyone asks me for at parties",hook:"Simple ingredients, ridiculous results."},{idea:"Foods I thought I hated until I cooked them right",hook:"The technique matters more than the ingredient."}],fitness:[{idea:"30 day body transformation — honest and unfiltered",hook:"No filters, no shortcuts — just real results."},{idea:"Workout I do when I have zero motivation",hook:"The 10 minute routine that always gets me going."},{idea:"Gym mistakes I made for years without knowing",hook:"If you are not seeing results, this might be why."},{idea:"How I stay consistent when life gets chaotic",hook:"The system that works even when you do not feel like it."},{idea:"Full body workout with no equipment at home",hook:"Your living room is your gym."},{idea:"What I eat before and after every workout",hook:"Fuel your body right and watch your results change."}],business:[{idea:"How I got my first paying client with zero following",hook:"No audience, no ads — just one simple strategy."},{idea:"Tools I use every day to run my business from my phone",hook:"The app stack that replaced my entire office."},{idea:"Mistakes I made in my first year of business",hook:"So you do not have to learn them the hard way."},{idea:"How I set my prices and stopped undercharging",hook:"The mindset shift that doubled my income."},{idea:"A day in my life running a business solo",hook:"The real unglamorous truth behind entrepreneurship."},{idea:"How I get clients without spending money on ads",hook:"Organic growth strategies that actually convert."}],finance:[{idea:"How I saved my first 1 million shillings step by step",hook:"The exact plan — income, expenses, and mindset."},{idea:"Money habits that changed my financial life",hook:"Small daily decisions that compound into big results."},{idea:"Things I stopped spending money on this year",hook:"The cuts that freed me completely."},{idea:"How to build an emergency fund from scratch",hook:"Start with whatever you have."},{idea:"Multiple income streams I built while working full time",hook:"How I stopped relying on one source of income."},{idea:"The honest conversation about money nobody has",hook:"What financial freedom actually looks like."}],comedy:[{idea:"Things Tanzanians do that make no sense to others",hook:"We all do it — nobody talks about it."},{idea:"Honest voiceover of what people are actually thinking",hook:"The internal monologue we never say out loud."},{idea:"Expectations vs reality of everyday situations",hook:"Why does everything look easier in our heads?"},{idea:"Types of people you always find at local places",hook:"You know exactly who I am talking about."},{idea:"POV: you are trying to do something simple but life disagrees",hook:"Relatable chaos that everyone has experienced."},{idea:"Reacting to common advice that actually does not work",hook:"We have all heard it — and it is always wrong."}]};
+
+var visualHooks=["Start mid-action — show yourself already doing the thing before you say a word.","Show bold text on screen BEFORE you speak — let them read your claim and get curious.","Reveal the end result first — the transformation, the finish, the reaction — then go back to the beginning.","Fill the frame with your face and make direct eye contact with the lens.","Use a dramatic scene change or outfit switch in the first 2 seconds.","Point directly at the camera lens as your first frame.","Open with a split screen — before and after side by side.","Start with your hands doing something — unwrapping, writing, cooking.","Show a shocking number or statistic on screen before you say anything.","Open with a confused or surprised facial expression — no words, just the look."];
+var verbalHooks=["Nobody talks about this, but it changed everything for me.","I wish someone told me this when I started — so I am telling you now.","Stop scrolling. This is the most important thing you will hear today.","Here is what actually happens when you do the thing you are afraid to do.","I went from zero to results in 30 days — and I am showing you exactly how.","Everyone gets this wrong — including me, until I figured out the truth.","This one thing costs nothing and it will change your content forever.","I tried this for 30 days so you do not have to make the same mistakes I did.","The reason your content is not working has nothing to do with the algorithm.","What no one tells you about creating content when you are just starting out.","Three seconds. That is all you have. Here is how to use them perfectly.","I am going to show you something that took me two years to figure out.","You have been doing this wrong and it is costing you thousands of followers.","The creators who blow up fast all do this one thing — and it is not what you think.","This is the exact script I use every time I sit down to film."];
+
+/* ── PANEL CONTENT ── */
+var panelData={
+  tools:{title:"Tools & Gear",banner:"background:linear-gradient(145deg,#a855f7,#6d28d9)"},
+  create:{title:"How to Shoot",banner:"background:linear-gradient(145deg,#38bdf8,#1d4ed8)"},
+  plan:{title:"Plan & Grow",banner:"background:linear-gradient(145deg,#fb923c,#c2410c)"},
+  learn:{title:"Hooks & Story",banner:"background:linear-gradient(145deg,#f43f8e,#be123c)"},
+  ideas:{title:"Content Ideas",banner:"background:linear-gradient(145deg,#fb923c,#c2410c)"},
+  money:{title:"Monetize",banner:"background:linear-gradient(145deg,#ec4899,#9f1239)"},
+  viral:{title:"Go Viral",banner:"background:linear-gradient(145deg,#38bdf8,#1d4ed8)"},
+  join:{title:"Join Sarara X",banner:"background:linear-gradient(135deg,#833ab4,#e1306c,#fd7b33)"},
+  members:{title:"Members Only",banner:"background:linear-gradient(135deg,#0f0c29,#302b63)"}
+};
+
+function buildPanelContent(id){
+  if(id==='tools') return '<div class="panel-banner" style="'+panelData.tools.banner+'"><h2>🛠 Tools & Gear</h2><p>You do not need expensive equipment. Here is everything you need to create professional content right now.</p></div>'
++'<div class="sec-tag">Essential Equipment</div><div class="sec-h">Start With What You Have</div>'
++'<div class="cards"><div class="c-card"><div class="c-card-icon">📱</div><h3>Smartphone</h3><p>Your phone is your studio. Shoot in portrait mode.</p><span class="c-badge">Free</span></div><div class="c-card"><div class="c-card-icon">💡</div><h3>Natural Light</h3><p>Face a window. Golden hour is your best friend.</p><span class="c-badge">Free</span></div><div class="c-card"><div class="c-card-icon">🎤</div><h3>Earphone Mic</h3><p>Plug in earphones near your mouth for better audio immediately.</p><span class="c-badge">Under TSh 5K</span></div><div class="c-card"><div class="c-card-icon">📐</div><h3>Phone Tripod</h3><p>Frees your hands, keeps shots stable.</p><span class="c-badge">TSh 15K–50K</span></div><div class="c-card"><div class="c-card-icon">🔆</div><h3>Ring Light</h3><p>Transforms video quality when natural light is unavailable.</p><span class="c-badge">TSh 30K–80K</span></div><div class="c-card"><div class="c-card-icon">🎙</div><h3>Clip-on Mic</h3><p>Removes ALL background noise. The biggest quality upgrade.</p><span class="c-badge">TSh 50K–150K</span></div></div>'
++'<div class="sec-tag">Apps</div><div class="sec-h">Digital Tools That Work</div>'
++'<div class="cards"><div class="c-card"><div class="c-card-icon">✂️</div><h3>CapCut</h3><p>Go-to editing app for Reels and TikToks. AI captions, effects, all free.</p><span class="c-badge">Free</span></div><div class="c-card"><div class="c-card-icon">🎨</div><h3>Canva</h3><p>Design thumbnails, covers, carousels and graphics.</p><span class="c-badge">Free Plan</span></div><div class="c-card"><div class="c-card-icon">📊</div><h3>IG Insights</h3><p>Track reach, profile visits, and what content performs best.</p><span class="c-badge">Free</span></div><div class="c-card"><div class="c-card-icon">🤖</div><h3>Claude AI</h3><p>Write captions, generate ideas, draft scripts 10x faster.</p><span class="c-badge">Free Plan</span></div><div class="c-card"><div class="c-card-icon">📅</div><h3>Meta Suite</h3><p>Schedule posts and manage Instagram from one place.</p><span class="c-badge">Free</span></div><div class="c-card"><div class="c-card-icon">🎵</div><h3>Epidemic Sound</h3><p>Royalty-free music. Never get your content taken down.</p><span class="c-badge">Free Trial</span></div></div>'
++'<div class="panel-cta"><h3>Join 95+ creators inside Sarara X</h3><p>Weekly training, community accountability, and a 1-on-1 consultation.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="panel-join-btn">Join for TSh 20,000/month</a></div>';
+
+  if(id==='create') return '<div class="panel-banner" style="'+panelData.create.banner+'"><h2>🎬 How to Shoot</h2><p>Great content is not about expensive cameras. It is about knowing the rules.</p></div>'
++'<div class="sec-tag">Filming</div><div class="sec-h">Master the Basics</div>'
++'<div class="acc-wrap"><div class="acc"><div class="acc-h" onclick="toggleAcc(this)">📐 Framing & Angles <span class="acc-arr">▼</span></div><div class="acc-b"><div class="acc-inner"><strong>Rule of thirds:</strong> Put yourself slightly off-center. Your eyes should land in the top third of the screen.<br/><br/><strong>Always Film Vertical:</strong> Shoot in 9:16 portrait mode. No black bars on Reels.<br/><br/><strong>Eye level or above:</strong> Never shoot from below — it is unflattering.<br/><br/><strong>Close-up power:</strong> Your face filling the frame creates intimacy and connection.</div></div></div>'
++'<div class="acc"><div class="acc-h" onclick="toggleAcc(this)">💡 Lighting Setup <span class="acc-arr">▼</span></div><div class="acc-b"><div class="acc-inner"><strong>Golden rule:</strong> Light source in FRONT of you, never behind. Window behind you = silhouette.<br/><br/><strong>Best times:</strong> 7-10am and 4-7pm. Avoid harsh midday sun.<br/><br/><strong>Ring light:</strong> Position directly in front of your face at eye level.</div></div></div>'
++'<div class="acc"><div class="acc-h" onclick="toggleAcc(this)">📱 Camera Settings <span class="acc-arr">▼</span></div><div class="acc-b"><div class="acc-inner"><strong>Resolution:</strong> Shoot at 4K if possible, minimum 1080p.<br/><br/><strong>Frame rate:</strong> 30fps for normal content. 60fps for slow-motion.<br/><br/><strong>Rear camera:</strong> Almost always higher quality than selfie cam. Use it when you can.</div></div></div>'
++'<div class="acc"><div class="acc-h" onclick="toggleAcc(this)">🎵 Audio Quality <span class="acc-arr">▼</span></div><div class="acc-b"><div class="acc-inner"><strong>Audio matters more than video.</strong> People will watch blurry video with clear audio. They will not watch clear video with bad audio.<br/><br/><strong>Film in quiet spaces:</strong> Close windows, turn off fans.<br/><br/><strong>Test first:</strong> Always record 5 seconds and listen back before the full take.</div></div></div>'
++'<div class="acc"><div class="acc-h" onclick="toggleAcc(this)">🎭 On-Camera Presence <span class="acc-arr">▼</span></div><div class="acc-b"><div class="acc-inner"><strong>Look at the lens, not the screen.</strong> Train yourself — it creates real eye contact.<br/><br/><strong>Speak faster than normal.</strong> On camera you naturally come across slower. Speed up by 20%.<br/><br/><strong>Stand up:</strong> Standing increases your energy and projection naturally.</div></div></div></div>'
++'<div class="sec-tag">Instagram</div><div class="sec-h">Set Up for Growth</div>'
++'<div class="step"><div class="step-num">1</div><div class="step-body"><h4>Switch to Creator Account</h4><p>Settings → Account → Switch to Professional → Creator. Unlocks analytics and monetisation.</p></div></div>'
++'<div class="step"><div class="step-num">2</div><div class="step-body"><h4>Write a Clear Bio</h4><p>150 characters: WHO you are, WHAT you create, WHY they should follow. End with a CTA.</p></div></div>'
++'<div class="step"><div class="step-num">3</div><div class="step-body"><h4>Add Link in Bio</h4><p>Use Linktree or Bio.link to collect all your important links in one place.</p></div></div>'
++'<div class="step"><div class="step-num">4</div><div class="step-body"><h4>Turn On Comment Notifications</h4><p>Reply to every comment in the first hour after posting. This significantly boosts reach.</p></div></div>'
++'<div class="panel-cta"><h3>Get weekly filming feedback inside Sarara X</h3><p>1-on-1 guidance and a community that pushes you to keep showing up.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="panel-join-btn">Join for TSh 20,000/month</a></div>';
+
+  if(id==='plan') return '<div class="panel-banner" style="'+panelData.plan.banner+'"><h2>📅 Plan & Grow</h2><p>Consistency beats creativity every time. Here is your posting strategy.</p></div>'
++'<div class="sec-tag">Frequency</div><div class="sec-h">How Often Should You Post?</div>'
++'<div class="plan-cards"><div class="plan-c"><div class="plan-num">1×</div><div class="plan-lbl">per day</div><div class="plan-badge">Advanced</div><p>Maximum growth. Only sustainable with batch filming systems.</p></div><div class="plan-c"><div class="plan-num">3×</div><div class="plan-lbl">per week</div><div class="plan-badge" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#065f46;border-color:#6ee7b7">Best</div><p>The sweet spot. Consistent enough to grow, sustainable to maintain.</p></div><div class="plan-c"><div class="plan-num">4–5×</div><div class="plan-lbl">per week</div><div class="plan-badge">Intermediate</div><p>Serious growth without full burnout.</p></div><div class="plan-c"><div class="plan-num">1–2×</div><div class="plan-lbl">per week</div><div class="plan-badge">Beginner</div><p>Start here. Build the habit first, then speed up.</p></div></div>'
++'<div class="sec-tag">Content Formula</div><div class="sec-h">The 30-Day Structure</div>'
++'<div class="cards"><div class="c-card"><div class="c-card-icon">📚</div><h3>Week 1 — Introduce</h3><p>Who you are, what you create, why people should follow. Share your origin story.</p></div><div class="c-card"><div class="c-card-icon">🏆</div><h3>Week 2 — Authority</h3><p>Step-by-step tutorials. Tools you use. Common mistakes. Myth-busting.</p></div><div class="c-card"><div class="c-card-icon">❤️</div><h3>Week 3 — Connect</h3><p>Share a failure or lesson. Things only people in your niche understand.</p></div><div class="c-card"><div class="c-card-icon">💰</div><h3>Week 4 — Convert</h3><p>Best tip repackaged. Collab. Share your growth results transparently.</p></div></div>'
++'<div class="panel-cta"><h3>Get a plan built for YOUR niche</h3><p>Weekly accountability check-ins inside the community.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="panel-join-btn">Join for TSh 20,000/month</a></div>';
+
+  if(id==='learn') return '<div class="panel-banner" style="'+panelData.learn.banner+'"><h2>🎣 Hooks & Story</h2><p>The first 3 seconds determine everything. Master this and your content will never be ignored again.</p></div>'
++'<div class="sec-tag">Visual Hooks</div><div class="sec-h">What You Do Before You Speak</div>'
++'<div id="visual-hooks-list"></div>'
++'<div class="sec-tag" style="margin-top:20px">Verbal Hooks</div><div class="sec-h">Your Opening Words</div>'
++'<div id="verbal-hooks-list"></div>'
++'<div class="sec-tag" style="margin-top:20px">Story Openings</div><div class="sec-h">6 Frameworks That Work</div>'
++'<div class="story-grid"><div class="story-c"><div class="story-num">01</div><h4>The Confession</h4><p>"I am going to be honest — I used to [embarrassing thing]. Then I discovered [solution] and everything changed."</p></div><div class="story-c"><div class="story-num">02</div><h4>Before & After</h4><p>"[Time] ago I had [bad situation]. Today I have [good result]. The only thing that changed was this."</p></div><div class="story-c"><div class="story-num">03</div><h4>The Contradiction</h4><p>"Everyone tells you [common advice]. But I did the opposite and my results tripled."</p></div><div class="story-c"><div class="story-num">04</div><h4>Specific Number</h4><p>"I got [very specific number] results from doing this one thing. Showing you the whole process right now."</p></div><div class="story-c"><div class="story-num">05</div><h4>The Permission</h4><p>"You do not need [excuse 1]. You do not need [excuse 2]. You just need to start — here is how."</p></div><div class="story-c"><div class="story-num">06</div><h4>The Mirror</h4><p>"You spend [time] on [thing]. You post it. [Disappointing result]. I know exactly how that feels."</p></div></div>'
++'<div class="panel-cta"><h3>Advanced Hook Formulas inside Members Zone</h3><p>8 word-for-word scripts used by creators with 100K+ followers.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="panel-join-btn">Join for TSh 20,000/month</a></div>';
+
+  if(id==='ideas') return '<div class="panel-banner" style="'+panelData.ideas.banner+'"><h2>💡 Content Ideas</h2><p>Browse 100+ ready-made ideas by niche or use the AI generator.</p></div>'
++'<div class="gen-box"><div class="gen-label">AI Idea Generator — Powered by Claude</div><div class="gen-row"><select class="gen-select" id="niche-select"><option value="">Select niche…</option><option>Lifestyle</option><option>Fashion</option><option>Food & Cooking</option><option>Fitness</option><option>Travel</option><option>Business</option><option>Finance</option><option>Education</option><option>Comedy</option><option>Beauty</option></select><select class="gen-select" id="platform-select"><option value="">Platform…</option><option>Instagram Reels</option><option>TikTok</option><option>YouTube Shorts</option></select><button class="gen-btn" id="gen-btn" onclick="generateIdeas()">Generate ✦</button></div></div>'
++'<div id="ideas-output"></div>'
++'<div class="sec-tag" style="margin-top:16px">Browse by Niche</div><div class="sec-h">Ready-Made Ideas</div>'
++'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px" id="browse-tabs"><button class="mtab active" onclick="showIdeas(event,\'lifestyle\')">Lifestyle</button><button class="mtab" onclick="showIdeas(event,\'fashion\')">Fashion</button><button class="mtab" onclick="showIdeas(event,\'food\')">Food</button><button class="mtab" onclick="showIdeas(event,\'fitness\')">Fitness</button><button class="mtab" onclick="showIdeas(event,\'business\')">Business</button><button class="mtab" onclick="showIdeas(event,\'finance\')">Finance</button><button class="mtab" onclick="showIdeas(event,\'comedy\')">Comedy</button></div>'
++'<div class="ideas-grid" id="ideas-browse"></div>'
++'<div class="panel-cta" style="margin-top:20px"><h3>Weekly content challenges inside Sarara X</h3><p>AI-powered content strategies and community accountability.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="panel-join-btn">Join for TSh 20,000/month</a></div>';
+
+  if(id==='money') return '<div class="panel-banner" style="'+panelData.money.banner+'"><h2>💰 Monetize</h2><p>You do not need 100,000 followers. Here are the 6 income streams every creator should know.</p></div>'
++'<div class="tip"><div class="tip-num">01</div><div class="tip-b"><h3>Brand Sponsorships</h3><p>Brands pay you to feature their products. You need an engaged audience, not a huge one. Start reaching out at 500 followers.</p><span class="t-badge tb-blue">Beginner Friendly</span></div></div>'
++'<div class="tip"><div class="tip-num">02</div><div class="tip-b"><h3>UGC Content</h3><p>Brands pay you to create content FOR them — they use it for ads. No follower count required. Just good creation skills.</p><span class="t-badge tb-green">No Audience Needed</span></div></div>'
++'<div class="tip"><div class="tip-num">03</div><div class="tip-b"><h3>Digital Products</h3><p>Sell e-books, templates, guides or courses. Create once, sell forever. High margin, very scalable.</p><span class="t-badge tb-gold">High Margin</span></div></div>'
++'<div class="tip"><div class="tip-num">04</div><div class="tip-b"><h3>Affiliate Marketing</h3><p>Recommend products you use. Get a commission every time someone buys through your link.</p><span class="t-badge tb-blue">Passive Income</span></div></div>'
++'<div class="tip"><div class="tip-num">05</div><div class="tip-b"><h3>Paid Community</h3><p>Charge a monthly fee for exclusive content, training, or community. Sarara X is this model.</p><span class="t-badge tb-green">Recurring Revenue</span></div></div>'
++'<div class="tip"><div class="tip-num">06</div><div class="tip-b"><h3>Services & Consulting</h3><p>Use your content to attract clients for photography, editing, coaching. Content is your portfolio and sales funnel.</p><span class="t-badge tb-gold">Highest Ticket</span></div></div>'
++'<div class="panel-cta"><h3>Get brand deal templates inside Sarara X</h3><p>Rate guides, media kit training, and first access to real opportunities.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="panel-join-btn">Join for TSh 20,000/month</a></div>';
+
+  if(id==='viral') return '<div class="panel-banner" style="'+panelData.viral.banner+'"><h2>🔥 Go Viral</h2><p>Not guesses. Not theory. The exact principles behind every piece of content that takes off.</p></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">🎯</div><div class="vtip-meta"><div class="tip-n">Tip 00</div><div class="tip-title">One Clear Audience</div></div></div><div class="vtip-body">Posts that speak to a <strong>specific person</strong> always outperform posts trying to reach everyone. Narrow your focus — your message lands louder.<div class="vtip-tip">Before posting: who exactly is this for? If you cannot name one type of person — it is too broad.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">⚡</div><div class="vtip-meta"><div class="tip-n">Tip 01</div><div class="tip-title">Strong Hook — 3 Seconds</div></div></div><div class="vtip-body">People decide in <strong>3 seconds</strong> whether to stay or scroll. A bold statement, a relatable problem, or a curiosity-driven question.<div class="vtip-tip">Your hook is the first frame of your video — not the caption. Fix that first.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">🎯</div><div class="vtip-meta"><div class="tip-n">Tip 02</div><div class="tip-title">One Message Per Post</div></div></div><div class="vtip-body">Great content makes <strong>one point</strong> — powerfully and memorably. If someone cannot describe your post in one sentence, you said too much.<div class="vtip-tip">Write your post. Ask: what is the ONE thing I want them to remember? Delete everything else.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">❤️</div><div class="vtip-meta"><div class="tip-n">Tip 03</div><div class="tip-title">Emotional Connection</div></div></div><div class="vtip-body">People forget information — but they <strong>never forget how you made them feel</strong>. Curiosity, laughter, inspiration, recognition — design toward a feeling.<div class="vtip-tip">Ask: how do I want them to feel after seeing this? Build toward that.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">👁</div><div class="vtip-meta"><div class="tip-n">Tip 04</div><div class="tip-title">Easy to Consume</div></div></div><div class="vtip-body">Short sentences. Simple words. Clean visuals. Big text on videos. If it <strong>looks hard to read, people scroll</strong> before even trying.<div class="vtip-tip">Test your content on your own phone. If you squint or zoom — fix it.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">⏰</div><div class="vtip-meta"><div class="tip-n">Tip 05</div><div class="tip-title">Timing Matters</div></div></div><div class="vtip-body">Great content at the wrong time gets <strong>ignored by the algorithm</strong>. Best times for Tanzania: 7-9am, 12-2pm, 7-10pm.<div class="vtip-tip">Instagram → Insights → Your Audience → Most Active Times. Post inside that window.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">💬</div><div class="vtip-meta"><div class="tip-n">Tip 06</div><div class="tip-title">Encourage Interaction</div></div></div><div class="vtip-body">The algorithm measures <strong>comments, shares, and saves</strong> — not just likes. Ask a direct question at the end of your caption.<div class="vtip-tip">One question per post. Simple. Direct. Easy to answer in 3 words or less.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">🚀</div><div class="vtip-meta"><div class="tip-n">Tip 07</div><div class="tip-title">Clear Call to Action</div></div></div><div class="vtip-body">Every post should guide to <strong>one specific action</strong>. Save. Share. Comment. Follow. Never ask for all at once.<div class="vtip-tip">One CTA only. Pick one and make it count.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">📅</div><div class="vtip-meta"><div class="tip-n">Tip 08</div><div class="tip-title">Consistency Wins</div></div></div><div class="vtip-body">3 times a week for 3 months beats 20 posts in one week then disappearing. <strong>Consistency builds visibility and trust</strong>.<div class="vtip-tip">Choose a frequency you can maintain for 90 days straight — not the max you can do for one week.</div></div></div>'
++'<div class="vtip"><div class="vtip-head"><div class="vtip-icon">📊</div><div class="vtip-meta"><div class="tip-n">Tip 09</div><div class="tip-title">Learn and Optimize</div></div></div><div class="vtip-body">Every Monday: check which posts got the most reach, saves, and comments. Ask what was different. <strong>Do more of what works.</strong><div class="vtip-tip">Your Instagram Insights is free and tells you exactly what your audience responds to. Open it every week.</div></div></div>'
++'<div class="panel-cta"><h3>Weekly accountability inside Sarara X</h3><p>Content feedback and a community that pushes you to post consistently.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="panel-join-btn">Join for TSh 20,000/month</a></div>';
+
+  if(id==='join') return '<div class="join-hero"><div style="font-size:2rem;margin-bottom:10px">⭐</div><h2>Join the Inner Circle</h2><p>95+ creators. Weekly training. 1-on-1 consultations. All for TSh 20,000/month.</p><a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" class="join-btn-main">Join Now — TSh 20,000/mo</a></div>'
++'<div class="perks"><div class="perk"><div class="perk-icon">💬</div><h4>WhatsApp Group</h4><p>95+ active creators sharing content, wins and feedback every week.</p></div><div class="perk"><div class="perk-icon">🎓</div><h4>Weekly Training</h4><p>New masterclasses every week — editing, filming, strategy sessions.</p></div><div class="perk"><div class="perk-icon">📞</div><h4>1-on-1 Session</h4><p>We review YOUR content and give you specific actionable feedback.</p></div><div class="perk"><div class="perk-icon">✂️</div><h4>CapCut Pro Free</h4><p>Full access to CapCut Pro — no watermarks, all AI features included.</p></div></div>'
++'<div class="mcard" style="margin-bottom:14px"><div class="mcard-label">Members Only Zone</div><div class="mcard-title">Exclusive Resources Included</div><div class="mcard-body">Advanced Hooks · Brand Deal Templates · 30-Day Calendar · Media Kit Guide · Caption Formulas</div></div>'
++'<div style="text-align:center;margin-bottom:14px"><a class="join-btn-main" style="background:linear-gradient(135deg,#833ab4,#e1306c);color:#fff" href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank">Join Now — TSh 20,000/month</a><p style="font-size:.72rem;color:#718096;margin-top:10px">Pay via TIGO Pesa to +255 659 992 801 then send proof on WhatsApp for instant access.</p></div>'
++'<div style="text-align:center"><a href="https://wa.me/255659992801" target="_blank" class="wa-btn">💬 WhatsApp +255 659 992 801</a></div>';
+
+  if(id==='members') return '<div class="pw-gate" id="password-gate"><div style="font-size:2rem;margin-bottom:10px">🔒</div><h2>Members Only Zone</h2><p>Sarara X members only. Enter your password to unlock everything inside.</p><input class="pw-input" id="member-pw" type="password" placeholder="Enter password"/><br/><button class="pw-btn" onclick="checkPW()">Unlock Access 🔓</button><div class="pw-error" id="pw-error">Wrong password. Join Sarara X to get yours.</div><p style="font-size:.7rem;color:rgba(255,255,255,.35);margin-top:14px">Not a member? <a href="https://chat.whatsapp.com/IhAZwmNoDTJDDi9SPwAaRz?mode=gi_t" target="_blank" style="color:#f9a8d4">Join for TSh 20K/month</a></p></div>'
++'<div id="members-content" style="display:none">'
++'<div class="members-welcome"><div style="font-size:2rem;margin-bottom:8px">🔓</div><h2>Welcome, Creator!</h2><p>You are inside. Everything below is yours.</p><button class="lock-btn" onclick="lockMembers()">Lock Zone 🔒</button></div>'
++'<div class="mtabs"><button class="mtab active" onclick="switchMTab(\'hooks\',this)">🎯 Hooks</button><button class="mtab" onclick="switchMTab(\'brands\',this)">💰 Brand Deals</button><button class="mtab" onclick="switchMTab(\'calendar\',this)">📅 Calendar</button><button class="mtab" onclick="switchMTab(\'mediakit\',this)">📊 Media Kit</button><button class="mtab" onclick="switchMTab(\'captions\',this)">✍️ Captions</button></div>'
++'<div class="mpanel active" id="mpanel-hooks">'
++'<div class="mcard"><div class="mcard-label">Formula 01</div><div class="mcard-title">The Contradiction Hook</div><div class="mcard-body mcard-mono">Everyone tells you to post every day. I stopped posting for 3 weeks and my account grew faster than ever. Here is what happened.</div><div class="mcard-tip">Contradicts a belief they hold. Forces them to stay and find out why.</div></div>'
++'<div class="mcard"><div class="mcard-label">Formula 02</div><div class="mcard-title">The Specific Number Hook</div><div class="mcard-body mcard-mono">I got 47,382 views from one Reel using this exact 3-second technique. I will show you the whole thing.</div><div class="mcard-tip">Specific numbers feel real. 50K sounds made up. 47,382 sounds like a real result.</div></div>'
++'<div class="mcard"><div class="mcard-label">Formula 03</div><div class="mcard-title">The Confession Hook</div><div class="mcard-body mcard-mono">I am going to be honest — my first 50 videos were embarrassing. But video 51 changed everything and I need to show you what I changed.</div><div class="mcard-tip">Vulnerability creates trust instantly. People lean in when creators are honest about failure.</div></div>'
++'<div class="mcard"><div class="mcard-label">Formula 04</div><div class="mcard-title">The Relatable Failure Hook</div><div class="mcard-body mcard-mono">You spend 3 hours making a Reel. You post it. 47 views. All from your mum. I know exactly how that feels — and I know exactly what you are doing wrong.</div><div class="mcard-tip">Mirrors their exact experience. They feel seen and immediately trust you.</div></div>'
++'<div class="mcard"><div class="mcard-label">Formula 05</div><div class="mcard-title">The Permission Hook</div><div class="mcard-body mcard-mono">You do not need to be confident. You do not need expensive equipment. You do not even need a niche yet. You just need to start — and I will show you how.</div><div class="mcard-tip">Removes every excuse before they can even think it.</div></div>'
++'<div class="mcard"><div class="mcard-label">Formula 06</div><div class="mcard-title">The Insider Secret Hook</div><div class="mcard-body mcard-mono">What I am about to share is something most creators figure out only after 2 or 3 years. I am giving it to you right now in the next 60 seconds.</div><div class="mcard-tip">Makes viewers feel they are getting privileged access others do not have.</div></div>'
++'</div>'
++'<div class="mpanel" id="mpanel-brands">'
++'<div class="mcard"><div class="mcard-label">Template 01 — Instagram DM</div><div class="mcard-title">Cold DM to a Brand</div><div class="mcard-body mcard-mono">Hi [Brand] team 👋\n\nI am [Name], a content creator in [niche] with [X] followers. My audience is [describe audience].\n\nI love your brand and think my audience would connect with your products. I would love to explore a collaboration.\n\nWould you be open to a quick conversation? I can share my media kit.\n\nThank you 🙏</div><div class="mcard-tip">Keep it short. Brands get hundreds of messages. Get to the point in 4 lines.</div></div>'
++'<div class="mcard"><div class="mcard-label">Template 02 — Follow-Up</div><div class="mcard-title">Send if no reply in 5 days</div><div class="mcard-body mcard-mono">Hi [Name],\n\nFollowing up on my message from [X] days ago about a content partnership.\n\nI recently posted [type of content] that got [impressive result] — I think I could create something similar for [Brand].\n\nWould love to connect 🙏\n\n[Your Name]</div><div class="mcard-tip">Most deals close on the follow-up. Always follow up once.</div></div>'
++'<div class="mcard"><div class="mcard-label">Your Rates</div><div class="mcard-title">What to Charge</div><div class="mcard-body">Under 5K followers — TSh 50,000 to 150,000 per post<br/>5K to 20K followers — TSh 150,000 to 500,000 per post<br/>20K to 50K followers — TSh 500,000 to 1,500,000 per post<br/><br/>Charge more for Reels than stories. Charge more for exclusive usage rights. Never work for free.</div><div class="mcard-tip">Engagement rate matters more than follower count.</div></div>'
++'</div>'
++'<div class="mpanel" id="mpanel-calendar">'
++'<div class="cal-block"><div class="cal-label">Week 1 — Introduce Yourself</div><div class="cal-row"><span class="cal-day">Day 1</span><span class="cal-type edu">Edu</span><span class="cal-desc">Who you are + what you create + why they should follow</span></div><div class="cal-row"><span class="cal-day">Day 2</span><span class="cal-type con">Connect</span><span class="cal-desc">Share your creator origin story — why you started</span></div><div class="cal-row"><span class="cal-day">Day 3</span><span class="cal-type edu">Edu</span><span class="cal-desc">Your number one tip for your niche — immediately useful</span></div><div class="cal-row"><span class="cal-day">Day 4</span><span class="cal-type ent">Entertain</span><span class="cal-desc">React to a trend in your niche with your unique take</span></div><div class="cal-row"><span class="cal-day">Day 5</span><span class="cal-type con">Connect</span><span class="cal-desc">Behind the scenes — show how you create</span></div><div class="cal-row"><span class="cal-day">Day 6</span><span class="cal-type edu">Edu</span><span class="cal-desc">Common mistake in your niche everyone is making</span></div><div class="cal-row"><span class="cal-day">Day 7</span><span class="cal-type ent">Entertain</span><span class="cal-desc">Something funny or relatable about your niche life</span></div></div>'
++'<div class="cal-block"><div class="cal-label">Week 2 — Build Authority</div><div class="cal-row"><span class="cal-day">Day 8</span><span class="cal-type edu">Edu</span><span class="cal-desc">Step by step tutorial on your most asked topic</span></div><div class="cal-row"><span class="cal-day">Day 9</span><span class="cal-type con">Connect</span><span class="cal-desc">Share a personal win or milestone</span></div><div class="cal-row"><span class="cal-day">Day 10</span><span class="cal-type edu">Edu</span><span class="cal-desc">Tool or resource you swear by — honest review</span></div><div class="cal-row"><span class="cal-day">Day 11</span><span class="cal-type ent">Entertain</span><span class="cal-desc">Expectation vs reality in your niche</span></div><div class="cal-row"><span class="cal-day">Day 12</span><span class="cal-type con">Connect</span><span class="cal-desc">Answer the most common question from followers</span></div><div class="cal-row"><span class="cal-day">Day 13</span><span class="cal-type edu">Edu</span><span class="cal-desc">Myth busting — debunk something people believe</span></div><div class="cal-row"><span class="cal-day">Day 14</span><span class="cal-type ent">Entertain</span><span class="cal-desc">Day in your life — the real unfiltered version</span></div></div>'
++'<div class="cal-block"><div class="cal-label">Week 3 — Deepen Connection</div><div class="cal-row"><span class="cal-day">Day 15</span><span class="cal-type con">Connect</span><span class="cal-desc">Share a failure or lesson — be vulnerable</span></div><div class="cal-row"><span class="cal-day">Day 16</span><span class="cal-type edu">Edu</span><span class="cal-desc">Comparison post — option A vs B with your verdict</span></div><div class="cal-row"><span class="cal-day">Day 17</span><span class="cal-type ent">Entertain</span><span class="cal-desc">Things only people in your niche understand</span></div><div class="cal-row"><span class="cal-day">Day 18</span><span class="cal-type edu">Edu</span><span class="cal-desc">Your routine related to your niche</span></div><div class="cal-row"><span class="cal-day">Day 19</span><span class="cal-type con">Connect</span><span class="cal-desc">Respond to a comment with a full video</span></div><div class="cal-row"><span class="cal-day">Day 20</span><span class="cal-type edu">Edu</span><span class="cal-desc">What you wish you knew when you started</span></div><div class="cal-row"><span class="cal-day">Day 21</span><span class="cal-type ent">Entertain</span><span class="cal-desc">Try something outside your comfort zone</span></div></div>'
++'<div class="cal-block"><div class="cal-label">Week 4 — Convert and Grow</div><div class="cal-row"><span class="cal-day">Day 22</span><span class="cal-type edu">Edu</span><span class="cal-desc">Best tip of the month — repackage and expand</span></div><div class="cal-row"><span class="cal-day">Day 23</span><span class="cal-type con">Connect</span><span class="cal-desc">Thank your followers — celebrate a milestone</span></div><div class="cal-row"><span class="cal-day">Day 24</span><span class="cal-type ent">Entertain</span><span class="cal-desc">Collab with another creator</span></div><div class="cal-row"><span class="cal-day">Day 25</span><span class="cal-type edu">Edu</span><span class="cal-desc">Share your month results — be transparent</span></div><div class="cal-row"><span class="cal-day">Day 26</span><span class="cal-type con">Connect</span><span class="cal-desc">Ask your audience what they want to see next</span></div><div class="cal-row"><span class="cal-day">Day 27</span><span class="cal-type edu">Edu</span><span class="cal-desc">Top 3 lessons from 30 days of posting</span></div><div class="cal-row"><span class="cal-day">Day 28</span><span class="cal-type ent">Entertain</span><span class="cal-desc">Recreate your most viral content with a twist</span></div><div class="cal-row"><span class="cal-day">Day 29</span><span class="cal-type con">Connect</span><span class="cal-desc">Share your biggest goal for next month</span></div><div class="cal-row"><span class="cal-day">Day 30</span><span class="cal-type edu">Edu</span><span class="cal-desc">Your final message to your audience — make it memorable</span></div></div>'
++'</div>'
++'<div class="mpanel" id="mpanel-mediakit">'
++'<div class="mcard"><div class="mcard-label">What is a Media Kit</div><div class="mcard-title">Your Professional Creator CV</div><div class="mcard-body">A 1-2 page document that tells brands everything — your audience, numbers, content style, and rates. Without one, brands will not take you seriously. Build yours on Canva for free.</div></div>'
++'<div class="mcard"><div class="mcard-label">Section 1</div><div class="mcard-title">Your Introduction</div><div class="mcard-body">Name and handle. Your niche in one sentence. Your audience in one sentence.<br/><br/>Example: I am Amara, a lifestyle creator in Dar es Salaam creating content about affordable healthy living for everyday Tanzanians. My audience is primarily women aged 18-35.</div><div class="mcard-tip">Local relevance is your competitive advantage over international creators.</div></div>'
++'<div class="mcard"><div class="mcard-label">Section 2</div><div class="mcard-title">Your Numbers</div><div class="mcard-body">Total followers. Monthly reach. Average engagement rate (likes + comments divided by followers times 100). Average views per Reel. Best performing post stats. Update every month.</div><div class="mcard-tip">10% engagement with 2,000 followers is worth more than 1% with 20,000.</div></div>'
++'<div class="mcard"><div class="mcard-label">Section 3</div><div class="mcard-title">Services and Rates</div><div class="mcard-body">Instagram Reel — your price<br/>Instagram Story (3 slides) — your price<br/>Static post — your price<br/>UGC content (raw file, no posting) — your price<br/>Content package — bundled price</div></div>'
++'</div>'
++'<div class="mpanel" id="mpanel-captions">'
++'<div class="mcard"><div class="mcard-label">Formula 01</div><div class="mcard-title">Hook — Story — CTA</div><div class="mcard-body mcard-mono">HOOK: Grab attention in 1-2 lines\n\nSTORY: 2-3 sentences of context or the problem\n\nVALUE: The main point or takeaway\n\nCTA: One clear action — save this, comment below, follow for more</div><div class="mcard-tip">If the first line does not stop them, they will never read the rest.</div></div>'
++'<div class="mcard"><div class="mcard-label">Formula 02</div><div class="mcard-title">The List Caption</div><div class="mcard-body">Bold statement. Then 3-5 numbered points. End with a save CTA. List captions get saved 3x more than paragraph captions.</div><div class="mcard-tip">Example: 5 things I stopped doing that doubled my engagement — then list them. Save this — you will need it.</div></div>'
++'<div class="mcard"><div class="mcard-label">Hashtag Strategy</div><div class="mcard-title">5 to 10 Hashtags Maximum</div><div class="mcard-body">2 large (1M+ posts) for reach<br/>3 medium (100K-500K posts) for discoverability<br/>3 small niche (under 50K posts) for ranking<br/>1-2 location hashtags<br/><br/>Put hashtags in the caption — not the comments.</div><div class="mcard-tip">Instagram confirmed captions get better reach than comments.</div></div>'
++'</div></div>';
+
+  return '<p style="padding:20px;color:#718096">Panel not found.</p>';
+}
+
+/* ── NAVIGATION ── */
+var currentPanel=null;
+var isAnimating=false;
+
+function openPanel(id){
+  if(isAnimating) return;
+  isAnimating=true;
+  currentPanel=id;
+
+  var homeScreen=document.getElementById('home-screen');
+  var panelScreen=document.getElementById('panel-screen');
+  var inner=document.getElementById('panel-inner');
+  var title=document.getElementById('topbar-title');
+  var logo=document.getElementById('topbar-logo');
+  var back=document.getElementById('topbar-back');
+  var action=document.getElementById('topbar-action');
+
+  // Build content
+  inner.innerHTML=buildPanelContent(id);
+
+  // Swap topbar
+  logo.style.display='none';
+  action.style.display='none';
+  title.style.display='block';
+  title.textContent=panelData[id]?panelData[id].title:id;
+  back.style.display='flex';
+
+  // Slide in
+  panelScreen.classList.add('active');
+  panelScreen.scrollTop=0;
+
+  setTimeout(function(){isAnimating=false;},350);
+
+  // Post-render init
+  if(id==='learn'){renderHooks();}
+  if(id==='ideas'){setTimeout(function(){showIdeas(null,'lifestyle');},60);}
+  if(id==='members'&&sessionStorage.getItem('sx_unlocked')==='1'){
+    setTimeout(function(){
+      var g=document.getElementById('password-gate');
+      var mc=document.getElementById('members-content');
+      if(g&&mc){g.style.display='none';mc.style.display='block';}
+    },80);
+  }
+  // init member pw key listener
+  setTimeout(function(){
+    var pw=document.getElementById('member-pw');
+    if(pw) pw.addEventListener('keypress',function(e){if(e.key==='Enter')checkPW();});
+  },80);
+}
+
+function goBack(){
+  if(isAnimating) return;
+  isAnimating=true;
+  currentPanel=null;
+
+  var panelScreen=document.getElementById('panel-screen');
+  var logo=document.getElementById('topbar-logo');
+  var back=document.getElementById('topbar-back');
+  var title=document.getElementById('topbar-title');
+  var action=document.getElementById('topbar-action');
+
+  panelScreen.classList.remove('active');
+
+  logo.style.display='block';
+  action.style.display='block';
+  title.style.display='none';
+  back.style.display='none';
+
+  switchNav('home');
+  setTimeout(function(){isAnimating=false;},350);
+}
+
+function switchNav(id){
+  document.querySelectorAll('.nav-item').forEach(function(el){el.classList.remove('active')});
+  var el=document.getElementById('nav-'+id);
+  if(el) el.classList.add('active');
+}
+
+/* ── ACCORDION ── */
+function toggleAcc(head){
+  var body=head.nextElementSibling;
+  var isOpen=body.classList.contains('open');
+  document.querySelectorAll('.acc-b').forEach(function(b){b.classList.remove('open')});
+  document.querySelectorAll('.acc-h').forEach(function(h){h.classList.remove('open')});
+  if(!isOpen){body.classList.add('open');head.classList.add('open');}
+}
+
+/* ── HOOKS ── */
+function renderHooks(){
+  var vl=document.getElementById('visual-hooks-list');
+  var vrl=document.getElementById('verbal-hooks-list');
+  if(vl) vl.innerHTML=visualHooks.map(function(h){
+    return '<div class="hook"><div class="hook-type">Visual Hook</div><p>'+h+'</p><button class="hook-copy" onclick="copyTxt(this,this.dataset.t)" data-t="'+h.replace(/"/g,'&quot;')+'">Copy</button></div>';
+  }).join('');
+  if(vrl) vrl.innerHTML=verbalHooks.map(function(h){
+    return '<div class="hook"><div class="hook-type">Verbal Hook</div><p>'+h+'</p><button class="hook-copy" onclick="copyTxt(this,this.dataset.t)" data-t="'+h.replace(/"/g,'&quot;')+'">Copy</button></div>';
+  }).join('');
+}
+
+function copyTxt(btn,text){
+  navigator.clipboard.writeText(text).then(function(){
+    var o=btn.textContent;btn.textContent='✓ Copied';
+    setTimeout(function(){btn.textContent=o;},1600);
+  });
+}
+
+/* ── IDEAS ── */
+function showIdeas(evt,niche){
+  document.querySelectorAll('#browse-tabs .mtab').forEach(function(t){t.classList.remove('active')});
+  if(evt&&evt.target) evt.target.classList.add('active');
+  else{var first=document.querySelector('#browse-tabs .mtab');if(first) first.classList.add('active');}
+  var list=document.getElementById('ideas-browse');
+  if(!list) return;
+  var ideas=ideasData[niche]||[];
+  list.innerHTML=ideas.map(function(item,i){
+    return '<div class="idea-c"><div class="idea-n">IDEA '+String(i+1).padStart(2,'0')+'</div><p><strong style="color:#1a1a2e;display:block;margin-bottom:3px">'+item.idea+'</strong><span style="color:#e1306c;font-size:.7rem">'+item.hook+'</span></p></div>';
+  }).join('');
+}
+
+/* ── KEY MODAL ── */
+function showKeyModal(callback){
+  var existing=sessionStorage.getItem('sx_api_key');
+  if(existing){callback(existing);return;}
+
+  var overlay=document.createElement('div');
+  overlay.id='key-modal';
+  overlay.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(26,26,46,.9);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:20px';
+
+  var box=document.createElement('div');
+  box.style.cssText='background:#fff;border-radius:20px;padding:32px 24px;max-width:340px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)';
+
+  var emoji=document.createElement('div');
+  emoji.style.cssText='font-size:2rem;margin-bottom:10px';
+  emoji.textContent='🤖';
+
+  var heading=document.createElement('div');
+  heading.style.cssText='font-family:Outfit,sans-serif;font-size:1rem;font-weight:800;color:#1a1a2e;margin-bottom:8px';
+  heading.textContent='Connect AI Generator';
+
+  var desc=document.createElement('p');
+  desc.style.cssText='font-size:.78rem;color:#718096;line-height:1.6;margin-bottom:16px';
+  desc.innerHTML='Enter your Anthropic API key. Get it free at <a href="https://console.anthropic.com" target="_blank" style="color:#e1306c">console.anthropic.com</a>';
+
+  var input=document.createElement('input');
+  input.type='password';
+  input.id='api-key-input';
+  input.placeholder='sk-ant-api03-...';
+  input.style.cssText='width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid #eef0f6;background:#f7f8fc;color:#1a1a2e;font-family:monospace;font-size:.8rem;outline:none;margin-bottom:12px;box-sizing:border-box';
+  input.addEventListener('keypress',function(e){if(e.key==='Enter')saveKey();});
+
+  var btnRow=document.createElement('div');
+  btnRow.style.cssText='display:flex;gap:8px;justify-content:center';
+
+  var connectBtn=document.createElement('button');
+  connectBtn.style.cssText='background:linear-gradient(135deg,#833ab4,#e1306c);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-family:Outfit,sans-serif;font-weight:700;font-size:.82rem;cursor:pointer';
+  connectBtn.textContent='Connect ✦';
+  connectBtn.onclick=saveKey;
+
+  var cancelBtn=document.createElement('button');
+  cancelBtn.style.cssText='background:#f7f8fc;border:1.5px solid #eef0f6;color:#718096;border-radius:10px;padding:10px 18px;font-family:Outfit,sans-serif;font-size:.82rem;cursor:pointer';
+  cancelBtn.textContent='Cancel';
+  cancelBtn.onclick=function(){document.getElementById('key-modal').remove();};
+
+  var note=document.createElement('p');
+  note.style.cssText='font-size:.68rem;color:#a0aec0;margin-top:12px';
+  note.textContent='Saved in this session only — never stored permanently.';
+
+  btnRow.appendChild(connectBtn);
+  btnRow.appendChild(cancelBtn);
+  box.appendChild(emoji);
+  box.appendChild(heading);
+  box.appendChild(desc);
+  box.appendChild(input);
+  box.appendChild(btnRow);
+  box.appendChild(note);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+  window._keyCallback=callback;
+  setTimeout(function(){input.focus();},80);
+}
+
+function saveKey(){
+  var val=document.getElementById('api-key-input').value.trim();
+  if(!val||!val.startsWith('sk-')){
+    document.getElementById('api-key-input').style.borderColor='#e1306c';
+    return;
+  }
+  sessionStorage.setItem('sx_api_key',val);
+  document.getElementById('key-modal').remove();
+  if(window._keyCallback) window._keyCallback(val);
+}
+
+/* ── AI IDEAS ── */
+async function generateIdeas(){
+  var niche=document.getElementById('niche-select').value;
+  var platform=document.getElementById('platform-select').value;
+  if(!niche||!platform){alert('Please select a niche and platform first.');return;}
+  showKeyModal(async function(apiKey){
+    var btn=document.getElementById('gen-btn');
+    var out=document.getElementById('ideas-output');
+    if(!btn||!out) return;
+    btn.disabled=true;btn.textContent='Generating…';
+    out.innerHTML='<div style="text-align:center;padding:24px;color:#718096"><div class="spinner"></div>Crafting ideas for you…</div>';
+    try{
+      var res=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+        body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:'Generate exactly 6 specific creative content ideas for a '+niche+' creator on '+platform+'. Return ONLY a JSON array, no markdown, no preamble. Each item: {"idea":"title max 12 words","hook":"one sentence max 20 words"}'}]})
+      });
+      var data=await res.json();
+      if(data.error) throw new Error(data.error.message);
+      var raw=data.content.map(function(b){return b.text||'';}).join('');
+      var ideas=JSON.parse(raw.replace(/```json|```/g,'').trim());
+      out.innerHTML='<div style="margin-bottom:10px"><span class="sec-tag">AI Ideas — '+niche+' on '+platform+'</span></div><div class="ideas-grid">'+ideas.map(function(item,i){return '<div class="idea-c"><div class="idea-n">IDEA '+String(i+1).padStart(2,'0')+'</div><p><strong style="color:#1a1a2e;display:block;margin-bottom:3px">'+item.idea+'</strong><span style="color:#e1306c;font-size:.7rem">'+item.hook+'</span></p></div>';}).join('')+'</div>';
+    }catch(e){
+      sessionStorage.removeItem('sx_api_key');
+      out.innerHTML='<div style="padding:16px;background:#fff;border-radius:12px;border:1.5px solid #eef0f6"><p style="color:#e1306c;font-size:.8rem;margin-bottom:10px">Error: '+(e.message||'Unknown')+'</p><button onclick="generateIdeas()" style="background:linear-gradient(135deg,#833ab4,#e1306c);border:none;color:#fff;border-radius:8px;padding:8px 16px;font-size:.78rem;cursor:pointer;font-family:Outfit,sans-serif">Try Again</button></div>';
+    }
+    btn.disabled=false;btn.textContent='Generate ✦';
+  });
+}
+
+/* ── MEMBERS ── */
+var MEMBER_PW='sararaxfreedom';
+function checkPW(){
+  var inp=document.getElementById('member-pw');
+  var err=document.getElementById('pw-error');
+  if(!inp) return;
+  if(inp.value.trim()===MEMBER_PW){
+    document.getElementById('password-gate').style.display='none';
+    document.getElementById('members-content').style.display='block';
+    sessionStorage.setItem('sx_unlocked','1');
+  }else{
+    if(err) err.style.display='block';
+    inp.style.borderColor='rgba(252,165,165,.6)';
+    setTimeout(function(){inp.style.borderColor='rgba(255,255,255,.15)';},2000);
+  }
+}
+function lockMembers(){
+  document.getElementById('password-gate').style.display='block';
+  document.getElementById('members-content').style.display='none';
+  var inp=document.getElementById('member-pw');
+  if(inp) inp.value='';
+  sessionStorage.removeItem('sx_unlocked');
+}
+function switchMTab(id,el){
+  document.querySelectorAll('.mtab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.mpanel').forEach(function(p){p.classList.remove('active')});
+  if(el) el.classList.add('active');
+  var panel=document.getElementById('mpanel-'+id);
+  if(panel) panel.classList.add('active');
+}
+</script>
+</body>
+</html>
