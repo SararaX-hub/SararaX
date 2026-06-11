@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>SARARA — Bespoke Style Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f5f4f2;--surface:#ffffff;--card:#faf9f8;
+  --border:#e5e3df;--border-mid:#cbc8c3;
+  --ink:#1a1917;--mid:#3d3a37;--muted:#908c87;--faint:#f0efec;
+  --nav-h:64px;--hdr-h:56px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:var(--bg);}
+body{font-family:'DM Sans',sans-serif;font-weight:300;color:var(--ink);}
+img{display:block;max-width:100%;}
+button{cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* SHELL */
+#app{display:flex;flex-direction:column;height:100%;overflow:hidden;}
+
+/* HEADER */
+.hdr{
+  height:var(--hdr-h);flex-shrink:0;background:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;position:relative;z-index:50;
+}
+.hdr::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.035;
+  background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);
+  background-size:8px 8px;}
+.brand{display:flex;align-items:center;gap:10px;z-index:1;position:relative;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:0.24em;color:#f5f4f2;font-weight:400;}
+.brand-sep{width:1px;height:16px;background:#3d3a37;}
+.brand-tag{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:#5a5754;}
+.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;z-index:1;position:relative;}
+.gender-lbl{font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:#5a5754;}
+.gender-toggle{display:flex;border:1px solid #2e2c2a;overflow:hidden;border-radius:2px;}
+.gbtn{padding:7px 14px;background:transparent;border:none;color:#605d5a;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;transition:all .2s;min-width:58px;}
+.gbtn.on{background:#f5f4f2;color:var(--ink);}
+.gbtn:not(.on):hover{color:#f5f4f2;}
+
+/* PAGES */
+.pages{flex:1;overflow:hidden;position:relative;}
+.page{
+  position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+  background:var(--bg);transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:calc(var(--nav-h) + 24px);
+}
+.page.active{transform:translateX(0);}
+.page.left{transform:translateX(-28%);}
+
+/* BOTTOM NAV */
+.bnav{
+  height:var(--nav-h);flex-shrink:0;background:var(--ink);
+  border-top:1px solid #252320;display:flex;align-items:stretch;
+  padding-bottom:env(safe-area-inset-bottom);z-index:50;
+}
+.ni{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;background:transparent;border:none;color:#5a5754;
+  font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;
+  transition:color .2s;position:relative;padding:0 2px;
+}
+.ni.on{color:#f5f4f2;}
+.ni.on::after{content:'';position:absolute;top:0;left:25%;right:25%;height:1.5px;background:#f5f4f2;}
+.ni-icon{font-size:16px;line-height:1;}
+
+/* PAGE HERO */
+.hero{background:var(--ink);padding:28px 22px 32px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;
+  border:36px solid rgba(255,255,255,.025);border-radius:50%;}
+.h-eye{font-size:9px;letter-spacing:0.34em;text-transform:uppercase;color:#4e4c49;margin-bottom:9px;}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:#f5f4f2;font-weight:300;line-height:1.25;margin-bottom:10px;}
+.h-title em{font-style:italic;color:#b8b5b0;}
+.h-sub{font-size:11.5px;color:#5a5754;line-height:1.65;font-weight:300;max-width:360px;}
+
+/* CONTENT */
+.content{padding:18px;}
+
+/* TYPE */
+.eyebrow{font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.heading{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--ink);font-weight:400;line-height:1.3;}
+.heading em{font-style:italic;}
+.hr{height:1px;background:var(--border);margin:18px 0;}
+.subtext{font-size:12px;color:var(--muted);line-height:1.65;}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);padding:18px;margin-bottom:12px;}
+.card-sm{background:var(--surface);border:1px solid var(--border);padding:15px;margin-bottom:10px;}
+.clabel{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:13px;}
+
+/* OPTION BUTTONS */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.opts.c1{grid-template-columns:1fr;}
+.opt{padding:10px 12px;background:var(--faint);border:1.5px solid transparent;color:var(--mid);
+  font-size:12px;text-align:left;transition:all .18s;width:100%;border-radius:1px;}
+.opt.sel{border-color:var(--ink);background:var(--ink);color:#f5f4f2;}
+.opt:not(.sel):hover{border-color:var(--border-mid);background:var(--surface);}
+
+/* ARCHETYPE */
+.archetype{background:var(--ink);padding:26px;margin-top:6px;}
+.arc-eye{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#4e4c49;margin-bottom:9px;}
+.arc-name{font-family:'Cormorant Garamond',serif;font-size:24px;color:#f5f4f2;margin-bottom:11px;font-weight:300;}
+.arc-desc{font-size:12px;color:#7a7774;line-height:1.75;font-weight:300;}
+.arc-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;}
+.atag{padding:3px 11px;border:1px solid #2e2c2a;color:#7a7774;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;}
+.empty-box{text-align:center;padding:44px 20px;border:1px dashed var(--border);background:var(--card);}
+.ei{font-size:28px;margin-bottom:10px;opacity:.35;}
+.et{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--mid);margin-bottom:6px;}
+.es{font-size:11.5px;color:var(--muted);}
+
+/* BUILDER */
+.swatches{display:flex;gap:8px;flex-wrap:wrap;}
+.sw{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;flex-shrink:0;}
+.sw.sel{transform:scale(1.2);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--ink);}
+.sel-lbl{font-size:11px;color:var(--muted);margin-top:8px;}
+.sel-lbl b{color:var(--ink);}
+.sinput{width:100%;background:var(--faint);border:1px solid var(--border);color:var(--ink);
+  padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:12px;outline:none;
+  appearance:none;border-radius:1px;}
+.sinput:focus{border-color:var(--ink);}
+.pimg{width:100%;height:260px;object-fit:cover;object-position:top center;}
+.shoeimg{width:100%;height:86px;object-fit:cover;object-position:center;}
+.imglbl{padding:6px 10px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--muted);border-top:1px solid var(--border);background:var(--surface);}
+.accrow{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+.accrow:last-child{border-bottom:none;}
+.accicon{font-size:15px;width:22px;text-align:center;flex-shrink:0;}
+.acct{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.accv{font-size:12px;color:var(--ink);line-height:1.4;}
+.notebox{background:var(--faint);border-left:2px solid var(--border-mid);padding:13px 15px;margin-top:14px;}
+.notetext{font-size:12px;color:var(--mid);line-height:1.65;}
+.notetext b{color:var(--ink);font-weight:500;}
+
+/* WEEKLY */
+.daytabs{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;
+  background:var(--surface);flex-shrink:0;}
+.daytabs::-webkit-scrollbar{display:none;}
+.dtab{padding:12px 16px;background:transparent;border:none;border-bottom:2px solid transparent;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.dtab.on{color:var(--ink);border-bottom-color:var(--ink);}
+.ocard{background:var(--surface);border:1px solid var(--border);overflow:hidden;}
+.ocardimg{width:100%;height:200px;object-fit:cover;object-position:top;}
+.ocardbody{padding:16px;}
+.oname{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);margin-bottom:3px;}
+.odesc{font-size:11px;color:var(--muted);margin-bottom:14px;}
+.drow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.drow:last-child{border-bottom:none;}
+.dkey{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);width:68px;flex-shrink:0;padding-top:1px;}
+.dval{font-size:12px;color:var(--mid);line-height:1.5;}
+.avoidtitle{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px;}
+.avoidrow{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start;}
+.avoidx{color:#8b2020;font-size:11px;flex-shrink:0;margin-top:1px;font-weight:700;}
+.avoidtext{font-size:12px;color:var(--muted);line-height:1.5;}
+.rulebox{background:var(--ink);color:#7a7774;padding:15px;margin-top:14px;font-size:12px;line-height:1.65;}
+.rulebox b{color:#c8c5c0;font-weight:300;font-family:'Cormorant Garamond',serif;font-size:14px;}
+
+/* WOMEN */
+.wbanner{background:var(--ink);padding:26px 22px;}
+.wbanner-sub{font-size:12px;color:#5a5754;line-height:1.7;margin-top:9px;max-width:340px;}
+.skirtgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.skcard{background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:all .22s;}
+.skcard:hover{border-color:var(--border-mid);transform:translateY(-2px);}
+.skimg{width:100%;height:150px;object-fit:cover;object-position:top;}
+.skbody{padding:13px;}
+.skt{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--ink);margin-bottom:4px;}
+.sks{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+.sktags{display:flex;flex-wrap:wrap;gap:4px;}
+.stag{padding:2px 8px;background:var(--faint);border:1px solid var(--border);
+  color:var(--muted);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;}
+.quote-block{padding:28px 18px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:20px 0;}
+.qt{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--ink);line-height:1.55;margin-bottom:7px;}
+.qa{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);}
+
+/* GUIDE */
+.gitem{padding:18px 0;border-bottom:1px solid var(--border);}
+.gitem:last-child{border-bottom:none;}
+.gicon{font-size:22px;margin-bottom:9px;}
+.gtitle{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);margin-bottom:9px;}
+.glist{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.glist li{font-size:12px;color:var(--mid);line-height:1.55;padding-left:14px;position:relative;}
+.glist li::before{content:'·';position:absolute;left:0;font-size:16px;line-height:.92;color:var(--border-mid);}
+.rulecard{padding:16px 0;border-bottom:1px solid var(--border);}
+.rulecard:last-child{border-bottom:none;}
+.rnum{font-size:10px;letter-spacing:0.18em;color:var(--muted);margin-bottom:5px;font-weight:500;}
+.rt{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink);margin-bottom:4px;}
+.rb{font-size:11.5px;color:var(--muted);line-height:1.55;}
+
+/* AI STYLIST */
+.ai-intro{background:var(--ink);padding:26px 22px;}
+.ai-h{font-family:'Cormorant Garamond',serif;font-size:26px;color:#f5f4f2;font-weight:300;margin-bottom:7px;}
+.ai-p{font-size:12px;color:#5a5754;line-height:1.65;}
+.upload-zone{border:1.5px dashed var(--border-mid);padding:26px 18px;text-align:center;
+  cursor:pointer;background:var(--card);margin-bottom:12px;transition:all .2s;}
+.upload-zone:hover{border-color:var(--ink);background:var(--surface);}
+.upload-zone.has-img{border-style:solid;border-color:var(--ink);padding:0;overflow:hidden;}
+.uprev{width:100%;max-height:260px;object-fit:cover;object-position:top;}
+.upicon{font-size:28px;margin-bottom:9px;opacity:.35;}
+.upt{font-size:12px;color:var(--mid);margin-bottom:3px;}
+.ups{font-size:10px;color:var(--muted);}
+.flabel{font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.finput{width:100%;background:var(--faint);border:1px solid var(--border);color:var(--ink);
+  padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;border-radius:1px;margin-bottom:10px;}
+.finput:focus{border-color:var(--ink);}
+.ftextarea{width:100%;background:var(--faint);border:1px solid var(--border);color:var(--ink);
+  padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;
+  border-radius:1px;resize:none;min-height:76px;margin-bottom:10px;}
+.ftextarea:focus{border-color:var(--ink);}
+.aibtn{width:100%;padding:15px;background:var(--ink);color:#f5f4f2;border:none;
+  font-size:11px;letter-spacing:0.28em;text-transform:uppercase;transition:opacity .2s;margin-top:4px;}
+.aibtn:hover{opacity:.85;}
+.aibtn:disabled{opacity:.45;cursor:not-allowed;}
+.airesult{background:var(--surface);border:1px solid var(--border);padding:22px;margin-top:14px;}
+.airesult-eye{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.airesult-body{font-size:13px;color:var(--mid);line-height:1.8;font-weight:300;}
+.airesult-body h3{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--ink);
+  margin:18px 0 8px;font-weight:400;}
+.airesult-body h3:first-child{margin-top:0;}
+.airesult-body ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:12px;padding-left:14px;}
+.airesult-body li{position:relative;}
+.airesult-body li::before{content:'·';position:absolute;left:-14px;font-size:18px;line-height:.9;color:var(--border-mid);}
+.airesult-body p{margin-bottom:10px;}
+.airesult-body strong{color:var(--ink);font-weight:500;}
+.ailoading{display:flex;flex-direction:column;align-items:center;padding:40px 20px;gap:12px;}
+.spinner{width:28px;height:28px;border:1.5px solid var(--border);border-top-color:var(--ink);
+  border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loadingt{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--mid);font-style:italic;}
+.loadings{font-size:10px;color:var(--muted);letter-spacing:0.1em;}
+.apinote{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.55;}
+
+/* DESKTOP */
+@media(min-width:860px){
+  html,body{height:auto;overflow:auto;}
+  #app{height:auto;}
+  .pages{overflow:visible;position:static;height:auto;}
+  .page{position:relative;transform:none;display:none;padding-bottom:60px;}
+  .page.active{display:block;}
+  .page.left{display:none;}
+  .bnav{display:none;}
+  .hdr{position:sticky;top:0;z-index:100;}
+  .skirtgrid{grid-template-columns:repeat(4,1fr);}
+  .opts{grid-template-columns:repeat(3,1fr);}
+}
+@media(min-width:600px){
+  .skirtgrid{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="brand">
+    <div class="brand-name">SARARA</div>
+    <div class="brand-sep"></div>
+    <div class="brand-tag">Bespoke Style</div>
+  </div>
+  <div class="hdr-right">
+    <div class="gender-lbl">Edition</div>
+    <div class="gender-toggle">
+      <button class="gbtn on" id="btn-men"   onclick="setGender('men')">♂ Men</button>
+      <button class="gbtn"     id="btn-women" onclick="setGender('women')">♀ Women</button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGES -->
+<div class="pages">
+
+  <!-- 1. PROFILE -->
+  <div class="page active" id="page-profile">
+    <div class="hero">
+      <div class="h-eye">Atelier — Step I</div>
+      <div class="h-title">Know Your <em>Style Composition</em></div>
+      <div class="h-sub">A bespoke suit begins with understanding the wearer. Complete your profile to receive your SARARA archetype.</div>
+    </div>
+    <div class="content"><div id="profile-content"></div></div>
+  </div>
+
+  <!-- 2. BUILDER -->
+  <div class="page" id="page-builder">
+    <div class="hero">
+      <div class="h-eye">Atelier — Step II</div>
+      <div class="h-title">Commission Your <em>Complete Look</em></div>
+      <div class="h-sub">Select cloth colour, fabric weight, and occasion. Your full sartorial ensemble — from cloth to shoe leather — assembled.</div>
+    </div>
+    <div class="content"><div id="builder-content"></div></div>
+  </div>
+
+  <!-- 3. WEEKLY -->
+  <div class="page" id="page-weekly">
+    <div class="hero">
+      <div class="h-eye">Atelier — Step III</div>
+      <div class="h-title">The Working <em>Week, Dressed</em></div>
+      <div class="h-sub">Five days. Five considered ensembles. Each built on Savile Row discipline and the principles of the well-dressed professional.</div>
+    </div>
+    <div id="weekly-tabs-el"></div>
+    <div class="content"><div id="weekly-content"></div></div>
+  </div>
+
+  <!-- 4. WOMEN -->
+  <div class="page" id="page-women">
+    <div class="wbanner">
+      <div class="h-eye">SARARA — Her Edition</div>
+      <div class="h-title" style="font-size:26px;">Tailored for <em>Her Presence</em></div>
+      <div class="wbanner-sub">Power dressing for women is its own discipline — not imitation of menswear, but a distinct language of authority. Structured, considered, and completely her own.</div>
+    </div>
+    <div class="content"><div id="women-content"></div></div>
+  </div>
+
+  <!-- 5. GUIDE -->
+  <div class="page" id="page-guide">
+    <div class="hero">
+      <div class="h-eye">The SARARA Canon</div>
+      <div class="h-title">Laws of the <em>Well-Dressed</em></div>
+      <div class="h-sub">The principles that separate a man or woman who is dressed from one who is well-dressed. Written down.</div>
+    </div>
+    <div class="content"><div id="guide-content"></div></div>
+  </div>
+
+  <!-- 6. AI STYLIST -->
+  <div class="page" id="page-ai">
+    <div class="ai-intro">
+      <div class="h-eye">SARARA Intelligence</div>
+      <div class="ai-h">Your Personal <em style="font-style:italic;color:#b8b5b0;">AI Stylist</em></div>
+      <div class="ai-p">Upload a photo (optional), describe your occasion, and our AI — trained on bespoke sartorial principles — will build your complete personalised look.</div>
+    </div>
+    <div class="content"><div id="ai-content"></div></div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <button class="ni on" data-p="profile" onclick="setPage('profile')"><span class="ni-icon">◈</span><span>Profile</span></button>
+  <button class="ni" data-p="builder"    onclick="setPage('builder')"><span class="ni-icon">◻</span><span>Builder</span></button>
+  <button class="ni" data-p="weekly"     onclick="setPage('weekly')"><span class="ni-icon">◷</span><span>Weekly</span></button>
+  <button class="ni" data-p="women"      onclick="setPage('women')"><span class="ni-icon">◇</span><span>Her</span></button>
+  <button class="ni" data-p="guide"      onclick="setPage('guide')"><span class="ni-icon">◉</span><span>Guide</span></button>
+  <button class="ni" data-p="ai"         onclick="setPage('ai')"><span class="ni-icon">✦</span><span>AI Stylist</span></button>
+</nav>
+</div>
+
+<script>
+// ── STATE ─────────────────────────────────────────────────────────
+var S={gender:'men',page:'profile',body:null,season:null,persona:null,
+       colorIdx:0,fabric:'Wool Flannel',occasion:'Business',day:0,
+       photoB64:null,photoType:null};
+var PAGE_ORDER=['profile','builder','weekly','women','guide','ai'];
+
+// ── PHOTOS — original working Unsplash CDN URLs (same as first build) ─
+var U='https://images.unsplash.com/';
+var Q='?auto=format&fit=crop&q=80';
+
+var P={
+  // MEN SUITS — index matches COLORS[] (0=Charcoal…9=Tobacco)
+  msuit:[
+    U+'photo-1617137968427-85924c800a22'+Q+'&w=600&h=800&crop=top',  // 0 Charcoal
+    U+'photo-1507003211169-0a1dd7228f2d'+Q+'&w=600&h=800&crop=top',  // 1 Navy
+    U+'photo-1598808503746-f34cfb12aced'+Q+'&w=600&h=800&crop=top',  // 2 Midnight Black
+    U+'photo-1593030761757-71fae45fa0e7'+Q+'&w=600&h=800&crop=top',  // 3 Slate Grey
+    U+'photo-1592878849122-facb97ed9cfe'+Q+'&w=600&h=800&crop=top',  // 4 Camel
+    U+'photo-1617196034183-421b4040ed20'+Q+'&w=600&h=800&crop=top',  // 5 Burgundy
+    U+'photo-1610652492500-ded49ceeb378'+Q+'&w=600&h=800&crop=top',  // 6 Forest Green
+    U+'photo-1519085360753-af0119f7cbe7'+Q+'&w=600&h=800&crop=top',  // 7 Pale Grey
+    U+'photo-1571019614242-c5c5dee9f50b'+Q+'&w=600&h=800&crop=top',  // 8 Stone
+    U+'photo-1614251056798-0a63eda2bb25'+Q+'&w=600&h=800&crop=top'   // 9 Tobacco Brown
+  ],
+
+  // WOMEN SUITS
+  wsuit:[
+    U+'photo-1573496359142-b8d87734a5a2'+Q+'&w=600&h=800&crop=top',  // 0 Charcoal
+    U+'photo-1594938298603-c8148c4dae35'+Q+'&w=600&h=800&crop=top',  // 1 Navy
+    U+'photo-1580522154071-c6ca47a859ad'+Q+'&w=600&h=800&crop=top',  // 2 Midnight Black
+    U+'photo-1551836022-4c4c79ecde51'+Q+'&w=600&h=800&crop=top',     // 3 Slate Grey
+    U+'photo-1539109136881-3be0616acf4b'+Q+'&w=600&h=800&crop=top',  // 4 Camel
+    U+'photo-1485218126466-34e6392ec754'+Q+'&w=600&h=800&crop=top',  // 5 Burgundy
+    U+'photo-1434389677669-e08b4cac3105'+Q+'&w=600&h=800&crop=top',  // 6 Forest Green
+    U+'photo-1520367445093-50dc08a59d9d'+Q+'&w=600&h=800&crop=top',  // 7 Pale Grey
+    U+'photo-1496747611176-843222e1e57c'+Q+'&w=600&h=800&crop=top',  // 8 Stone
+    U+'photo-1509631179647-0177331693ae'+Q+'&w=600&h=800&crop=top'   // 9 Tobacco Brown
+  ],
+
+  // MEN SHOES — (0=black oxford, 1=brown derby, 2=burgundy brogue, 3=tan loafer, 4=suede)
+  mshoe:[
+    U+'photo-1542291026-7eec264c27ff'+Q+'&w=500&h=220&crop=center',  // 0 Black Oxford
+    U+'photo-1533867617858-e7b97e060509'+Q+'&w=500&h=220&crop=center', // 1 Brown Derby
+    U+'photo-1549298916-b41d501d3772'+Q+'&w=500&h=220&crop=center',  // 2 Burgundy Brogue
+    U+'photo-1603487742131-4160ec999306'+Q+'&w=500&h=220&crop=center', // 3 Tan Loafer
+    U+'photo-1533867617858-e7b97e060509'+Q+'&w=500&h=220&crop=center'  // 4 Suede (reuse brown)
+  ],
+
+  // WOMEN SHOES — (0=black pump, 1=nude court, 2=tan/cognac, 3=loafer, 4=ankle boot)
+  wshoe:[
+    U+'photo-1543163521-1bf539c55dd2'+Q+'&w=500&h=220&crop=center',  // 0 Black Pump
+    U+'photo-1515347619252-60a4bf4fff4f'+Q+'&w=500&h=220&crop=center', // 1 Nude Court
+    U+'photo-1560343090-f0409e92791a'+Q+'&w=500&h=220&crop=center',  // 2 Tan/Cognac
+    U+'photo-1595341888016-a392ef81b7de'+Q+'&w=500&h=220&crop=center', // 3 Loafer
+    U+'photo-1543163521-1bf539c55dd2'+Q+'&w=500&h=220&crop=center'   // 4 Ankle Boot
+  ],
+
+  // WOMEN SKIRTS — 4 editorial images
+  wskirt:[
+    U+'photo-1573496359142-b8d87734a5a2'+Q+'&w=400&h=520&crop=top',
+    U+'photo-1539109136881-3be0616acf4b'+Q+'&w=400&h=520&crop=top',
+    U+'photo-1509631179647-0177331693ae'+Q+'&w=400&h=520&crop=top',
+    U+'photo-1485218126466-34e6392ec754'+Q+'&w=400&h=520&crop=top'
+  ]
+};
+
+// ── COLORS ────────────────────────────────────────────────────────
+var COLORS=[
+  {name:'Charcoal',      hex:'#36454F'},
+  {name:'Navy',          hex:'#1B2A4A'},
+  {name:'Midnight Black',hex:'#1a1917'},
+  {name:'Slate Grey',    hex:'#708090'},
+  {name:'Camel',         hex:'#C19A6B'},
+  {name:'Burgundy',      hex:'#6B1A2A'},
+  {name:'Forest Green',  hex:'#2D4A3E'},
+  {name:'Pale Grey',     hex:'#b8b5b0'},
+  {name:'Stone',         hex:'#C3B9A8'},
+  {name:'Tobacco Brown', hex:'#7B5B3A'}
+];
+
+// ── OUTFIT RECS ───────────────────────────────────────────────────
+var OR={
+  men:{
+    'Charcoal':     {shirt:'White Sea Island cotton, double-cuff',neckwear:'Burgundy grenadine silk, hand-rolled edge',shoes:'Black calf cap-toe Oxford — Goodyear welted',si:0,belt:'Black calf, silver buckle — match watch metal',pocket:'White linen, flat presentation fold',watch:'Stainless, white dial — no date window',tip:'Charcoal flannel with burgundy is the Savile Row Monday formula. Half-break on the trouser, nothing more.'},
+    'Navy':         {shirt:'Pale blue poplin or white pinpoint Oxford',neckwear:'Burnt orange repp stripe or gold grenadine silk',shoes:'Dark tan or mid-brown calf Derby — never black with navy',si:1,belt:'Dark tan calf, brass buckle',pocket:'White linen with navy border, TV fold',watch:'Tan leather strap or rose bronze case',tip:'Navy and brown is the European standard. Your Derbies should carry a semi-gloss — not mirror, not matte.'},
+    'Midnight Black':{shirt:'White poplin or white-on-white dobby',neckwear:'Black faille or deep navy silk — no pattern',shoes:'Black calf cap-toe, mirror polish — nothing else',si:0,belt:'Black patent or highly polished calf',pocket:'White silk, precision TV fold',watch:'Black leather or black PVD steel',tip:'Black is evening and formal territory only. It is not an everyday suit. When worn, every detail must be perfect.'},
+    'Camel':        {shirt:'White or ivory cotton, turnback cuff',neckwear:'Dark brown knit silk or cream wool challis',shoes:'Dark brown calf or suede Derby — warm tones only',si:1,belt:'Tobacco calf, antique gold buckle',pocket:'Cream linen, relaxed casual fold',watch:'Tan strap, champagne dial — no silver hardware',tip:'Camel flannel is Brioni territory. Keep every element warm — no silver, no cool greys anywhere in the ensemble.'},
+    'Burgundy':     {shirt:'White poplin, double cuff, plain gold links',neckwear:'Navy grenadine silk or mid-grey woven silk',shoes:'Dark brown calf Oxford or Chelsea boot',si:1,belt:'Dark brown calf matching shoe',pocket:'Pale grey or white linen square',watch:'Gold case, dark brown or cognac strap',tip:'Burgundy demands navy as its partner. Never match burgundy accessories to a burgundy suit.'},
+    'Slate Grey':   {shirt:'White poplin or pale grey fine-stripe',neckwear:'Charcoal knit silk or burgundy grenadine',shoes:'Black calf Oxford or burgundy cap-toe brogue',si:2,belt:'Black or dark brown calf',pocket:'White or pale grey linen, flat fold',watch:'Steel case — any leather strap colour works',tip:'Mid-grey is the most forgiving cloth on the Row. It accepts almost any neckwear with grace — use this latitude wisely.'},
+    'Forest Green': {shirt:'White or ivory poplin, spread collar',neckwear:'Tan or tobacco knit silk, or no tie',shoes:'Dark brown calf Derby or suede loafer',si:3,belt:'Tan calf, gold buckle',pocket:'Ivory or tan linen, casual fold',watch:'Tan or olive strap, warm dial',tip:'Forest green reads as creative authority. Pair with warm earth tones only — no cool blues or silver hardware.'},
+    'Pale Grey':    {shirt:'White poplin — the only correct choice',neckwear:'Any well-chosen silk — pale grey accepts everything',shoes:'Black or mid-brown calf Oxford',si:0,belt:'Matching calf to shoe',pocket:'White linen, flat or casual',watch:'Any dress watch — grey is accommodating',tip:'Pale grey is a summer cloth. Wear it with crisp white and confident neckwear. It rewards the decisive dresser.'},
+    'Stone':        {shirt:'White or ivory poplin',neckwear:'Brown knit or stone-toned challis',shoes:'Dark tan or cognac calf loafer or Derby',si:3,belt:'Cognac calf',pocket:'Ivory linen',watch:'Tan strap, warm gold case',tip:'Stone is a warm-weather cloth. Wear it with a relaxed confidence — it belongs outdoors, at a garden lunch, or a summer board meeting.'},
+    'Tobacco Brown':{shirt:'White or ivory cotton',neckwear:'Cream wool challis or no tie',shoes:'Dark brown calf oxford or tan suede chukka',si:1,belt:'Dark brown calf',pocket:'Cream or ivory linen',watch:'Cognac leather, gold case',tip:'Tobacco brown is a bold commission. It rewards warm skin tones enormously. Wear it as if you expected the compliments.'}
+  },
+  women:{
+    'Charcoal':     {shirt:'Ivory silk crepe blouse, fly-front or soft pleat',neckwear:'Single strand of pearls or fine platinum chain',shoes:'Black calf pointed-toe court, 65–75mm',si:0,belt:'Thin black calf, minimal hardware',pocket:'Ivory silk handkerchief, casually placed',watch:'Silver or white gold, slim case',tip:'Charcoal and ivory is the working uniform of the disciplined woman. A single strand of pearls elevates it without effort.'},
+    'Navy':         {shirt:'White silk blouse or ivory fine-knit turtleneck',neckwear:'Delicate gold chain or camel silk scarf at collar',shoes:'Nude or warm camel leather court heel',si:1,belt:'Tan or cognac calf, thin profile',pocket:'Blush or warm white silk square',watch:'Gold or rose gold, fine case',tip:'Navy with nude accessories reads as authority, not uniform. The nude shoe elongates the leg — this detail matters.'},
+    'Midnight Black':{shirt:'White silk or ivory crepe — nothing else',neckwear:'Pearl studs or a single fine chain — restrained',shoes:'Black patent court, kitten or mid-heel — polished',si:0,belt:'Black calf, understated',pocket:'White silk, loosely placed',watch:'Silver or black — no colour',tip:'Black suiting demands restraint everywhere else. Let the cut carry the look. One refined jewellery piece, no more.'},
+    'Camel':        {shirt:'White or ivory silk blouse',neckwear:'Gold hoop earrings or tortoiseshell comb — warm accents only',shoes:'Dark cognac or chocolate leather court',si:2,belt:'Cognac calf',pocket:'Ivory or warm rust silk',watch:'Gold case, warm tone only — no silver',tip:'Camel is unmatched on warm skin tones. Wear it with confidence — it is a power neutral, not a neutral neutral.'},
+    'Burgundy':     {shirt:'Ivory or pale blush silk blouse',neckwear:'Pearl drop earrings or fine gold chain',shoes:'Black patent or nude court heel',si:0,belt:'Black or cognac slim belt',pocket:'Ivory or blush silk square',watch:'Rose gold or yellow gold',tip:'Burgundy is bold, controlled authority. Keep accessories cool and restrained so the cloth commands the room.'},
+    'Slate Grey':   {shirt:'White, blush, or soft lavender silk',neckwear:'Fine gold chain or pearl drop earrings',shoes:'Black calf, nude, or pale grey court',si:0,belt:'Black or grey-tone slim calf',pocket:'White or blush silk',watch:'Silver or white gold, slim',tip:'Grey suiting is infinitely versatile. A blush silk beneath it is the SARARA signature combination — try it once and you will return to it.'},
+    'Forest Green': {shirt:'Ivory or white silk, or fine-knit cream',neckwear:'Gold studs or single gold chain',shoes:'Tan or cognac leather court or loafer',si:3,belt:'Tan or cognac calf',pocket:'Ivory or cream silk',watch:'Gold case, tan or olive strap',tip:'Forest green on a woman in a bespoke cut is remarkable. Keep everything warm and golden around it.'},
+    'Pale Grey':    {shirt:'White silk — the only correct partner',neckwear:'Diamond or pearl studs — no necklace',shoes:'Any neutral court — the suit will lead',si:1,belt:'Black or pale grey slim belt',pocket:'White silk',watch:'Silver or white gold only',tip:'Pale grey in a good fabric is effortless authority. Crisp white beneath it, fine jewellery only. The cloth does the work.'},
+    'Stone':        {shirt:'White or ivory silk blouse',neckwear:'Fine gold chain or small gold hoops',shoes:'Cognac or nude leather court',si:1,belt:'Cognac or tan calf',pocket:'Ivory or warm peach silk',watch:'Gold, warm case',tip:'Stone is a summer cloth for women. Wear it to outdoor events, garden lunches, or warm-season client meetings with confidence.'},
+    'Tobacco Brown':{shirt:'Ivory or cream silk',neckwear:'Gold studs, warm earrings',shoes:'Dark cognac leather court or loafer',si:2,belt:'Dark cognac calf',pocket:'Cream or warm ivory silk',watch:'Gold case, cognac strap',tip:'Tobacco brown is a bold commission for the woman who dresses with total intention. It is magnificent on warm skin tones.'}
+  }
+};
+
+// ── WEEKDAYS ──────────────────────────────────────────────────────
+var WD={
+  men:[
+    {d:'Mon',name:'The Authority Open',desc:'Navy flannel — the Savile Row Monday. Sets your register.',img:1,shoe:1,
+     look:{Cloth:'Navy 2-button single-breasted, hopsack weave',Shirt:'White poplin, medium spread collar',Neckwear:'Burgundy grenadine silk, four-in-hand knot',Shoes:'Dark tan calf Derby — semi-gloss polish','+':['Dark tan calf belt, brass buckle','Silver dress watch, no complications','White linen pocket square, flat fold']},
+     avoid:['Black shoes with navy — never, under any circumstance','Satin tie with flannel — wrong weight pairing','Pattern on pattern without strict colour discipline'],
+     rule:'Monday\'s cloth signals the entire week\'s intention. Dress as if you already won.'},
+    {d:'Tue',name:'The Precision Cut',desc:'Charcoal flannel — decisive, authoritative, the Row\'s workhorse.',img:0,shoe:0,
+     look:{Cloth:'Charcoal 3-piece or 2-piece, fine herringbone flannel',Shirt:'Light blue Egyptian cotton, barrel cuff',Neckwear:'Silver or mid-grey grenadine, neat half-Windsor',Shoes:'Black calf cap-toe Oxford, freshly polished','+':['Black calf belt, silver buckle','Steel-cased dress watch, brushed finish','White linen, flat fold — precision pressed']},
+     avoid:['Brown shoes with charcoal — too casual for the cloth weight','Tie bar above the third button — always between 2nd and 3rd','Waistcoat unworn when included in the commission'],
+     rule:'Tuesday is execution. The suit should feel like armour, not clothing.'},
+    {d:'Wed',name:'The Creative Latitude',desc:'Slate grey — one considered departure from the formula.',img:3,shoe:2,
+     look:{Cloth:'Mid-grey slim-cut, fresco or open-weave flannel',Shirt:'White dobby or micro-stripe — subtle texture',Neckwear:'Optional. If worn: bold silk or printed challis',Shoes:'Burgundy calf brogue or mid-brown Derby','+':['Cognac leather watch strap','Pocket square, casual puff — not a triangle','No tie bar on Wednesday — let it breathe']},
+     avoid:['A novelty tie — creative does not mean unserious','Suede shoes in unpredictable weather','Forcing the pocket square into a precise fold on a relaxed day'],
+     rule:'Wednesday earns one deliberate deviation. One. Choose it carefully.'},
+    {d:'Thu',name:'The Commission Day',desc:'Dark navy or chalk stripe — dressed as if the contract is signed today.',img:1,shoe:0,
+     look:{Cloth:'Dark navy chalk stripe or charcoal with a faint line',Shirt:'White Sea Island cotton, double cuff',Neckwear:'Gold grenadine or navy silk — the most formal choice',Shoes:'Black calf cap-toe — mirror polished','+':['Gold or silver cufflinks — simple, not novelty','Slim leather portfolio','Minimal flat pocket square']},
+     avoid:['Unpolished shoes on Thursday — a professional-level error','Novelty or themed cufflinks in any formal room','Any element that competes with the quality of the cloth'],
+     rule:'Thursday is the week\'s highest register. Dress for the meeting you want, not the one you have.'},
+    {d:'Fri',name:'The Earned Ease',desc:'Blazer and separate trouser — sartorial discipline, informal register.',img:4,shoe:3,
+     look:{Cloth:'Navy hopsack blazer or camel herringbone, with separate grey or stone trouser',Shirt:'OCBD, chambray, or soft stripe — no tie required',Neckwear:'None. Or a navy knit silk if the room demands it',Shoes:'Brown suede loafer or clean leather chukka boot','+':['Casual leather strap watch','No tie bar on a blazer Friday','Pocket square loosely placed, if the breast pocket allows']},
+     avoid:['Treating Friday as permission for anything — discipline remains','Sports shoes with a blazer — always a miscalculation','Mismatched proportions: full blazer with very slim trouser'],
+     rule:'Friday\'s ease is earned. It looks effortless because the discipline never actually stopped.'}
+  ],
+  women:[
+    {d:'Mon',name:'Commanding Presence',desc:'Navy power suit — authority on Monday speaks before you do.',img:1,shoe:0,
+     look:{Cloth:'Navy double-breasted blazer, matching wide-leg trouser',Shirt:'White silk blouse, fly-front',Neckwear:'Single pearl studs — nothing else needed',Shoes:'Black calf pointed-toe court, 65–75mm heel','+':['Black structured leather handbag','Slim silver or white gold watch','No visible brand, no logo, no noise']},
+     avoid:['Statement earrings on Monday — too much from the first hour','A casual bag undermining a formal suit — always a structured leather piece','Patent shoes at morning meetings — reserve for afternoon'],
+     rule:'Monday\'s presence is set in the first ten minutes. Let the cloth do the announcing.'},
+    {d:'Tue',name:'The Structured Edit',desc:'Charcoal blazer and ankle-length pencil skirt — precision authority.',img:0,shoe:0,
+     look:{Cloth:'Charcoal blazer, matching ankle-length pencil skirt in wool crepe',Shirt:'Blush or dusty rose silk blouse',Neckwear:'Fine gold chain, single pendant — one piece',Shoes:'Black calf pointed court or kitten heel','+':['Gold disc or pearl stud earrings','Structured leather clutch or compact tote','Slim gold watch — no bracelet styles']},
+     avoid:['Matching blouse exactly to the skirt in blush — too coordinated','Chunky jewellery with a refined, tailored silhouette','Any visible platform sole in a professional setting'],
+     rule:'Tuesday\'s precision tells the room you are not here by accident.'},
+    {d:'Wed',name:'Elevated Creative',desc:'Blazer with floor-length column skirt — structure with considered movement.',img:4,shoe:1,
+     look:{Cloth:'Cream or camel single-button blazer, floor-length column skirt in crepe or wool',Shirt:'Silk cami or fine merino knit, tucked',Neckwear:'Gold hoop earrings or thin silk scarf draped at collar',Shoes:'Nude block heel court or tan leather loafer heel','+':['Structured tote in tan or cognac leather','Fine-gauge gold bangles','Minimal rings — one hand only']},
+     avoid:['Heavy or stiff fabric for a column skirt — it must move with you','Flat shoes with a floor-length skirt — the line collapses','Pattern on pattern without a single unifying colour anchor'],
+     rule:'Wednesday\'s movement is still intentional. Fluidity requires structure underneath.'},
+    {d:'Thu',name:'Boardroom Authority',desc:'Midnight black matched set — the highest formal register in women\'s suiting.',img:2,shoe:0,
+     look:{Cloth:'Black or midnight navy — matching jacket and ankle-to-floor column skirt or slim trouser',Shirt:'White silk or ivory crepe blouse — nothing else',Neckwear:'Pearl drops or a structured gold collar necklace',Shoes:'Black patent kitten heel or mid-height court, polished','+':['Structured black leather handbag','Minimal rings, one hand only','Hair dressed with total intention — not an afterthought']},
+     avoid:['Platform shoes with formal suiting — undermines every line','A visible bra strap beneath silk — wear seamless always','Any sheer fabric without proper structured layering beneath'],
+     rule:'Thursday is maximum authority. The room should register your presence before you speak.'},
+    {d:'Fri',name:'Refined Ease',desc:'Oversized blazer with maxi skirt — tailored freedom earned through the week.',img:8,shoe:3,
+     look:{Cloth:'Oversized blazer in navy, camel, or chalk stripe over ankle-to-floor column or A-line skirt',Shirt:'Fine knit turtleneck or a silk wrap top',Neckwear:'Statement earrings — this is Friday\'s considered licence',Shoes:'Block heel leather mule, leather loafer, or structured ankle boot','+':['Relaxed leather tote in warm cognac or tan','Stacked fine-gauge bracelets','A signature fragrance — Friday is when it registers']},
+     avoid:['Going fully casual — SARARA clients are never sloppy, even on Fridays','Denim with a blazer unless it is dark, structured, and pressed','Trainers — no occasion, not even Friday'],
+     rule:'Friday\'s ease is the hardest to perfect. It is discipline, dressed as freedom.'}
+  ]
+};
+
+// ── WOMEN SKIRTS ──────────────────────────────────────────────────
+var SKIRTS=[
+  {t:'Ankle-Length Column',s:'The most authoritative skirt length in bespoke women\'s tailoring. Worn with a single-button blazer, it commands any room.',img:0,tags:['Ankle to floor','Column cut','Wool crepe or flannel','With court heel']},
+  {t:'Midi Pencil Skirt',s:'Below-knee precision. The balance of structure and femininity. Correct in every professional setting without exception.',img:1,tags:['Below knee','Pencil cut','Wool blend','All-occasion']},
+  {t:'Pleated Midi (A-Line)',s:'Movement and considered authority. A-line or pleated midi reads as creative professional — intelligent, not casual.',img:2,tags:['Mid-calf length','A-line or pleated','Wool crepe','Wednesday register']},
+  {t:'Floor-Length Column',s:'Maximum presence. For evening board meetings, formal galas, or any occasion that demands total authority from the first step.',img:3,tags:['Floor length','Column or draped','Silk or crepe','Formal occasion only']}
+];
+
+// ── GUIDE ─────────────────────────────────────────────────────────
+var GUIDE=[
+  {icon:'📐',t:'The First Law: Fit',items:['Fit precedes fabric, brand, and price — without exception, always.','Shoulder seam must land exactly at the shoulder edge — not inside, not outside.','Jacket sleeve: ½ inch of shirt cuff revealed — no more, no less.','The lapel must roll softly to the button — never pressed flat. A rolled lapel is a hand-padded chest.','Trouser seat: no excess drape, no pull. It should hang clean from the seat downward.']},
+  {icon:'🧵',t:'Cloth Intelligence',items:['Wool is the cloth of the Row. It breathes, drapes, and recovers from compression overnight.','Summer: 7–9oz fresco or open-weave. Winter: 11–13oz flannel or herringbone tweed.','Avoid polyester blends entirely. They shine at the seat, pill at the elbow, and telegraph cost.','Super numbers measure fibre fineness — Super 110s for daily wear; Super 150s for special commissions.','The finest cloth has natural weight and memory. It falls, rather than hangs. Learn the difference.']},
+  {icon:'🎨',t:'Colour Architecture',items:['A bespoke wardrobe builds from three pillars: navy, charcoal, and grey.','Warm skin tones: camel, tobacco, burgundy, and forest green carry the greatest depth and warmth.','Cool skin tones: midnight navy, charcoal, pale grey, and black are most authoritative.','Brown shoes with navy is the European formula. Black shoes with black is evening formality.','Never match tie to pocket square. Complement — never coordinate. The distinction matters.']},
+  {icon:'✂️',t:'The Case for the Tailor',items:['Every off-the-rack suit is a starting point, not a finished garment. Always budget for alterations.','Alteration priority: shoulder seam, sleeve length, waist suppression, trouser hem — in that order.','A Savile Row canvas chest moves with the wearer. A fused chest stays stiff. Ask which yours is.','The cost of alterations should equal 15–20% of the garment cost. Regard it as completing the cloth.','A skilled tailor is a long-term professional relationship. Treat them accordingly.']},
+  {icon:'⌚',t:'Furnishings',items:['Tie tip: the blade point should just touch the trouser waistband — not above, not below.','Match all metal tones: silver watch with silver cufflinks and silver tie bar. One metal family per ensemble.','The pocket square is punctuation — it should never look too arranged. Studied nonchalance is the goal.','Cufflinks: simple geometry, not novelty. Double-cuff is always the more considered choice.','Belt leather and shoe leather must share a colour family. This is not a guideline — it is a rule.']},
+  {icon:'👞',t:'The Shoe Question',items:['Polished shoes communicate that the wearer finishes things. Unpolished shoes contradict everything above.','Goodyear-welted construction means the sole is replaceable. The upper, properly maintained, lasts decades.','The black cap-toe Oxford is the most formal shoe permissible — it asks nothing of the outfit above.','Brown calf Derby with navy flannel: the European standard. Never mismatched — it registers instantly.','Invest in shoe trees, a rotation of at least three pairs, and regular recrafting every few years.']}
+];
+var RULES=[
+  ['01','Fit is the First Principle','No cloth, no maker, no price compensates for poor fit. Regard every alteration as completing the garment.'],
+  ['02','One Metal Family','Silver watch, silver cufflinks, silver tie bar — or all gold. Mixed metals are never sartorial.'],
+  ['03','Shoes Conclude the Sentence','Polished shoes close the ensemble correctly. Unpolished shoes contradict everything above them.'],
+  ['04','Dress for the Room You Want','Overdressing respects your host. Underdressing communicates that you did not consider your audience.'],
+  ['05','Restraint Over Statement','One considered piece. The discipline of restraint is the hardest to practise and the most admired quality in dressing.'],
+  ['06','Press Everything','A wrinkle in the cloth is a wrinkle in the attention to detail. This is never negotiable.']
+];
+
+// ── BODY/SEASON/PERSONA ───────────────────────────────────────────
+var BODY={men:['Slim / Lean','Athletic','Regular','Broad Shoulder','Full'],women:['Petite','Slim','Hourglass','Athletic','Generously Proportioned']};
+var SEASONS=['Cool Winter','Warm Autumn','Cool Summer','Warm Spring'];
+var PERSONAS={men:['Classic Executive','Modern Minimalist','Creative Director','Power Player','Smart Casual'],women:['Boardroom Chic','Understated Elegance','Bold & Structured','Feminine Power','Creative Professional']};
+
+// ══════════════ RENDER FUNCTIONS ══════════════════════════════════
+
+function renderProfile(){
+  var g=S.gender;
+  function mkOpts(arr,key){return arr.map(function(v){return '<button class="opt'+(S[key]===v?' sel':'')+'" onclick="pick(\''+key+'\',\''+v.replace(/'/g,"\\'")+'\')">'+ v +'</button>';}).join('');}
+  var arc='';
+  if(S.body&&S.season&&S.persona){
+    var isW=g==='women';
+    var name=isW?'The Commanding Aesthete':'The Considered Gentleman';
+    var desc=isW?'Your profile marks a woman whose authority comes not from volume but from precision. Structured cloth, deliberate fit, considered accessories. You dress not to impress, but to communicate — and the message is always clarity and command.'
+                :'Your profile marks a man who understands that dressing well is a form of courtesy — to the room, to the occasion, and to the craft. Invest in cloth quality, build a long relationship with your tailor, and let fit do what no label can.';
+    var tags=['Quality over quantity','Tailored to the body','Cloth with character','Intentional always',S.body,S.season];
+    arc='<div class="archetype"><div class="arc-eye">Your SARARA Archetype</div><div class="arc-name">'+name+'</div><div class="arc-desc">'+desc+'</div><div class="arc-tags">'+tags.map(function(t){return '<span class="atag">'+t+'</span>';}).join('')+'</div></div>';
+  } else {
+    arc='<div class="empty-box"><div class="ei">✦</div><div class="et">Complete your profile</div><div class="es">Select body type, colour season, and style character to reveal your SARARA archetype</div></div>';
+  }
+  document.getElementById('profile-content').innerHTML=
+    '<div class="card"><div class="clabel">Body Composition</div><div class="opts">'+mkOpts(BODY[g],'body')+'</div></div>'+
+    '<div class="card"><div class="clabel">Colour Season</div><div class="opts c1">'+mkOpts(SEASONS,'season')+'</div></div>'+
+    '<div class="card"><div class="clabel">Style Character</div><div class="opts c1">'+mkOpts(PERSONAS[g],'persona')+'</div></div>'+
+    arc;
+}
+function pick(k,v){S[k]=v;renderProfile();}
+
+function renderBuilder(){
+  var g=S.gender,isW=g==='women';
+  var col=COLORS[S.colorIdx];
+  var rec=(isW?OR.women:OR.men)[col.name]||(isW?OR.women:OR.men)['Charcoal'];
+  var suitImg=(isW?P.wsuit:P.msuit)[S.colorIdx]||(isW?P.wsuit[0]:P.msuit[0]);
+  var shoeImg=(isW?P.wshoe:P.mshoe)[rec.si||0];
+  var swH=COLORS.map(function(c,i){return '<div class="sw'+(i===S.colorIdx?' sel':'')+'" style="background:'+c.hex+'" title="'+c.name+'" onclick="pickColor('+i+')"></div>';}).join('');
+  var fabs=['Wool Flannel','Fresco Wool (Summer)','Wool-Cashmere Blend','Wool Mohair (Evening)','Hopsack','Tweed'];
+  var occs=['Business','Board Meeting','Client Luncheon','Smart Casual','Evening / Black Tie','Wedding'];
+  var accRows=[
+    {ic:isW?'👚':'👔',t:isW?'Blouse':'Shirt',v:rec.shirt},
+    {ic:isW?'💎':'🎗️',t:isW?'Jewellery':'Neckwear',v:rec.neckwear},
+    {ic:'🧣',t:'Belt',v:rec.belt},
+    {ic:'🎩',t:'Pocket Square',v:rec.pocket},
+    {ic:'⌚',t:'Watch',v:rec.watch}
+  ].map(function(a){return '<div class="accrow"><div class="accicon">'+a.ic+'</div><div><div class="acct">'+a.t+'</div><div class="accv">'+a.v+'</div></div></div>';}).join('');
+  document.getElementById('builder-content').innerHTML=
+    '<div class="card-sm"><div class="clabel">Cloth Colour</div><div class="swatches">'+swH+'</div><div class="sel-lbl">Selected: <b>'+col.name+'</b></div></div>'+
+    '<div class="card-sm"><div class="clabel">Cloth Weight</div><select class="sinput" onchange="S.fabric=this.value;renderBuilder()">'+fabs.map(function(f){return '<option'+(f===S.fabric?' selected':'')+'>'+f+'</option>';}).join('')+'</select></div>'+
+    '<div class="card-sm" style="margin-bottom:16px"><div class="clabel">Occasion</div><select class="sinput" onchange="S.occasion=this.value;renderBuilder()">'+occs.map(function(o){return '<option'+(o===S.occasion?' selected':'')+'>'+o+'</option>';}).join('')+'</select></div>'+
+    '<div style="border:1px solid var(--border);overflow:hidden;margin-bottom:8px"><img src="'+suitImg+'" class="pimg" alt="'+col.name+' suit" onerror="this.style.display=\'none\'"/><div class="imglbl">'+col.name+' — '+S.fabric+'</div></div>'+
+    '<div style="border:1px solid var(--border);overflow:hidden;margin-bottom:16px"><img src="'+shoeImg+'" class="shoeimg" alt="shoes" onerror="this.style.display=\'none\'"/><div class="imglbl">Footwear — '+rec.shoes+'</div></div>'+
+    '<div class="card"><div class="clabel">The Complete Ensemble</div>'+
+    '<div class="accrow"><div class="accicon">👞</div><div><div class="acct">Shoes</div><div class="accv">'+rec.shoes+'</div></div></div>'+accRows+'</div>'+
+    '<div class="notebox"><div class="notetext"><b>SARARA Cutter\'s Note —</b> '+rec.tip+'</div></div>';
+}
+function pickColor(i){S.colorIdx=i;renderBuilder();}
+
+function renderWeekly(){
+  var g=S.gender,plans=WD[g],plan=plans[S.day];
+  var sImg=(g==='men'?P.msuit:P.wsuit)[plan.img];
+  var shImg=(g==='men'?P.mshoe:P.wshoe)[plan.shoe];
+  var tabH=plans.map(function(p,i){return '<button class="dtab'+(i===S.day?' on':'')+'" onclick="pickDay('+i+')">'+p.d+'</button>';}).join('');
+  document.getElementById('weekly-tabs-el').innerHTML='<div class="daytabs">'+tabH+'</div>';
+  var lookRows=Object.keys(plan.look).map(function(k){
+    if(k==='+') return plan.look[k].map(function(e){return '<div class="drow"><div class="dkey">+</div><div class="dval">'+e+'</div></div>';}).join('');
+    return '<div class="drow"><div class="dkey">'+k+'</div><div class="dval">'+plan.look[k]+'</div></div>';
+  }).join('');
+  var avoidH=plan.avoid.map(function(a){return '<div class="avoidrow"><span class="avoidx">✕</span><div class="avoidtext">'+a+'</div></div>';}).join('');
+  document.getElementById('weekly-content').innerHTML=
+    '<div class="ocard"><img src="'+sImg+'" class="ocardimg" alt="'+plan.name+'" onerror="this.style.display=\'none\'"/>'+
+    '<div class="ocardbody">'+
+    '<div class="eyebrow">'+plan.d+' — '+plans[S.day].d+'</div>'+
+    '<div class="oname">'+plan.name+'</div><div class="odesc">'+plan.desc+'</div>'+
+    '<img src="'+shImg+'" style="width:100%;height:74px;object-fit:cover;margin-bottom:14px;border:1px solid var(--border)" onerror="this.style.display=\'none\'"/>'+
+    '<div>'+lookRows+'</div>'+
+    '<div class="avoidtitle">What to Avoid</div>'+avoidH+
+    '<div class="rulebox"><b>The '+plan.d+' Rule —</b> '+plan.rule+'</div>'+
+    '</div></div>';
+}
+function pickDay(i){S.day=i;renderWeekly();}
+
+function renderWomen(){
+  var skirtH=SKIRTS.map(function(s,i){
+    return '<div class="skcard"><img src="'+P.wskirt[i]+'" class="skimg" alt="'+s.t+'" onerror="this.style.display=\'none\'"/>'+
+      '<div class="skbody"><div class="skt">'+s.t+'</div><div class="sks">'+s.s+'</div>'+
+      '<div class="sktags">'+s.tags.map(function(t){return '<span class="stag">'+t+'</span>';}).join('')+'</div></div></div>';
+  }).join('');
+  var accH=[
+    {ic:'💎',t:'Fine Jewellery',s:'One piece of well-made jewellery outweighs four pieces of costume jewellery. Pearl studs, fine gold chain, or a single structured cuff.'},
+    {ic:'👜',t:'The Handbag',s:'Structured leather only in professional settings. No visible logos at meetings. Match leather family to your shoe colour.'},
+    {ic:'👠',t:'The Court Heel',s:'60–80mm is the professional register. Nothing above 100mm in a boardroom. The shoe must elongate, not compete with the suit.'},
+    {ic:'🧴',t:'Fragrance',s:'A signature fragrance is part of your presence. Orientals suit cool-season suiting; lighter florals for summer cloth.'}
+  ].map(function(a){return '<div class="accrow" style="padding:13px 0"><div class="accicon">'+a.ic+'</div><div><div class="acct">'+a.t+'</div><div class="accv" style="font-size:12px;color:var(--muted)">'+a.s+'</div></div></div>';}).join('');
+  document.getElementById('women-content').innerHTML=
+    '<div class="eyebrow" style="margin-bottom:5px">Skirt Lengths</div>'+
+    '<div class="heading" style="margin-bottom:4px">The Skirt <em>as Power Garment</em></div>'+
+    '<p class="subtext" style="margin:8px 0 16px">The skirt is not less than the trouser — it is a different register of authority. Length determines occasion. Fabric determines season. Both are non-negotiable choices.</p>'+
+    '<div class="skirtgrid">'+skirtH+'</div>'+
+    '<div class="hr"></div>'+
+    '<div class="eyebrow" style="margin-bottom:4px">Finishing Details</div>'+
+    '<div class="heading" style="margin-bottom:14px">The <em>Accessories</em> That Finish</div>'+
+    '<div class="card">'+accH+'</div>'+
+    '<div class="quote-block"><div class="qt">"A well-dressed woman needs very little. Everything she wears should be saying something — nothing should be noise."</div><div class="qa">— SARARA Atelier</div></div>';
+}
+
+function renderGuide(){
+  var gH=GUIDE.map(function(g){return '<div class="gitem"><div class="gicon">'+g.icon+'</div><div class="gtitle">'+g.t+'</div><ul class="glist">'+g.items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul></div>';}).join('');
+  var rH=RULES.map(function(r){return '<div class="rulecard"><div class="rnum">'+r[0]+'</div><div class="rt">'+r[1]+'</div><div class="rb">'+r[2]+'</div></div>';}).join('');
+  document.getElementById('guide-content').innerHTML=
+    gH+
+    '<div class="quote-block"><div class="qt">"Elegance is not about being noticed, it is about being remembered."</div><div class="qa">— Giorgio Armani</div></div>'+
+    '<div class="eyebrow" style="margin-bottom:14px">The SARARA Non-Negotiables</div>'+rH;
+}
+
+function renderAI(){
+  document.getElementById('ai-content').innerHTML=
+    '<div style="margin-bottom:14px"><div class="flabel">Anthropic API Key</div>'+
+    '<input class="finput" type="password" id="ai-key" placeholder="sk-ant-…" autocomplete="off"/>'+
+    '<div class="apinote">Your key stays in this session only — never stored or transmitted elsewhere. Obtain one at console.anthropic.com</div></div>'+
+    '<div style="margin-bottom:14px"><div class="flabel">Upload Your Photo (optional — improves accuracy)</div>'+
+    '<div class="upload-zone" id="upzone" onclick="document.getElementById(\'photo-inp\').click()">'+
+    '<div class="upicon">↑</div><div class="upt">Tap to upload your photo</div>'+
+    '<div class="ups">Used to analyse your colouring, skin tone, and proportion</div></div>'+
+    '<input type="file" id="photo-inp" accept="image/*" style="display:none" onchange="handlePhoto(this)"/></div>'+
+    '<div class="flabel">Occasion</div><input class="finput" id="ai-occ" placeholder="e.g. Monday board meeting, client dinner in Dar es Salaam, wedding in Nairobi…"/>'+
+    '<div class="flabel">Additional context (optional)</div><textarea class="ftextarea" id="ai-notes" placeholder="e.g. I prefer a relaxed silhouette, the event is outdoors in August, I run warm, I have a full build…"></textarea>'+
+    '<button class="aibtn" id="ai-btn" onclick="runAI()">✦ &nbsp; Generate My Bespoke Look</button>'+
+    '<div id="ai-result-area"></div>';
+}
+
+function handlePhoto(inp){
+  if(!inp.files||!inp.files[0])return;
+  var file=inp.files[0];S.photoType=file.type;
+  var r=new FileReader();
+  r.onload=function(e){
+    S.photoB64=e.target.result.split(',')[1];
+    var z=document.getElementById('upzone');
+    z.classList.add('has-img');
+    z.innerHTML='<img src="'+e.target.result+'" class="uprev" alt="Your photo"/><div class="imglbl">Photo uploaded — AI will analyse your colouring ✓</div>';
+  };
+  r.readAsDataURL(file);
+}
+
+async function runAI(){
+  var key=document.getElementById('ai-key').value.trim();
+  var occ=document.getElementById('ai-occ').value.trim();
+  var notes=document.getElementById('ai-notes').value.trim();
+  if(!key){alert('Please enter your Anthropic API key');return;}
+  if(!occ){alert('Please describe your occasion');return;}
+  var btn=document.getElementById('ai-btn');btn.disabled=true;
+  document.getElementById('ai-result-area').innerHTML=
+    '<div class="ailoading"><div class="spinner"></div><div class="loadingt">Your stylist is considering the cloth…</div><div class="loadings">Consulting Savile Row principles</div></div>';
+  var sys='You are the SARARA personal AI stylist — a master of bespoke tailoring who trained on Savile Row and understands both Western suiting and African dressing culture. You give elevated, specific, craft-based recommendations. You never mention fast fashion brands. You reference cloth weights, weave names (fresco, hopsack, flannel, tweed), construction methods (canvas chest, Goodyear welt, hand-padded lapels, pick stitch), and specific shoe styles (cap-toe Oxford, Derby, Chelsea boot, monk strap). Your advice sounds like it comes from a master cutter who has dressed presidents, CEOs, and cultural leaders. Format with ### headings and bullet points using the · character. No markdown code blocks. Write with authority, warmth, and precision.';
+  var msg='Occasion: '+occ+(notes?'\n\nContext: '+notes:'')+'\n\nProvide:\n### Your Cloth Recommendation\n### The Complete Ensemble\n### Shoe Selection — with specific style names\n### What to Avoid\n### The Cutter\'s Note\n### Three Foundational Pieces to Commission First';
+  var content=[{type:'text',text:msg}];
+  if(S.photoB64){content.unshift({type:'image',source:{type:'base64',media_type:S.photoType||'image/jpeg',data:S.photoB64}});content.push({type:'text',text:'Use the photograph to assess skin tone, undertone, colouring, and body proportion — personalise all recommendations accordingly.'});}
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-opus-4-5',max_tokens:1600,system:sys,messages:[{role:'user',content:content}]})
+    });
+    var data=await res.json();
+    if(data.error)throw new Error(data.error.message);
+    var raw=data.content[0].text;
+    var html=raw
+      .replace(/###\s*(.+)/g,'<h3>$1</h3>')
+      .replace(/·\s*(.+)/g,'<li>$1</li>')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .split('\n').map(function(l){l=l.trim();if(!l||l.startsWith('<h3>')||l.startsWith('<li>'))return l;return '<p>'+l+'</p>';}).join('');
+    document.getElementById('ai-result-area').innerHTML=
+      '<div class="airesult"><div class="airesult-eye">Your SARARA Bespoke Recommendation</div><div class="airesult-body">'+html+'</div></div>';
+  }catch(e){
+    document.getElementById('ai-result-area').innerHTML='<div class="notebox"><div class="notetext"><b>Error:</b> '+e.message+'</div></div>';
+  }
+  btn.disabled=false;
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────
+function setPage(p){
+  var prevIdx=PAGE_ORDER.indexOf(S.page),nextIdx=PAGE_ORDER.indexOf(p);
+  S.page=p;
+  document.querySelectorAll('.page').forEach(function(el){
+    var pid=el.id.replace('page-',''),idx=PAGE_ORDER.indexOf(pid);
+    el.classList.remove('active','left');
+    if(pid===p)el.classList.add('active');
+    else if(idx<nextIdx)el.classList.add('left');
+  });
+  document.querySelectorAll('.ni').forEach(function(b){b.classList.toggle('on',b.dataset.p===p);});
+  if(p==='profile')renderProfile();
+  if(p==='builder')renderBuilder();
+  if(p==='weekly'){renderWeekly();}
+  var el=document.getElementById('page-'+p);if(el)el.scrollTop=0;
+}
+function setGender(g){
+  S.gender=g;S.body=null;S.season=null;S.persona=null;S.day=0;S.colorIdx=0;
+  document.getElementById('btn-men').classList.toggle('on',g==='men');
+  document.getElementById('btn-women').classList.toggle('on',g==='women');
+  renderProfile();renderBuilder();renderWeekly();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+renderProfile();renderBuilder();renderWeekly();renderWomen();renderGuide();renderAI();
+</script>
+</body>
+</html>
