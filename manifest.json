@@ -1,0 +1,25 @@
+{
+  "name": "ANIMA",
+  "short_name": "ANIMA",
+  "description": "A natural extension of you",
+  "start_url": "/SararaX/madeia-flow.html",
+  "scope": "/SararaX/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080608",
+  "theme_color": "#080608",
+  "icons": [
+    {
+      "src": "anima-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "anima-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
